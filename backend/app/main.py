@@ -10,6 +10,12 @@ from app.auth import (
     verify_password,
 )
 from app.config import get_settings
+from app.queue_schemas import (
+    QueueEntryCreate,
+    QueueEntryResponse,
+    QueueStatus,
+    QueueStatusUpdate,
+)
 from app.schemas import (
     StaffUserCreate,
     UserCreate,
@@ -22,7 +28,7 @@ settings = get_settings()
 app = FastAPI(
     title=settings.app_name,
     version="0.1.0",
-    description="Foundation for the Smart QR-Based Hospital Patient Journey Management System.",
+    description="Smart QR-Based Hospital Patient Journey Management System.",
 )
 
 app.add_middleware(
@@ -40,6 +46,7 @@ mongo_client = MongoClient(
 
 database = mongo_client.get_database()
 users_collection = database["users"]
+queue_collection = database["queue_entries"]
 
 
 @app.get(f"{settings.api_prefix}/db-health", tags=["system"])
@@ -56,7 +63,7 @@ async def health_check() -> dict[str, str]:
     return {
         "status": "ok",
         "service": settings.app_name,
-        "phase": "2",
+        "phase": "4",
     }
 
 
@@ -133,6 +140,7 @@ def get_logged_in_user(
 ) -> dict[str, str]:
     return current_user
 
+
 @app.get(
     f"{settings.api_prefix}/patient-area",
     tags=["authorization"],
@@ -145,6 +153,7 @@ def patient_area(
         "email": current_user["email"],
         "role": current_user["role"],
     }
+
 
 @app.post(
     f"{settings.api_prefix}/admin/users",
@@ -180,4 +189,142 @@ def create_staff_user(
     return UserResponse(
         email=email,
         role=user.role,
+    )
+
+
+@app.post(
+    f"{settings.api_prefix}/queue",
+    response_model=QueueEntryResponse,
+    status_code=201,
+    tags=["queue"],
+)
+def create_queue_entry(
+    entry: QueueEntryCreate,
+    current_user: dict[str, str] = Depends(
+        require_roles("patient", "reception")
+    ),
+) -> QueueEntryResponse:
+    patient_email = (
+        current_user["email"]
+        if current_user["role"] == "patient"
+        else entry.patient_email.strip().lower()
+    )
+
+    department = entry.department.strip()
+
+    token_number = queue_collection.count_documents(
+        {"department": department}
+    ) + 1
+
+    position = queue_collection.count_documents(
+        {
+            "department": department,
+            "status": QueueStatus.WAITING.value,
+        }
+    ) + 1
+
+    queue_document = {
+        "token_number": token_number,
+        "patient_email": patient_email,
+        "department": department,
+        "doctor_email": entry.doctor_email,
+        "status": QueueStatus.WAITING.value,
+    }
+
+    queue_collection.insert_one(queue_document)
+
+    return QueueEntryResponse(
+        token_number=token_number,
+        patient_email=patient_email,
+        department=department,
+        doctor_email=entry.doctor_email,
+        status=QueueStatus.WAITING,
+        position=position,
+    )
+
+@app.get(
+    f"{settings.api_prefix}/queue/my",
+    response_model=QueueEntryResponse,
+    tags=["queue"],
+)
+def get_my_queue_entry(
+    current_user: dict[str, str] = Depends(require_roles("patient")),
+) -> QueueEntryResponse:
+    queue_entry = queue_collection.find_one(
+        {"patient_email": current_user["email"]},
+        sort=[("_id", -1)],
+    )
+
+    if not queue_entry:
+        raise HTTPException(
+            status_code=404,
+            detail="No queue entry found for this patient",
+        )
+
+    position = queue_collection.count_documents(
+        {
+            "department": queue_entry["department"],
+            "status": QueueStatus.WAITING.value,
+            "token_number": {
+                "$lte": queue_entry["token_number"],
+            },
+        }
+    )
+
+    return QueueEntryResponse(
+        token_number=queue_entry["token_number"],
+        patient_email=queue_entry["patient_email"],
+        department=queue_entry["department"],
+        doctor_email=queue_entry.get("doctor_email"),
+        status=QueueStatus(queue_entry["status"]),
+        position=position,
+    )
+@app.patch(
+    f"{settings.api_prefix}/queue/{{department}}/{{token_number}}/status",
+    response_model=QueueEntryResponse,
+    tags=["queue"],
+)
+def update_queue_status(
+    department: str,
+    token_number: int,
+    update: QueueStatusUpdate,
+    current_user: dict[str, str] = Depends(
+        require_roles("doctor", "reception")
+    ),
+) -> QueueEntryResponse:
+    queue_entry = queue_collection.find_one(
+        {
+            "department": department,
+            "token_number": token_number,
+        }
+    )
+
+    if not queue_entry:
+        raise HTTPException(
+            status_code=404,
+            detail="Queue entry not found",
+        )
+
+    queue_collection.update_one(
+        {"_id": queue_entry["_id"]},
+        {"$set": {"status": update.status.value}},
+    )
+
+    position = queue_collection.count_documents(
+        {
+            "department": department,
+            "status": QueueStatus.WAITING.value,
+            "token_number": {
+                "$lte": token_number,
+            },
+        }
+    )
+
+    return QueueEntryResponse(
+        token_number=token_number,
+        patient_email=queue_entry["patient_email"],
+        department=queue_entry["department"],
+        doctor_email=queue_entry.get("doctor_email"),
+        status=update.status,
+        position=position,
     )
