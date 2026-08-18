@@ -1,6 +1,18 @@
+import hashlib
+from datetime import datetime, timedelta, timezone
+
 from fastapi import Depends, FastAPI, HTTPException
 from fastapi.middleware.cors import CORSMiddleware
+
 from pymongo import MongoClient
+
+from app.qr import generate_qr_image_data, generate_qr_token
+
+from app.qr_schemas import (
+    QRTokenResponse,
+    QRVerificationRequest,
+    QRVerificationResponse,
+)
 
 from app.auth import (
     create_access_token,
@@ -9,6 +21,7 @@ from app.auth import (
     require_roles,
     verify_password,
 )
+
 from app.config import get_settings
 from app.queue_schemas import (
     QueueEntryCreate,
@@ -16,6 +29,7 @@ from app.queue_schemas import (
     QueueStatus,
     QueueStatusUpdate,
 )
+
 from app.schemas import (
     StaffUserCreate,
     UserCreate,
@@ -47,6 +61,7 @@ mongo_client = MongoClient(
 database = mongo_client.get_database()
 users_collection = database["users"]
 queue_collection = database["queue_entries"]
+qr_tokens_collection = database["qr_tokens"]
 
 
 @app.get(f"{settings.api_prefix}/db-health", tags=["system"])
@@ -327,4 +342,105 @@ def update_queue_status(
         doctor_email=queue_entry.get("doctor_email"),
         status=update.status,
         position=position,
+    )
+
+@app.post(
+    f"{settings.api_prefix}/queue/{{department}}/{{token_number}}/qr",
+    response_model=QRTokenResponse,
+    tags=["qr"],
+)
+def generate_queue_qr(
+    department: str,
+    token_number: int,
+    current_user: dict[str, str] = Depends(
+        require_roles("patient")
+    ),
+) -> QRTokenResponse:
+    queue_entry = queue_collection.find_one(
+        {
+            "department": department,
+            "token_number": token_number,
+            "patient_email": current_user["email"],
+        }
+    )
+
+    if not queue_entry:
+        raise HTTPException(
+            status_code=404,
+            detail="Queue entry not found for this patient",
+        )
+
+    raw_token = generate_qr_token()
+    token_hash = hashlib.sha256(
+        raw_token.encode("utf-8")
+    ).hexdigest()
+
+    created_at = datetime.now(timezone.utc)
+    expires_at = created_at + timedelta(minutes=15)
+
+    qr_tokens_collection.insert_one(
+        {
+            "token_hash": token_hash,
+            "queue_entry_id": str(queue_entry["_id"]),
+            "department": department,
+            "token_number": token_number,
+            "expires_at": expires_at,
+            "created_at": created_at,
+        }
+    )
+
+    return QRTokenResponse(
+        qr_image_data=generate_qr_image_data(raw_token),
+        expires_at=expires_at,
+    )
+
+@app.post(
+    f"{settings.api_prefix}/qr/verify",
+    response_model=QRVerificationResponse,
+    tags=["qr"],
+)
+def verify_qr_token(
+    request: QRVerificationRequest,
+    current_user: dict[str, str] = Depends(
+        require_roles("doctor", "reception")
+    ),
+) -> QRVerificationResponse:
+    token_hash = hashlib.sha256(
+        request.token.encode("utf-8")
+    ).hexdigest()
+
+    qr_record = qr_tokens_collection.find_one(
+        {
+            "token_hash": token_hash,
+            "expires_at": {
+                "$gt": datetime.now(timezone.utc),
+            },
+        }
+    )
+
+    if not qr_record:
+        raise HTTPException(
+            status_code=401,
+            detail="Invalid or expired QR token",
+        )
+
+    queue_entry = queue_collection.find_one(
+        {
+            "department": qr_record["department"],
+            "token_number": qr_record["token_number"],
+        }
+    )
+
+    if not queue_entry:
+        raise HTTPException(
+            status_code=404,
+            detail="Queue entry not found",
+        )
+
+    return QRVerificationResponse(
+        valid=True,
+        patient_email=queue_entry["patient_email"],
+        department=queue_entry["department"],
+        token_number=queue_entry["token_number"],
+        status=queue_entry["status"],
     )

@@ -12,3 +12,6 @@ pymongo>=4.8,<5.0
 # Authentication and security
 pwdlib[argon2]>=0.3,<1.0
 python-jose[cryptography]>=3.3,<4.0
+
+#qr code
+qrcode[pil]>=7.4,<9.0

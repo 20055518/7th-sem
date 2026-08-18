@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
-import { Link, Route, Routes } from "react-router-dom";
+import { Link, Route, Routes, useNavigate } from "react-router-dom";
+import QRScanner from "./QRScanner";
+import { generateQueueQr, loginPatient } from "./api";
 
 function LandingPage() {
   const [apiStatus, setApiStatus] = useState("Checking backend...");
@@ -121,6 +123,143 @@ function DashboardPage({ role, title, description }) {
   );
 }
 
+function QueueAccessPage() {
+  const [scanned, setScanned] = useState(false);
+
+  return (
+    <main className="placeholder">
+      <Link to="/">CarePath+</Link>
+
+      <h1>Scan Your Queue QR Code</h1>
+      <p>Allow camera access and scan the QR code provided by reception.</p>
+
+      <QRScanner onScan={() => setScanned(true)} />
+
+      {scanned && (
+        <p role="status">
+          QR code scanned successfully.
+        </p>
+      )}
+
+      <Link className="button secondary" to="/">
+        Return home
+      </Link>
+    </main>
+  );
+}
+
+function LoginPage() {
+  const navigate = useNavigate();
+  const [email, setEmail] = useState("patient1@example.com");
+  const [password, setPassword] = useState("TestPassword123!");
+  const [error, setError] = useState("");
+
+  async function handleSubmit(event) {
+    event.preventDefault();
+    setError("");
+
+    try {
+      await loginPatient(email, password);
+      navigate("/patient-qr");
+    } catch (loginError) {
+      setError(loginError.message);
+    }
+  }
+
+  return (
+    <main className="placeholder">
+      <Link to="/">CarePath+</Link>
+      <h1>Patient Login</h1>
+
+      <form onSubmit={handleSubmit}>
+        <input
+          type="email"
+          value={email}
+          onChange={(event) => setEmail(event.target.value)}
+          placeholder="Email"
+          required
+        />
+
+        <input
+          type="password"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+          placeholder="Password"
+          required
+        />
+
+        <button className="button primary" type="submit">
+          Login
+        </button>
+      </form>
+
+      {error && <p role="alert">{error}</p>}
+    </main>
+  );
+}
+
+function PatientQRPage() {
+  const [department, setDepartment] = useState("Cardiology");
+  const [tokenNumber, setTokenNumber] = useState("1");
+  const [qrImageData, setQrImageData] = useState("");
+  const [error, setError] = useState("");
+
+  async function handleGenerateQr(event) {
+    event.preventDefault();
+    setError("");
+
+    try {
+      const data = await generateQueueQr(
+        department,
+        Number(tokenNumber),
+      );
+
+      setQrImageData(data.qr_image_data);
+    } catch (qrError) {
+      setError(qrError.message);
+    }
+  }
+
+  return (
+    <main className="placeholder">
+      <Link to="/">CarePath+</Link>
+
+      <h1>My Queue QR Code</h1>
+
+      <form onSubmit={handleGenerateQr}>
+        <input
+          value={department}
+          onChange={(event) => setDepartment(event.target.value)}
+          placeholder="Department"
+          required
+        />
+
+        <input
+          type="number"
+          value={tokenNumber}
+          onChange={(event) => setTokenNumber(event.target.value)}
+          placeholder="Token number"
+          min="1"
+          required
+        />
+
+        <button className="button primary" type="submit">
+          Generate QR
+        </button>
+      </form>
+
+      {error && <p role="alert">{error}</p>}
+
+      {qrImageData && (
+        <img
+          src={qrImageData}
+          alt="Patient queue QR code"
+          width="300"
+        />
+      )}
+    </main>
+  );
+}
 function PlaceholderPage({ title }) {
   return (
     <main className="placeholder">
@@ -187,12 +326,17 @@ export default function App() {
 
       <Route
         path="/login"
-        element={<PlaceholderPage title="Staff Sign In" />}
+        element={<LoginPage />}
       />
 
       <Route
         path="/queue-access"
-        element={<PlaceholderPage title="QR Queue Access" />}
+        element={<QueueAccessPage />}
+      />
+
+      <Route
+        path="/patient-qr"
+        element={<PatientQRPage />}
       />
 
       <Route
@@ -200,5 +344,6 @@ export default function App() {
         element={<PlaceholderPage title="Page Not Found" />}
       />
     </Routes>
+
   );
 }
