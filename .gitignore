@@ -1,0 +1,15 @@
+# Environment and Python artifacts
+.env
+.venv/
+__pycache__/
+*.py[cod]
+
+# JavaScript artifacts
+node_modules/
+dist/
+
+# Tooling artifacts
+.pytest_cache/
+.coverage
+coverage/
+.DS_Store
