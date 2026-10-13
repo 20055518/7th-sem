@@ -1,39 +1,767 @@
+/* ============================================================
+   GLOBAL RESET & FOUNDATION
+   Clinical Teal & Emerald Healthcare Theme
+   ============================================================ */
+
 :root {
-  font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
-  color: #123047;
-  background: #eef8f7;
+  font-family:
+    "Plus Jakarta Sans",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+  letter-spacing: -0.012em;
+
+  color: #0f172a;
+  background: #f8fcfb;
+
   font-synthesis: none;
+
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-* { box-sizing: border-box; }
-body { margin: 0; }
-a { color: inherit; text-decoration: none; }
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
 
-.landing-shell { min-height: 100vh; padding: 1.25rem; background: radial-gradient(circle at 90% 0%, #d1f2ec 0, transparent 32rem), #f8fcfb; }
-.topbar, .hero, .feature-grid { max-width: 70rem; margin: 0 auto; }
-.topbar { display: flex; justify-content: space-between; align-items: center; padding: .75rem 0; }
-.brand { font-size: 1.25rem; font-weight: 800; letter-spacing: -.04em; color: #075985; }
-.brand span { color: #e35c32; }
-.nav-link { font-size: .9rem; font-weight: 700; color: #1e5971; }
-.hero { padding: 5.5rem 0 4rem; max-width: 48rem; margin-left: max(0px, calc((100% - 70rem) / 2)); }
-.eyebrow { margin: 0 0 1rem; color: #0f766e; font-size: .75rem; font-weight: 800; letter-spacing: .13em; }
-h1 { margin: 0; font-size: clamp(2.8rem, 8vw, 5.8rem); line-height: .94; letter-spacing: -.065em; color: #123047; }
-.hero-copy { max-width: 34rem; margin: 1.5rem 0; font-size: 1.1rem; line-height: 1.6; color: #49677a; }
-.hero-actions { display: flex; flex-wrap: wrap; gap: .75rem; }
-.button { padding: .85rem 1.1rem; border-radius: .55rem; font-weight: 800; font-size: .95rem; }
-.primary { background: #075985; color: white; }
-.secondary { border: 1px solid #b7d2d7; color: #075985; }
-.feature-grid { display: grid; gap: .75rem; grid-template-columns: repeat(3, 1fr); padding-bottom: 2rem; }
-.feature-grid article { min-height: 8rem; padding: 1.2rem; border: 1px solid #d5e8e5; border-radius: .75rem; background: rgba(255,255,255,.72); }
-.feature-grid strong, .feature-grid span { display: block; }
-.feature-grid strong { margin-bottom: .6rem; color: #075985; }
-.feature-grid span { color: #587283; font-size: .9rem; line-height: 1.45; }
-.placeholder { min-height: 100vh; padding: 2rem; background: #f8fcfb; }
-.placeholder > a { font-weight: 800; color: #075985; }
-.placeholder h1 { margin-top: 5rem; font-size: clamp(2.5rem, 7vw, 4.5rem); }
-.placeholder p { color: #49677a; }
+html {
+  width: 100%;
+  min-height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  overflow-y: auto;
+  scroll-behavior: smooth;
+  overscroll-behavior-y: none;
+}
 
-@media (max-width: 42rem) {
-  .hero { padding: 4.5rem 0 3rem; }
-  .feature-grid { grid-template-columns: 1fr; }
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  width: 100%;
+  min-width: 320px;
+  min-height: 0;
+  height: auto;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  -webkit-overflow-scrolling: touch;
+
+  background: #f8fcfb;
+  color: #0f172a;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+button {
+  cursor: pointer;
+}
+
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+img {
+  max-width: 100%;
+}
+
+/* ============================================================
+   COMMON TYPOGRAPHY
+   ============================================================ */
+
+.eyebrow {
+  margin: 0 0 14px;
+  color: #0f766e;
+  font-size: 0.74rem;
+  font-weight: 850;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.muted {
+  color: #64748b;
+  line-height: 1.6;
+}
+
+.error-text {
+  margin: 0;
+  color: #dc2626;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.success-text {
+  margin: 0;
+  color: #16a34a;
+  font-size: 0.9rem;
+  font-weight: 700;
+}
+
+.card-label {
+  margin: 0 0 10px;
+  color: #64748b;
+  font-size: 0.8rem;
+  font-weight: 750;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+/* ============================================================
+   COMMON BUTTONS
+   ============================================================ */
+
+.button {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 44px;
+  padding: 11px 18px;
+  border: 1px solid transparent;
+  border-radius: 10px;
+  font-size: 0.92rem;
+  font-weight: 750;
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease,
+    border-color 0.15s ease;
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+.button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.primary {
+  background: linear-gradient(135deg, #0f766e 0%, #075985 100%);
+  color: white;
+  box-shadow: 0 4px 14px rgba(0, 207, 199, 0.25);
+}
+
+.primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #075985 0%, #032a30 100%);
+  box-shadow: 0 6px 18px rgba(0, 207, 199, 0.35);
+}
+
+.secondary {
+  background: white;
+  border-color: #cbd5e1;
+  color: #1e293b;
+}
+
+.secondary:hover:not(:disabled) {
+  background: #f8fcfb;
+  border-color: #94a3b8;
+}
+
+/* ============================================================
+   COMMON ALERTS
+   ============================================================ */
+
+.alert {
+  margin-top: 16px;
+  padding: 13px 16px;
+  border-radius: 10px;
+  font-weight: 650;
+  font-size: 0.92rem;
+}
+
+.alert.danger {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+}
+
+.alert.success {
+  background: #f0fdf4;
+  border: 1px solid #bbf7d0;
+  color: #15803d;
+}
+
+/* ============================================================
+   COMMON DASHBOARD STATES
+   ============================================================ */
+
+.empty-card,
+.loading-card {
+  padding: 40px;
+  text-align: center;
+}
+
+.empty-card h2 {
+  margin-top: 0;
+  color: #0f172a;
+}
+
+/* ============================================================
+   COMMON DASHBOARD LAYOUT
+   ============================================================ */
+
+.dashboard-page {
+  flex: 1 0 auto;
+  min-height: auto;
+  padding-bottom: 32px;
+  box-sizing: border-box;
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      #d1f2ec 0%,
+      #eef8f7 35%,
+      transparent 60rem
+    ),
+    #f8fcfb;
+}
+
+.page-header {
+  width: min(1180px, calc(100% - 40px));
+  margin: 28px auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 20px;
+}
+
+.page-header h1 {
+  margin: 0;
+  color: #0f172a;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 850;
+  letter-spacing: -0.025em;
+}
+
+.dashboard-page > section,
+.dashboard-page > .alert,
+.dashboard-page > .empty-card,
+.dashboard-page > .loading-card {
+  width: min(1180px, calc(100% - 40px));
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ============================================================
+   COMMON LIVE STATUS
+   ============================================================ */
+
+.live-pill {
+  display: inline-flex;
+  align-items: center;
+  width: fit-content;
+  padding: 6px 12px;
+  border-radius: 999px;
+  background: #eef8f7;
+  border: 1px solid #b7d2d7;
+  color: #0f766e;
+  font-weight: 750;
+  font-size: 0.82rem;
+}
+
+/* ============================================================
+   COMMON SECTION
+   ============================================================ */
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  gap: 15px;
+  margin-bottom: 20px;
+}
+
+.section-heading h2 {
+  margin: 0;
+  color: #0f172a;
+  font-size: 1.45rem;
+  font-weight: 800;
+}
+
+/* ============================================================
+   COMMON SUMMARY CARDS (CLEAN & CONTAINED)
+   ============================================================ */
+
+.patient-summary,
+.doctor-stats {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.token-card,
+.summary-card,
+.prediction-main,
+.probability-card,
+.queue-section,
+.empty-card,
+.loading-card,
+.qr-card,
+.scanner-card {
+  background: white;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  box-shadow:
+    0 4px 20px -2px rgba(15, 23, 42, 0.04),
+    0 2px 6px -1px rgba(15, 23, 42, 0.02);
+}
+
+.token-card,
+.summary-card {
+  padding: 18px 20px;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.token-card span,
+.summary-card span {
+  display: block;
+  margin-bottom: 6px;
+  color: #64748b;
+  font-size: 0.76rem;
+  font-weight: 750;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.token-card strong {
+  display: block;
+  color: #00cfc7;
+  font-size: 1.5rem;
+  font-weight: 850;
+  line-height: 1.2;
+}
+
+.summary-card strong {
+  display: block;
+  color: #0f172a;
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.35;
+  word-break: break-all;
+  overflow-wrap: anywhere;
+  white-space: normal;
+  min-width: 0;
+}
+
+/* ============================================================
+   COMMON QUEUE TABLE
+   ============================================================ */
+
+.queue-section {
+  margin-top: 18px;
+  padding: 24px;
+}
+
+.queue-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+.queue-table {
+  width: 100%;
+  min-width: 860px;
+  border-collapse: collapse;
+}
+
+.queue-table th,
+.queue-table td {
+  padding: 13px 12px;
+  border-bottom: 1px solid #f1f5f9;
+  text-align: left;
+  vertical-align: middle;
+}
+
+.queue-table th {
+  color: #64748b;
+  font-size: 0.76rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  font-weight: 750;
+}
+
+.queue-table td {
+  color: #1e293b;
+  font-size: 0.9rem;
+}
+
+.queue-table tr:hover td {
+  background: #f8fcfb;
+}
+
+/* ============================================================
+   COMMON BADGES
+   ============================================================ */
+
+.status-badge,
+.risk-badge {
+  display: inline-flex;
+  width: fit-content;
+  padding: 4px 10px;
+  border-radius: 999px;
+  background: #eef8f7;
+  border: 1px solid #b7d2d7;
+  color: #075985;
+  font-size: 0.75rem;
+  font-weight: 750;
+}
+
+.status-skipped {
+  background: #fff7ed;
+  border-color: #fed7aa;
+  color: #c2410c;
+}
+
+/* ============================================================
+   COMMON ACTIONS
+   ============================================================ */
+
+.action-group {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.dashboard-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 24px;
+}
+
+.mini-button {
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  padding: 6px 12px;
+  background: white;
+  color: #0f766e;
+  font-size: 0.8rem;
+  font-weight: 750;
+  transition: all 0.15s ease;
+}
+
+.mini-button:hover:not(:disabled) {
+  background: #eef8f7;
+  border-color: #cbdedc;
+  color: #075985;
+  transform: translateY(-1px);
+}
+
+.danger-button {
+  color: #dc2626;
+  border-color: #fecaca;
+}
+
+.danger-button:hover:not(:disabled) {
+  background: #fef2f2;
+  border-color: #fca5a5;
+  color: #b91c1c;
+}
+
+/* ============================================================
+   COMMON PREDICTION
+   ============================================================ */
+
+.prediction-grid {
+  margin-top: 14px;
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.prediction-main {
+  padding: 24px;
+}
+
+.prediction-number {
+  display: block;
+  color: #075985;
+  font-size: clamp(2rem, 5vw, 3.6rem);
+  font-weight: 850;
+}
+
+.state-text {
+  display: block;
+  color: #0f766e;
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+/* ============================================================
+   COMMON PROBABILITY
+   ============================================================ */
+
+.probability-card {
+  margin-top: 14px;
+  padding: 24px;
+}
+
+.probability-row {
+  margin-top: 18px;
+}
+
+.probability-meta {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+  margin-bottom: 7px;
+  color: #475569;
+  font-size: 0.88rem;
+}
+
+.progress-track {
+  width: 100%;
+  height: 10px;
+  overflow: hidden;
+  border-radius: 999px;
+  background: #e2e8f0;
+}
+
+.progress-fill {
+  height: 100%;
+  border-radius: inherit;
+  background: linear-gradient(90deg, #00cfc7, #0f766e);
+}
+
+/* ============================================================
+   COMMON FORM ELEMENTS
+   ============================================================ */
+
+input,
+select,
+textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 11px 14px;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 10px;
+  background: white;
+  color: #0f172a;
+  outline: none;
+  font-size: 0.92rem;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: #0f766e;
+  box-shadow: 0 0 0 3px rgba(0, 207, 199, 0.15);
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #94a3b8;
+}
+
+textarea {
+  resize: vertical;
+  min-height: 110px;
+}
+
+/* ============================================================
+   RESPONSIVE FOUNDATION & TOUCH OPTIMIZATIONS
+   ============================================================ */
+
+/* Custom smooth scrollbar for table containers */
+.queue-table-wrap,
+.admin-table-wrapper {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(0, 207, 199, 0.4) transparent;
+  -webkit-overflow-scrolling: touch;
+}
+
+.queue-table-wrap::-webkit-scrollbar,
+.admin-table-wrapper::-webkit-scrollbar {
+  height: 6px;
+}
+
+.queue-table-wrap::-webkit-scrollbar-thumb,
+.admin-table-wrapper::-webkit-scrollbar-thumb {
+  background: rgba(0, 207, 199, 0.35);
+  border-radius: 999px;
+}
+
+.queue-table-wrap::-webkit-scrollbar-track,
+.admin-table-wrapper::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+@media (max-width: 900px) {
+  .patient-summary,
+  .doctor-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .prediction-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .page-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 14px;
+  }
+}
+
+@media (max-width: 640px) {
+  .dashboard-page > section,
+  .dashboard-page > .alert,
+  .dashboard-page > .empty-card,
+  .dashboard-page > .loading-card {
+    width: calc(100% - 20px);
+  }
+
+  .patient-summary,
+  .doctor-stats {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .page-header {
+    width: calc(100% - 20px);
+    margin: 18px auto 14px;
+  }
+
+  .page-header h1 {
+    font-size: clamp(1.8rem, 7vw, 2.5rem);
+  }
+
+  .queue-section {
+    padding: 16px 12px;
+    border-radius: 16px;
+  }
+
+  .section-heading {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .dashboard-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .dashboard-actions .button {
+    width: 100%;
+    min-height: 46px;
+  }
+
+  /* Optimize touch target sizes on mobile */
+  .button,
+  .mini-button {
+    touch-action: manipulation;
+  }
+
+  .button {
+    min-height: 48px;
+    padding: 11px 16px;
+  }
+}
+
+@media (max-width: 380px) {
+  .dashboard-page > section,
+  .dashboard-page > .alert,
+  .dashboard-page > .empty-card,
+  .dashboard-page > .loading-card {
+    width: calc(100% - 14px);
+  }
+
+  .page-header {
+    width: calc(100% - 14px);
+  }
+
+  .queue-section {
+    padding: 12px 8px;
+  }
+
+  .button {
+    min-height: 46px;
+    padding: 10px 14px;
+    font-size: 0.88rem;
+  }
+}
+
+/* ============================================================
+   DEFINITIVE DOCUMENT SCROLL FIX
+   ============================================================ */
+
+html,
+body,
+#root {
+  width: 100% !important;
+  min-width: 0 !important;
+  height: auto !important;
+  min-height: 100% !important;
+  max-height: none !important;
+}
+
+html {
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0 !important;
+  overflow-x: hidden !important;
+  overflow-y: visible !important;
+}
+
+#root {
+  overflow: visible !important;
+}
+
+/* Normal pages should end at their actual content */
+.page,
+.page-container,
+.app-page,
+.dashboard-page,
+.patient-page,
+.doctor-page,
+.nurse-page,
+.reception-page,
+.admin-page {
+  margin-bottom: 0 !important;
+  padding-bottom: 0 !important;
+}
+
+/* Footer is the final element with no extra space after it */
+.careplus-footer {
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
 }

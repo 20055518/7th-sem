@@ -9,13 +9,15 @@
     "preview": "vite preview"
   },
   "dependencies": {
-    "@vitejs/plugin-react": "latest",
+    "@react-oauth/google": "^0.13.5",
+    "@vitejs/plugin-react": "6.0.5",
+    "firebase": "^13.0.0",
     "html5-qrcode": "^2.3.8",
-    "react": "latest",
-    "react-dom": "latest",
-    "react-router-dom": "latest"
+    "react": "19.2.8",
+    "react-dom": "19.2.8",
+    "react-router-dom": "7.18.2"
   },
   "devDependencies": {
-    "vite": "latest"
+    "vite": "8.2.1"
   }
 }

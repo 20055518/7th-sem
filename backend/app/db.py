@@ -76,8 +76,8 @@ async def init_db(app=None) -> AsyncMongoClient:
     # rooms
     await db.rooms.create_index("roomId", unique=True)
 
-    # rooms
-    await db.rooms.createIndex("departmentId + roomId", unique=True)
+    # rooms compound index
+    await db.rooms.create_index([("departmentId", 1), ("roomId", 1)], unique=True)
 
     # If the app is passed, store the client reference for graceful shutdown
     if app is not None:

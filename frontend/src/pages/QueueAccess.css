@@ -1,0 +1,1337 @@
+/* ============================================================
+   QUEUE ACCESS / QR VERIFICATION
+   ============================================================ */
+
+.queue-access-page {
+  flex: 1 0 auto;
+  min-height: auto;
+
+  width: 100%;
+
+  padding-bottom: 32px;
+
+  background:
+    radial-gradient(
+      circle at 15% 10%,
+      rgba(0, 207, 199, 0.10),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 85% 25%,
+      rgba(101, 224, 209, 0.07),
+      transparent 30%
+    ),
+    linear-gradient(
+      180deg,
+      #00191d 0%,
+      #032a30 48%,
+      #00252b 100%
+    );
+
+  color: #ffffff;
+
+  box-sizing: border-box;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+
+/* ============================================================
+   PAGE HEADER
+   ============================================================ */
+
+.queue-access-page .page-header {
+  width: min(
+    1180px,
+    calc(100% - 40px)
+  );
+
+  margin: 50px auto 35px;
+
+  box-sizing: border-box;
+
+  color: #ffffff;
+}
+
+
+.queue-access-page .page-header h1 {
+  margin: 8px 0 14px;
+
+  color: #ffffff;
+
+  font-size: clamp(
+    2.5rem,
+    5vw,
+    4.2rem
+  );
+
+  font-weight: 900;
+
+  line-height: 1.05;
+
+  letter-spacing: -0.04em;
+}
+
+
+.queue-access-page .page-header .muted {
+  max-width: 720px;
+
+  margin: 0;
+
+  color: #b6c8ca;
+
+  font-size: 1.05rem;
+
+  line-height: 1.6;
+}
+
+
+/* ============================================================
+   ERROR MESSAGE
+   ============================================================ */
+
+.queue-access-page > .alert {
+  width: min(
+    1180px,
+    calc(100% - 40px)
+  );
+
+  margin: 0 auto 20px;
+
+  box-sizing: border-box;
+}
+
+
+/* ============================================================
+   SCANNER CARD
+   ============================================================ */
+
+.scanner-card {
+  width: min(
+    1180px,
+    calc(100% - 40px)
+  );
+
+  margin: 0 auto;
+
+  padding: 38px;
+
+  box-sizing: border-box;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.98),
+      rgba(238, 255, 252, 0.98)
+    );
+
+  border: 1px solid rgba(101, 224, 209, 0.35);
+
+  border-radius: 24px;
+
+  box-shadow:
+    0 20px 55px rgba(0, 0, 0, 0.25),
+    0 0 35px rgba(0, 207, 199, 0.08);
+
+  overflow: hidden;
+}
+
+
+/* ============================================================
+   SCANNER INTRO
+   ============================================================ */
+
+.scanner-intro {
+  width: 100%;
+
+  max-width: 760px;
+
+  margin-bottom: 28px;
+
+  box-sizing: border-box;
+}
+
+
+.scanner-intro .eyebrow {
+  margin: 0 0 10px;
+
+  color: #00aaa9;
+
+  font-size: 0.78rem;
+
+  font-weight: 900;
+
+  letter-spacing: 0.13em;
+
+  line-height: 1.3;
+}
+
+
+.scanner-intro h2 {
+  margin: 0 0 10px;
+
+  color: #0f172a;
+
+  font-size: clamp(
+    1.7rem,
+    3vw,
+    2.4rem
+  );
+
+  font-weight: 900;
+
+  line-height: 1.15;
+}
+
+
+.scanner-intro .muted {
+  margin: 0;
+
+  color: #334155;
+
+  font-size: 1rem;
+
+  line-height: 1.6;
+}
+
+
+/* ============================================================
+   QR SCANNER COMPONENT
+   ============================================================ */
+
+/*
+   This targets the QRScanner component without changing
+   its scanning logic.
+*/
+
+.scanner-card > *:not(.scanner-intro) {
+  max-width: 100%;
+
+  box-sizing: border-box;
+}
+
+
+/* ============================================================
+   CAMERA CONTAINER
+   ============================================================ */
+
+.scanner-card video {
+  display: block;
+
+  width: min(
+    620px,
+    100%
+  );
+
+  max-width: 100%;
+
+  height: auto;
+
+  min-height: 300px;
+
+  max-height: 560px;
+
+  margin: 0 auto;
+
+  object-fit: cover;
+
+  background: #0f172a;
+
+  border-radius: 18px;
+
+  box-shadow:
+    0 16px 40px
+    rgba(
+      7,
+      60,
+      68,
+      0.16
+    );
+}
+
+
+/* ============================================================
+   CANVAS
+   ============================================================ */
+
+.scanner-card canvas {
+  max-width: 100%;
+
+  height: auto;
+}
+
+
+/* ============================================================
+   QR SCANNER WRAPPER
+   ============================================================ */
+
+.scanner-card > div {
+  box-sizing: border-box;
+
+  max-width: 100%;
+}
+
+
+/* ============================================================
+   LOADING
+   ============================================================ */
+
+.scanner-card .alert.success {
+  width: min(
+    650px,
+    100%
+  );
+
+  margin: 22px auto 0;
+
+  box-sizing: border-box;
+
+  text-align: center;
+
+  border-radius: 12px;
+
+  line-height: 1.5;
+}
+
+
+/* ============================================================
+   VERIFIED RESULT PAGE
+   ============================================================ */
+
+.queue-access-card {
+  width: min(
+    1180px,
+    calc(100% - 40px)
+  );
+
+  margin: 0 auto;
+
+  padding: 0;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+}
+
+
+/* ============================================================
+   QR RESULT CARD
+   ============================================================ */
+
+.qr-result-card {
+  width: min(
+    720px,
+    100%
+  );
+
+  margin: 0 auto 24px;
+
+  padding: 30px;
+
+  box-sizing: border-box;
+
+  display: grid;
+
+  gap: 10px;
+
+  text-align: center;
+
+  border: 1px solid rgba(101, 224, 209, 0.35);
+
+  border-radius: 20px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.98),
+      rgba(238, 255, 252, 0.98)
+    );
+
+  box-shadow:
+    0 20px 55px rgba(0, 0, 0, 0.25),
+    0 0 35px rgba(0, 207, 199, 0.08);
+}
+
+
+.qr-result-card .eyebrow {
+  margin: 0;
+
+  color: #00aaa9;
+
+  font-weight: 900;
+
+  letter-spacing: 0.12em;
+}
+
+
+.qr-result-card h2 {
+  margin: 5px 0;
+
+  color: #0f172a;
+
+  font-size: clamp(
+    1.7rem,
+    3vw,
+    2.4rem
+  );
+
+  line-height: 1.15;
+}
+
+
+.qr-result-card .muted {
+  margin: 0;
+
+  color: #809294;
+
+  line-height: 1.6;
+}
+
+
+/* ============================================================
+   VERIFICATION ICON
+   ============================================================ */
+
+.verification-icon {
+  width: 62px;
+
+  height: 62px;
+
+  margin: 0 auto 8px;
+
+  display: grid;
+
+  place-items: center;
+
+  border-radius: 50%;
+
+  background: rgba(0, 207, 199, 0.12);
+
+  color: #00aaa9;
+
+  border: 1px solid rgba(0, 207, 199, 0.30);
+
+  font-size: 1.8rem;
+
+  font-weight: 900;
+}
+
+
+/* ============================================================
+   OWN QUEUE CARD
+   ============================================================ */
+
+.own-queue-card {
+  width: 100%;
+
+  margin-top: 20px;
+
+  padding: 28px;
+
+  box-sizing: border-box;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.98),
+      rgba(238, 255, 252, 0.98)
+    );
+
+  border: 1px solid rgba(101, 224, 209, 0.35);
+
+  border-radius: 20px;
+
+  box-shadow:
+    0 20px 55px rgba(0, 0, 0, 0.25),
+    0 0 35px rgba(0, 207, 199, 0.08);
+
+  overflow: hidden;
+}
+
+
+/* ============================================================
+   SECTION HEADING
+   ============================================================ */
+
+.section-heading {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  gap: 20px;
+
+  min-width: 0;
+}
+
+
+.section-heading h2 {
+  margin: 4px 0 0;
+
+  color: #0f172a;
+
+  line-height: 1.2;
+
+  overflow-wrap: anywhere;
+}
+
+
+/* ============================================================
+   LIVE PILL
+   ============================================================ */
+
+.live-pill {
+  flex-shrink: 0;
+
+  padding: 8px 14px;
+
+  border-radius: 999px;
+
+  background: #f8fcfb;
+
+  color: #00aaa9;
+
+  font-size: 0.85rem;
+
+  font-weight: 800;
+
+  white-space: nowrap;
+}
+
+
+/* ============================================================
+   PATIENT SUMMARY
+   ============================================================ */
+
+.queue-access-page .patient-summary {
+  width: 100%;
+
+  max-width: 100%;
+
+  margin: 24px 0;
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      4,
+      minmax(
+        0,
+        1fr
+      )
+    );
+
+  gap: 12px;
+
+  box-sizing: border-box;
+}
+
+
+.queue-access-page .patient-summary
+.summary-card,
+
+.queue-access-page .patient-summary
+.token-card {
+  min-width: 0;
+
+  width: 100%;
+
+  min-height: 110px;
+
+  padding: 17px 12px;
+
+  box-sizing: border-box;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  justify-content: space-between;
+
+  text-align: center;
+
+  border: 1px solid #f8fcfb;
+
+  border-radius: 15px;
+
+  background: #ffffff;
+
+  overflow: hidden;
+}
+
+
+.queue-access-page .patient-summary span {
+  width: 100%;
+
+  color: #334155;
+
+  font-size: 0.72rem;
+
+  font-weight: 800;
+
+  letter-spacing: 0.07em;
+
+  text-transform: uppercase;
+}
+
+
+.queue-access-page .patient-summary strong {
+  width: 100%;
+
+  min-width: 0;
+
+  max-width: 100%;
+
+  margin-top: 10px;
+
+  color: #0f172a;
+
+  font-size: 1rem;
+
+  line-height: 1.3;
+
+  overflow-wrap: anywhere;
+
+  word-break: break-word;
+
+  white-space: normal;
+}
+
+
+.queue-access-page
+.patient-summary
+.token-card {
+  background:
+    linear-gradient(
+      145deg,
+      #f8fcfb,
+      #ffffff
+    );
+
+  border-color: #00cfc7;
+}
+
+
+.queue-access-page
+.patient-summary
+.token-card strong {
+  color: #00cfc7;
+
+  font-size: 1.7rem;
+}
+
+
+/* ============================================================
+   PREDICTION GRID
+   ============================================================ */
+
+.prediction-grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(
+      2,
+      minmax(
+        0,
+        1fr
+      )
+    );
+
+  gap: 14px;
+
+  margin-top: 20px;
+}
+
+
+.prediction-main {
+  min-width: 0;
+
+  padding: 22px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #f8fcfb;
+
+  border-radius: 16px;
+
+  background: #f8fcfb;
+
+  overflow: hidden;
+}
+
+
+.prediction-number {
+  display: block;
+
+  margin-top: 8px;
+
+  color: #00cfc7;
+
+  font-size: 1.8rem;
+
+  line-height: 1.2;
+
+  overflow-wrap: anywhere;
+}
+
+
+/* ============================================================
+   BAYESIAN CARD
+   ============================================================ */
+
+.probability-card {
+  margin-top: 20px;
+
+  padding: 24px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #f8fcfb;
+
+  border-radius: 16px;
+
+  background: #ffffff;
+}
+
+
+/* ============================================================
+   PROBABILITY ROW
+   ============================================================ */
+
+.probability-row {
+  margin-top: 18px;
+}
+
+
+.probability-meta {
+  display: flex;
+
+  justify-content: space-between;
+
+  gap: 15px;
+
+  margin-bottom: 7px;
+}
+
+
+.probability-meta span,
+.probability-meta strong {
+  overflow-wrap: anywhere;
+}
+
+
+.progress-track {
+  width: 100%;
+
+  height: 9px;
+
+  overflow: hidden;
+
+  border-radius: 999px;
+
+  background: #f8fcfb;
+}
+
+
+.progress-fill {
+  height: 100%;
+
+  border-radius: inherit;
+
+  background: #00aaa9;
+
+  transition:
+    width 0.3s ease;
+}
+
+
+/* ============================================================
+   PUBLIC QUEUE
+   ============================================================ */
+
+.public-queue-section {
+  width: 100%;
+
+  margin-top: 24px;
+
+  padding: 28px;
+
+  box-sizing: border-box;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.98),
+      rgba(238, 255, 252, 0.98)
+    );
+
+  border: 1px solid rgba(101, 224, 209, 0.35);
+
+  border-radius: 20px;
+
+  box-shadow:
+    0 20px 55px rgba(0, 0, 0, 0.25),
+    0 0 35px rgba(0, 207, 199, 0.08);
+
+  overflow: hidden;
+}
+
+
+.public-queue-list {
+  display: grid;
+
+  gap: 8px;
+
+  margin-top: 20px;
+}
+
+
+.public-queue-row {
+  width: 100%;
+
+  min-width: 0;
+
+  display: grid;
+
+  grid-template-columns:
+    1fr
+    1fr
+    1fr
+    auto;
+
+  align-items: center;
+
+  gap: 14px;
+
+  padding: 14px;
+
+  box-sizing: border-box;
+
+  border: 1px solid #f8fcfb;
+
+  border-radius: 12px;
+
+  background: #f8fcfb;
+
+  overflow: hidden;
+}
+
+
+.public-queue-row > div {
+  min-width: 0;
+}
+
+
+.public-queue-row strong {
+  display: block;
+
+  margin-top: 4px;
+
+  overflow-wrap: anywhere;
+}
+
+
+.own-queue-row {
+  border-color: #00cfc7;
+
+  background: #eef8f7;
+}
+
+
+.own-label {
+  flex-shrink: 0;
+
+  padding: 5px 10px;
+
+  border-radius: 999px;
+
+  background: #f8fcfb;
+
+  color: #00cfc7;
+
+  font-size: 0.75rem;
+
+  font-weight: 900;
+}
+
+
+/* ============================================================
+   ACTIONS
+   ============================================================ */
+
+.dashboard-actions {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  justify-content: center;
+
+  gap: 12px;
+
+  margin-top: 24px;
+}
+
+
+/* ============================================================
+   EMPTY / LOADING
+   ============================================================ */
+
+.empty-card,
+.loading-card {
+  width: 100%;
+
+  padding: 28px;
+
+  box-sizing: border-box;
+
+  text-align: center;
+
+  border: 1px solid #f8fcfb;
+
+  border-radius: 16px;
+
+  background: #ffffff;
+}
+
+
+/* ============================================================
+   MOBILE / TABLET
+   ============================================================ */
+
+@media (max-width: 800px) {
+
+  .scanner-card,
+  .queue-access-card {
+
+    width: calc(100% - 32px);
+
+  }
+
+
+  .scanner-card {
+
+    padding: 28px 22px;
+
+  }
+
+
+  .queue-access-page
+  .patient-summary {
+
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(
+          0,
+          1fr
+        )
+      );
+
+  }
+
+
+  .public-queue-row {
+
+    grid-template-columns:
+      repeat(
+        2,
+        minmax(
+          0,
+          1fr
+        )
+      );
+
+  }
+
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 560px) {
+
+  .queue-access-page {
+
+    padding-bottom: 40px;
+
+  }
+
+
+  .queue-access-page .page-header {
+
+    width: calc(100% - 24px);
+
+    margin: 30px auto 25px;
+
+  }
+
+
+  .queue-access-page .page-header h1 {
+
+    font-size: 2.45rem;
+
+  }
+
+
+  .scanner-card {
+
+    width: calc(100% - 24px);
+
+    padding: 22px 14px;
+
+    border-radius: 18px;
+
+  }
+
+
+  .scanner-intro {
+
+    margin-bottom: 20px;
+
+  }
+
+
+  .scanner-intro h2 {
+
+    font-size: 1.55rem;
+
+  }
+
+
+  .scanner-card video {
+
+    min-height: 240px;
+
+    border-radius: 12px;
+
+  }
+
+
+  .queue-access-card {
+
+    width: calc(100% - 24px);
+
+  }
+
+
+  .qr-result-card {
+
+    padding: 24px 16px;
+
+    border-radius: 18px;
+
+  }
+
+
+  .own-queue-card,
+  .public-queue-section {
+
+    padding: 20px 14px;
+
+    border-radius: 17px;
+
+  }
+
+
+  .section-heading {
+
+    align-items: flex-start;
+
+  }
+
+
+  .live-pill {
+
+    font-size: 0.75rem;
+
+    padding: 7px 10px;
+
+  }
+
+
+  .queue-access-page
+  .patient-summary {
+
+    grid-template-columns: 1fr;
+
+  }
+
+
+  .prediction-grid {
+
+    grid-template-columns: 1fr;
+
+  }
+
+
+  .public-queue-row {
+
+    grid-template-columns: 1fr;
+
+  }
+
+
+  .dashboard-actions {
+
+    flex-direction: column;
+
+  }
+
+
+  .dashboard-actions .button {
+
+    width: 100%;
+
+  }
+
+}
+/* ============================================================
+   QR SCANNER FIX
+   ============================================================ */
+
+
+/* ============================================================
+   QR SCANNER WRAPPER
+   ============================================================ */
+
+.queue-access-page .qr-scanner-wrapper {
+  width: 100%;
+
+  max-width: 700px;
+
+  margin: 0 auto;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+
+  text-align: center;
+}
+
+
+/* ============================================================
+   QR READER
+   ============================================================ */
+
+.queue-access-page #qr-reader {
+  width: 100% !important;
+
+  max-width: 650px !important;
+
+  margin: 0 auto !important;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+
+  border-radius: 18px;
+}
+
+
+/* ============================================================
+   CAMERA VIDEO
+   ============================================================ */
+
+.queue-access-page #qr-reader video {
+  display: block !important;
+
+  width: 100% !important;
+
+  max-width: 100% !important;
+
+  height: auto !important;
+
+  object-fit: cover;
+
+  border-radius: 14px;
+}
+
+
+/* ============================================================
+   HTML5 QR INTERNAL ELEMENTS
+   ============================================================ */
+
+.queue-access-page #qr-reader__scan_region {
+  width: 100% !important;
+
+  max-width: 100% !important;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+}
+
+
+.queue-access-page #qr-reader__dashboard {
+  width: 100% !important;
+
+  max-width: 100% !important;
+
+  box-sizing: border-box;
+}
+
+
+.queue-access-page #qr-reader__dashboard_section {
+  width: 100% !important;
+
+  max-width: 100% !important;
+
+  box-sizing: border-box;
+
+  overflow-wrap: anywhere;
+}
+
+
+/* ============================================================
+   SCANNER HELP
+   ============================================================ */
+
+.queue-access-page .scanner-help {
+  margin: 16px auto 0;
+
+  color: #334155;
+
+  font-size: 0.95rem;
+
+  line-height: 1.5;
+
+  text-align: center;
+}
+
+
+/* ============================================================
+   RESULT CARD
+   ============================================================ */
+
+.queue-access-page .qr-result-card {
+  width: min(
+    900px,
+    calc(100% - 40px)
+  );
+
+  margin: 0 auto 24px;
+
+  box-sizing: border-box;
+
+  overflow: hidden;
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 560px) {
+
+  .queue-access-page .scanner-card {
+
+    width: calc(100% - 24px);
+
+    padding: 22px 14px;
+
+    border-radius: 18px;
+
+  }
+
+
+  .queue-access-page .qr-scanner-wrapper {
+
+    width: 100%;
+
+  }
+
+
+  .queue-access-page #qr-reader {
+
+    width: 100% !important;
+
+    max-width: 100% !important;
+
+  }
+
+
+  .queue-access-page #qr-reader video {
+
+    width: 100% !important;
+
+  }
+
+
+  .queue-access-page .scanner-intro h2 {
+
+    font-size: 1.55rem;
+
+  }
+
+}
+
+
+/* ============================================================
+   MANUAL ONE-TIME CODE
+   ============================================================ */
+
+.manual-code-form {
+  width: min(620px, 100%);
+
+  margin: 0 auto 28px;
+
+  padding: 18px;
+
+  box-sizing: border-box;
+
+  background: #edf7f6;
+
+  border: 1px solid rgba(0, 207, 199, 0.35);
+
+  border-radius: 16px;
+}
+
+
+.manual-code-form label {
+  display: block;
+
+  margin-bottom: 10px;
+
+  color: #00aaa9;
+
+  font-weight: 700;
+}
+
+
+.manual-code-actions {
+  display: flex;
+
+  gap: 10px;
+}
+
+
+.manual-code-actions input {
+  min-width: 0;
+
+  flex: 1;
+
+  padding: 11px 12px;
+
+  border: 1px solid rgba(0, 207, 199, 0.4);
+
+  border-radius: 10px;
+
+  font: inherit;
+}
+
+
+
+@media (max-width: 560px) {
+
+  .manual-code-actions {
+    flex-direction: column;
+  }
+
+}

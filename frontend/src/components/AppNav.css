@@ -1,0 +1,545 @@
+/* ============================================================
+   CARE+  –  APPLICATION NAVIGATION (GLOBAL COMPONENT)
+   ============================================================ */
+
+.app-nav {
+  width: min(1180px, calc(100% - 32px));
+  margin: 4px auto 0;
+  padding: 10px 20px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 20px;
+  background: linear-gradient(135deg, #00191d 0%, #032a30 100%);
+  border: 1px solid rgba(0, 207, 199, 0.25);
+  border-radius: 16px;
+  box-shadow:
+    0 10px 30px rgba(0, 0, 0, 0.2),
+    0 0 25px rgba(0, 207, 199, 0.08);
+  position: relative;
+  z-index: 1000;
+  overflow: visible;
+}
+
+.app-nav > * {
+  min-width: 0;
+}
+
+/* ============================================================
+   BRAND
+   ============================================================ */
+
+.brand {
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  font-size: 1.7rem;
+  font-weight: 900;
+  letter-spacing: -0.045em;
+  color: #ffffff;
+  text-decoration: none;
+  line-height: 1;
+  position: relative;
+  z-index: 1002;
+  max-width: calc(100% - 60px);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.brand span {
+  color: #00cfc7;
+  font-weight: 900;
+  margin-left: 1px;
+}
+
+.brand:hover {
+  transform: translateY(-1px);
+  opacity: 0.96;
+}
+
+/* ============================================================
+   DESKTOP NAV ACTIONS
+   ============================================================ */
+
+.nav-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 8px;
+  flex-wrap: wrap;
+  min-width: 0;
+}
+
+/* ============================================================
+   NAV LINK
+   ============================================================ */
+
+.nav-link {
+  min-height: 40px;
+  padding: 9px 12px;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  color: rgba(255, 255, 255, 0.88);
+  font-size: 0.90rem;
+  font-weight: 800;
+  text-decoration: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  white-space: nowrap;
+  transition: color 0.25s ease, background 0.25s ease, transform 0.25s ease;
+}
+
+.nav-link:hover {
+  color: #00cfc7;
+  background: rgba(0, 207, 199, 0.12);
+  transform: translateY(-1px);
+}
+
+/* ============================================================
+   LOGOUT BUTTON
+   ============================================================ */
+
+.nav-button {
+  min-height: 40px;
+  padding: 8px 17px;
+  box-sizing: border-box;
+  border: 1.5px solid #00cfc7;
+  border-radius: 10px;
+  background: rgba(0, 207, 199, 0.12);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.90rem;
+  font-weight: 800;
+  letter-spacing: 0.01em;
+  cursor: pointer;
+  flex-shrink: 0;
+  white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(0, 207, 199, 0.15);
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.nav-button:hover {
+  background: #00cfc7;
+  color: #00191d;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 207, 199, 0.3);
+}
+
+.nav-button:active {
+  transform: translateY(0);
+}
+
+/* ============================================================
+   SIGN IN BUTTON (HEADER)
+   ============================================================ */
+
+.nav-signin {
+  flex-shrink: 0;
+  min-height: 40px;
+  padding: 8px 17px;
+  box-sizing: border-box;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: 1.5px solid #00cfc7;
+  border-radius: 10px;
+  background: rgba(0, 207, 199, 0.12);
+  color: #ffffff;
+  font-family: inherit;
+  font-size: 0.90rem;
+  font-weight: 800;
+  text-decoration: none;
+  white-space: nowrap;
+  position: relative;
+  z-index: 1002;
+  cursor: pointer;
+  transition:
+    background 0.25s ease,
+    color 0.25s ease,
+    transform 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.nav-signin:hover {
+  background: #00cfc7;
+  color: #00191d;
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 207, 199, 0.3);
+}
+
+/* ============================================================
+   MOBILE HAMBURGER TOGGLE BUTTON
+   Matched to the rounded teal outlined box in user screenshot
+   ============================================================ */
+
+.nav-mobile-toggle {
+  display: none;
+  background: transparent;
+  border: 1.5px solid rgba(0, 207, 199, 0.55);
+  border-radius: 10px;
+  padding: 7px 9px;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: center;
+  gap: 5px;
+  flex: 0 0 42px;
+  width: 42px;
+  height: 40px;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1002;
+  transition: all 0.2s ease;
+}
+
+.nav-mobile-toggle:hover {
+  background: rgba(0, 207, 199, 0.15);
+  border-color: #00cfc7;
+}
+
+/* ============================================================
+   HAMBURGER 3 HORIZONTAL BARS
+   ============================================================ */
+
+.toggle-bar {
+  display: block;
+  width: 100%;
+  height: 2.5px;
+  background: #00cfc7;
+  border-radius: 2px;
+  transition: transform 0.25s ease, opacity 0.2s ease;
+}
+
+.nav-mobile-toggle.open .toggle-bar:nth-child(1) {
+  transform: translateY(7.5px) rotate(45deg);
+}
+
+.nav-mobile-toggle.open .toggle-bar:nth-child(2) {
+  opacity: 0;
+}
+
+.nav-mobile-toggle.open .toggle-bar:nth-child(3) {
+  transform: translateY(-7.5px) rotate(-45deg);
+}
+
+/* ============================================================
+   MOBILE MENU PORTAL (hidden by default)
+   ============================================================ */
+
+.mobile-nav-menu {
+  display: none;
+}
+
+.nav-backdrop {
+  display: none;
+}
+
+/* ============================================================
+   FOCUS STYLES
+   ============================================================ */
+
+.nav-link:focus-visible,
+.nav-button:focus-visible,
+.brand:focus-visible,
+.nav-signin:focus-visible,
+.nav-mobile-toggle:focus-visible {
+  outline: 2px solid #00cfc7;
+  outline-offset: 3px;
+}
+
+/* ============================================================
+   TABLET / MOBILE  <= 768px
+   ============================================================ */
+
+@media (max-width: 768px) {
+  .app-nav {
+    width: calc(100% - 24px);
+    margin-top: 12px;
+    padding: 10px 14px;
+    gap: 12px;
+    border-radius: 14px;
+  }
+
+  .brand {
+    font-size: 1.5rem;
+    max-width: calc(100% - 56px);
+  }
+
+  /* Hide desktop horizontal links and signin button */
+  .nav-actions,
+  .nav-signin,
+  .nav-auth-actions {
+    display: none !important;
+  }
+
+  /* Show hamburger toggle button */
+  .nav-mobile-toggle {
+    display: flex !important;
+    margin-left: auto;
+  }
+
+  /* BACKDROP */
+  .nav-backdrop {
+    display: block !important;
+    position: fixed !important;
+    inset: 0 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    background: rgba(0, 25, 29, 0.65);
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
+    z-index: 99990 !important;
+    pointer-events: auto !important;
+    touch-action: none;
+  }
+
+  /* MOBILE POPUP MENU */
+  .mobile-nav-menu {
+    display: flex !important;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    position: fixed !important;
+    top: 76px !important;
+    left: 12px !important;
+    right: 12px !important;
+    width: auto !important;
+    max-width: none !important;
+    max-height: calc(100dvh - 90px) !important;
+    overflow-y: auto;
+    overscroll-behavior: contain;
+    -webkit-overflow-scrolling: touch;
+    padding: 18px 14px;
+    padding-bottom: calc(18px + env(safe-area-inset-bottom, 0px));
+    box-sizing: border-box;
+    background: linear-gradient(145deg, #00191d 0%, #032a30 100%);
+    border: 1px solid rgba(0, 207, 199, 0.35);
+    border-radius: 16px;
+    box-shadow:
+      0 20px 50px rgba(0, 0, 0, 0.55),
+      0 0 30px rgba(0, 207, 199, 0.15);
+    z-index: 99991 !important;
+    pointer-events: auto !important;
+    animation: navDrawerIn 0.22s ease forwards;
+  }
+
+  /* MOBILE MENU ITEMS */
+  .mobile-nav-menu .nav-link {
+    display: flex !important;
+    width: 100% !important;
+    min-height: 48px;
+    padding: 12px 16px;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: flex-start;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(0, 207, 199, 0.15);
+    border-radius: 10px;
+    color: rgba(255, 255, 255, 0.92);
+    font-size: 0.95rem;
+    font-weight: 800;
+    text-decoration: none;
+    white-space: normal;
+    position: relative;
+    z-index: 99992;
+    pointer-events: auto !important;
+  }
+
+  .mobile-nav-menu .nav-link:hover {
+    background: rgba(0, 207, 199, 0.15);
+    border-color: #00cfc7;
+    color: #00cfc7;
+  }
+
+  .mobile-nav-menu .nav-button {
+    display: flex !important;
+    width: 100% !important;
+    min-height: 48px;
+    padding: 12px;
+    box-sizing: border-box;
+    align-items: center;
+    justify-content: center;
+    margin-top: 4px;
+    position: relative;
+    z-index: 99992;
+    pointer-events: auto !important;
+  }
+
+  @keyframes navDrawerIn {
+    from {
+      opacity: 0;
+      transform: translateY(-8px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+}
+
+/* ============================================================
+   SMALL MOBILE  <= 420px
+   ============================================================ */
+
+@media (max-width: 420px) {
+  .app-nav {
+    width: calc(100% - 16px);
+    margin-top: 10px;
+    padding: 9px 12px;
+    gap: 8px;
+    border-radius: 13px;
+  }
+
+  .brand {
+    font-size: clamp(1.15rem, 7vw, 1.35rem);
+    max-width: calc(100% - 50px);
+  }
+
+  .nav-mobile-toggle {
+    flex: 0 0 38px;
+    width: 38px;
+    height: 36px;
+    padding: 6px 8px;
+  }
+
+  .nav-signin {
+    min-height: 36px;
+    padding: 7px 13px;
+    font-size: 0.88rem;
+  }
+
+  .mobile-nav-menu {
+    top: 68px !important;
+    left: 8px !important;
+    right: 8px !important;
+    max-height: calc(100dvh - 80px) !important;
+    padding: 14px 11px;
+    padding-bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .mobile-nav-menu .nav-link,
+  .mobile-nav-menu .nav-button {
+    min-height: 46px;
+    font-size: 0.9rem;
+  }
+}
+
+/* ============================================================
+   VERY SMALL MOBILE  <= 340px
+   ============================================================ */
+
+@media (max-width: 340px) {
+  .app-nav {
+    width: calc(100% - 10px);
+    padding: 8px 10px;
+  }
+
+  .brand {
+    font-size: 1.1rem;
+    max-width: calc(100% - 46px);
+  }
+
+  .mobile-nav-menu {
+    left: 5px !important;
+    right: 5px !important;
+  }
+}
+
+/* ============================================================
+   FINAL GLOBAL APP NAV SAFETY
+   ============================================================ */
+
+.app-nav {
+  width: min(1180px, calc(100% - 32px));
+  margin: 4px auto 0;
+  box-sizing: border-box;
+  position: relative;
+  z-index: 1000;
+  overflow: visible;
+}
+
+@media (max-width: 768px) {
+  .app-nav {
+    width: calc(100% - 24px);
+    margin: 12px auto 0;
+  }
+
+  .nav-actions,
+  .nav-signin,
+  .nav-auth-actions {
+    display: none !important;
+  }
+
+  .nav-mobile-toggle {
+    display: flex !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .app-nav {
+    width: calc(100% - 20px);
+    margin: 10px auto 0;
+  }
+}
+
+/* ============================================================
+   DESKTOP SIGN-IN ALIGNMENT
+   When logged out, nav-signin is the rightmost navbar action.
+   ============================================================ */
+
+@media (min-width: 769px) {
+  .app-nav > .nav-signin {
+    margin-left: auto !important;
+  }
+}
+
+.nav-auth-actions {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-left: auto;
+}
+
+.nav-signin,
+.nav-signup {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 105px;
+  height: 46px;
+  padding: 0 20px;
+  border-radius: 12px;
+  text-decoration: none;
+  font-size: 16px;
+  font-weight: 700;
+  box-sizing: border-box;
+}
+
+.nav-signin {
+  color: #ffffff;
+  background: transparent;
+  border: 2px solid #00d0d0;
+}
+
+.nav-signup {
+  color: #ffffff;
+  background: transparent;
+  border: 2px solid #00d0d0;
+  transition:
+    background-color 0.2s ease,
+    color 0.2s ease;
+}
+
+.nav-signup:hover {
+  color: #001f22;
+  background: #00d0d0;
+}

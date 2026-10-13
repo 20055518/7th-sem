@@ -3,7 +3,7 @@
 Models uncertain hospital events using labelled historical or synthetic data
 with Laplace smoothing, then applies naive-Bayes posterior updating when
 new evidence arrives. All probabilities are documented and traceable."""
-from typing import Dict, Any, Optional
+from typing import Dict, Any, Optional, Literal
 from datetime import datetime
 
 

@@ -1,0 +1,1757 @@
+/* ============================================================
+   BACKGROUND VIDEO
+   ============================================================ */
+
+.patient-dashboard {
+  position: relative;
+  isolation: isolate;
+
+  width: 100%;
+  min-height: 100vh;
+
+  /* Important: no solid background here.
+     The MP4 must remain visible for the full page. */
+  background: transparent;
+
+  color: #00191d;
+}
+
+/* ============================================================
+   FIXED FULL-PAGE VIDEO
+   ============================================================ */
+
+.patient-dashboard-video {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+
+  object-fit: cover;
+  object-position: center center;
+
+  z-index: -2;
+
+  display: block;
+
+  background: #082f2b;
+
+  filter:
+    blur(5px)
+    brightness(0.72)
+    saturate(1.22);
+
+  transform: scale(1.045);
+
+  pointer-events: none;
+
+  will-change: transform;
+}
+
+/* ============================================================
+   GREEN HEALTHCARE TINT
+   ============================================================ */
+
+.patient-dashboard-video-overlay {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: 100%;
+  height: 100vh;
+  height: 100dvh;
+
+  z-index: -1;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      180deg,
+      rgba(0, 48, 42, 0.28) 0%,
+      rgba(0, 86, 62, 0.22) 48%,
+      rgba(0, 36, 32, 0.36) 100%
+    );
+}
+
+/* ============================================================
+   CONTENT ABOVE THE VIDEO
+   ============================================================ */
+
+/* ============================================================
+   CAREPATH+ PATIENT DASHBOARD
+   Complete replacement stylesheet
+   ============================================================ */
+
+.patient-dashboard {
+  width: 100%;
+  min-height: 100vh;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  color: #00191d;
+}
+
+/* ============================================================
+   PAGE HEADER
+   ============================================================ */
+
+.patient-dashboard .patient-page-header {
+  width: min(1180px, calc(100% - 40px));
+  margin: 32px auto 0;
+  box-sizing: border-box;
+}
+
+.patient-dashboard .patient-page-header h1 {
+  margin: 6px 0 10px;
+  color: #00191d;
+}
+
+.patient-dashboard .patient-page-header .muted {
+  margin: 0;
+  color: #6f8588;
+}
+
+/* ============================================================
+   STATUS CARD
+   ============================================================ */
+
+.patient-dashboard .patient-status-card {
+  width: min(1180px, calc(100% - 40px));
+  margin: 26px auto 18px;
+  padding: 26px 28px;
+  box-sizing: border-box;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(244, 255, 251, 0.88),
+      rgba(226, 250, 242, 0.84)
+    );
+
+  border: 1px solid #d8e7e7;
+  border-radius: 18px;
+
+  box-shadow:
+    0 10px 28px rgba(0, 25, 29, 0.07);
+}
+
+.patient-dashboard .patient-status-card h2 {
+  margin: 7px 0 8px;
+  color: #00191d;
+}
+
+.patient-dashboard .patient-status-card .muted {
+  margin: 0 0 14px;
+  color: #71888b;
+}
+
+.patient-dashboard .patient-status-card .status-badge {
+  display: inline-flex;
+}
+
+/* ============================================================
+   QUEUE SUMMARY
+   ============================================================ */
+
+.patient-dashboard .patient-summary {
+  width: min(1180px, calc(100% - 40px));
+  margin: 18px auto 24px;
+
+  display: grid;
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  gap: 14px;
+  box-sizing: border-box;
+}
+
+.patient-dashboard .patient-summary > article {
+  min-width: 0;
+  min-height: 106px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+
+  padding: 20px 22px;
+  box-sizing: border-box;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(244, 255, 251, 0.95),
+      rgba(226, 250, 242, 0.93)
+    );
+
+  border: 1px solid #d9e8e8;
+  border-radius: 16px;
+
+  box-shadow:
+    0 8px 24px rgba(0, 25, 29, 0.055);
+}
+
+.patient-dashboard .patient-summary article > span {
+  margin-bottom: 7px;
+  color: #71888b;
+  font-size: 0.73rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.patient-dashboard .patient-summary article strong {
+  color: #043d35;
+  font-size: 1.25rem;
+  line-height: 1.25;
+  overflow-wrap: anywhere;
+}
+
+.patient-dashboard .patient-summary .token-card strong {
+  color: #00aaa9;
+  font-size: 1.5rem;
+}
+
+/* ============================================================
+   RISK
+   ============================================================ */
+
+.patient-dashboard .patient-risk-text {
+  display: inline-block;
+  width: fit-content;
+  max-width: 100%;
+  padding: 4px 10px;
+  border-radius: 999px;
+  box-sizing: border-box;
+
+  font-size: 0.9rem;
+  font-weight: 800;
+
+  overflow-wrap: anywhere;
+}
+
+.patient-dashboard .risk-text-urgent {
+  color: #b42323 !important;
+}
+
+.patient-dashboard .risk-text-critical {
+  color: #9f1239 !important;
+}
+
+.patient-dashboard .risk-text-high {
+  color: #c2410c !important;
+}
+
+.patient-dashboard .risk-text-medium {
+  color: #9a7100 !important;
+}
+
+.patient-dashboard .risk-text-low,
+.patient-dashboard .risk-text-normal {
+  color: #00aaa9 !important;
+}
+
+/* ============================================================
+   TRIAGE CARD
+   ============================================================ */
+
+.patient-dashboard .waiting-triage-card {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto 22px;
+  padding: 28px;
+  box-sizing: border-box;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(244, 255, 251, 0.88),
+      rgba(226, 250, 242, 0.84)
+    );
+
+  border: 1.5px solid rgba(0, 207, 199, 0.42);
+  border-radius: 18px;
+
+  box-shadow:
+    0 12px 32px rgba(0, 25, 29, 0.07);
+}
+
+.patient-dashboard .waiting-triage-card h2 {
+  margin: 7px 0 9px;
+  color: #00191d;
+}
+
+.patient-dashboard .waiting-triage-card .muted {
+  color: #71888b;
+}
+
+.patient-dashboard .prediction-pending {
+  margin-top: 18px;
+  padding: 15px 17px;
+
+  border: 1px solid #cfe4e2;
+  border-radius: 12px;
+
+  background: #f1faf9;
+  color: #176c68;
+
+  font-size: 0.92rem;
+  font-weight: 700;
+}
+
+/* ============================================================
+   PREDICTION GRID
+   ============================================================ */
+
+.patient-dashboard .prediction-grid {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto 22px;
+
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+
+  box-sizing: border-box;
+}
+
+.patient-dashboard .prediction-main {
+  min-width: 0;
+  min-height: 170px;
+
+  padding: 24px 26px;
+  box-sizing: border-box;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(244, 255, 251, 0.88),
+      rgba(226, 250, 242, 0.84)
+    );
+
+  border: 1.5px solid rgba(0, 207, 199, 0.38);
+  border-radius: 18px;
+
+  box-shadow:
+    0 12px 32px rgba(0, 25, 29, 0.07);
+}
+
+.patient-dashboard .prediction-main .card-label {
+  margin: 0 0 9px;
+  color: #71888b;
+  font-size: 0.73rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.patient-dashboard .prediction-number {
+  display: block;
+  color: #00aaa9 !important;
+  font-size: clamp(2.1rem, 4vw, 3.3rem);
+  line-height: 1;
+  font-weight: 900;
+}
+
+.patient-dashboard .prediction-main .muted {
+  margin-top: 13px;
+  color: #809294;
+}
+
+/* ============================================================
+   BAYESIAN PROBABILITY CARD
+   ============================================================ */
+
+.patient-dashboard .probability-card {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto 22px;
+  padding: 28px;
+  box-sizing: border-box;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(244, 255, 251, 0.88),
+      rgba(226, 250, 242, 0.84)
+    );
+
+  border: 1.5px solid rgba(0, 207, 199, 0.38);
+  border-radius: 18px;
+
+  box-shadow:
+    0 12px 32px rgba(0, 25, 29, 0.07);
+}
+
+.patient-dashboard .probability-card h2 {
+  margin: 5px 0 0;
+  color: #00191d;
+}
+
+.patient-dashboard .state-text {
+  color: #00aaa9;
+  font-size: 1.35rem;
+  font-weight: 900;
+}
+
+.patient-dashboard .probability-row {
+  width: 100%;
+  margin-top: 17px;
+}
+
+.patient-dashboard .probability-meta {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 7px;
+}
+
+.patient-dashboard .probability-meta span {
+  color: #71888b;
+  font-size: 0.8rem;
+  font-weight: 700;
+}
+
+.patient-dashboard .probability-meta strong {
+  color: #00191d;
+  font-size: 0.8rem;
+}
+
+.patient-dashboard .progress-track {
+  width: 100%;
+  height: 7px;
+  overflow: hidden;
+
+  background: #e5efef;
+  border-radius: 999px;
+}
+
+.patient-dashboard .progress-fill {
+  height: 100%;
+  min-width: 0;
+
+  background:
+    linear-gradient(
+      90deg,
+      #00aaa9,
+      #00cfc7
+    );
+
+  border-radius: inherit;
+
+  box-shadow:
+    0 0 12px rgba(0, 207, 199, 0.25);
+
+  transition: width 0.35s ease;
+}
+
+.patient-dashboard .queue-long-warning {
+  margin-top: 17px;
+  padding: 12px 14px;
+
+  background: rgba(255, 193, 7, 0.12);
+  border: 1px solid rgba(217, 119, 6, 0.35);
+  border-radius: 11px;
+
+  color: #806000;
+  font-size: 0.84rem;
+}
+
+/* ============================================================
+   ACTION MESSAGE
+   ============================================================ */
+
+.patient-dashboard .patient-action-message {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto 22px;
+  box-sizing: border-box;
+}
+
+/* ============================================================
+   COMPLETED RESULT
+   ============================================================ */
+
+.patient-dashboard .patient-result-card {
+  width: min(1180px, calc(100% - 40px));
+  margin: 0 auto 22px;
+  padding: 28px;
+  box-sizing: border-box;
+
+  display: flex;
+  align-items: center;
+  gap: 18px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(244, 255, 251, 0.88),
+      rgba(226, 250, 242, 0.84)
+    );
+
+  border: 1.5px solid rgba(0, 207, 199, 0.38);
+  border-radius: 18px;
+
+  box-shadow:
+    0 12px 32px rgba(0, 25, 29, 0.07);
+}
+
+.patient-dashboard .completed-result-icon {
+  width: 48px;
+  height: 48px;
+  flex: 0 0 48px;
+
+  display: grid;
+  place-items: center;
+
+  border-radius: 50%;
+  background: #e5f8f5;
+  color: #008786;
+
+  font-size: 1.35rem;
+  font-weight: 900;
+}
+
+/* ============================================================
+   PUBLIC QUEUE SECTION
+   ============================================================ */
+
+.patient-dashboard .public-queue-section {
+  width: min(850px, calc(100% - 40px));
+  margin: 30px auto 26px;
+  padding: 30px 26px;
+  box-sizing: border-box;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.99),
+      rgba(244, 255, 253, 0.98)
+    );
+
+  border: 1px solid #d6e4e5;
+  border-radius: 20px;
+
+  box-shadow:
+    0 14px 36px rgba(0, 25, 29, 0.08);
+}
+
+.patient-dashboard .public-queue-section .section-heading {
+  margin-bottom: 7px;
+}
+
+.patient-dashboard .public-queue-section h2 {
+  margin: 4px 0 0;
+  color: #00191d;
+}
+
+.patient-dashboard .public-queue-description {
+  margin: 10px 0 0;
+  color: #809294;
+  font-size: 0.9rem;
+}
+
+/* ============================================================
+   PUBLIC QUEUE LIST
+   This is the bordered box around the entire queue.
+   ============================================================ */
+
+.patient-dashboard .public-queue-list {
+  width: min(100%, 720px);
+  margin: 22px auto 0;
+  padding: 0;
+
+  box-sizing: border-box;
+
+  background: rgba(246, 255, 252, 0.90);
+
+  border: 2px solid rgba(0, 170, 169, 0.42);
+  border-radius: 16px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 7px 20px rgba(0, 25, 29, 0.045);
+}
+
+/* ============================================================
+   EACH QUEUE ROW
+   ============================================================ */
+
+.patient-dashboard .public-queue-row {
+  position: relative;
+
+  width: 100%;
+  min-width: 0;
+
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1.15fr)
+    minmax(0, 1fr)
+    minmax(0, 1.2fr)
+    auto;
+
+  align-items: center;
+
+  gap: 16px;
+
+  padding: 15px 18px;
+
+  box-sizing: border-box;
+
+  background: rgba(255, 255, 255, 0.78);
+
+  border: 0;
+  border-bottom: 1px solid rgba(0, 170, 169, 0.18);
+
+  color: #00191d;
+
+  transition:
+    background 0.15s ease;
+}
+
+.patient-dashboard .public-queue-row:last-child {
+  border-bottom: none;
+}
+
+.patient-dashboard .public-queue-row:hover {
+  background: #fbfefe;
+}
+
+/* ============================================================
+   QUEUE CELLS
+   ============================================================ */
+
+.patient-dashboard .public-queue-cell {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.patient-dashboard .public-queue-row .card-label {
+  display: block;
+  margin: 0;
+
+  color: #64748b;
+
+  font-size: 0.68rem;
+  font-weight: 800;
+
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+
+  line-height: 1.2;
+}
+
+.patient-dashboard .public-queue-row strong {
+  display: block;
+
+  color: #00191d;
+
+  font-size: 1rem;
+  font-weight: 800;
+
+  line-height: 1.2;
+
+  overflow-wrap: anywhere;
+}
+
+/* ============================================================
+   OWN PATIENT ROW
+   ============================================================ */
+
+.patient-dashboard .public-queue-row.own-queue-row {
+  background:
+    linear-gradient(
+      90deg,
+      #eef9f8,
+      #f8fffe
+    );
+
+  border-left: 4px solid #00aaa9;
+}
+
+.patient-dashboard .public-queue-row.own-queue-row strong {
+  color: #008786;
+}
+
+/* ============================================================
+   OWN LABEL
+   ============================================================ */
+
+.patient-dashboard .own-label {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 5px 10px;
+
+  border-radius: 999px;
+
+  background: rgba(0, 170, 169, 0.12);
+  border: 1px solid rgba(0, 170, 169, 0.35);
+
+  color: #008786;
+
+  font-size: 0.7rem;
+  font-weight: 900;
+
+  letter-spacing: 0.05em;
+
+  white-space: nowrap;
+}
+
+/* ============================================================
+   STATUS BADGES
+   ============================================================ */
+
+.patient-dashboard .public-queue-row .status-badge {
+  width: fit-content;
+  max-width: 100%;
+
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+
+  padding: 4px 8px;
+
+  border: 1px solid #cde3e2;
+  border-radius: 999px;
+
+  background: #f0fafa;
+  color: #006f6c;
+
+  font-size: 0.7rem;
+  font-weight: 800;
+}
+
+.patient-dashboard .public-queue-row .status-called {
+  background: #e8f8f6;
+  color: #007d76;
+}
+
+.patient-dashboard .public-queue-row .status-in_consultation {
+  background: #e8f8f6;
+  color: #00655f;
+}
+
+.patient-dashboard .public-queue-row .status-completed {
+  background: #eef5f5;
+  color: #60777a;
+}
+
+.patient-dashboard .public-queue-row .status-skipped {
+  background: #fff1f1;
+  color: #a52222;
+}
+
+/* ============================================================
+   EMPTY / LOADING
+   ============================================================ */
+
+.patient-dashboard .public-queue-empty,
+.patient-dashboard .public-queue-loading {
+  width: 100%;
+  margin: 20px 0 0;
+  box-sizing: border-box;
+}
+
+.patient-dashboard .empty-card {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.98),
+      rgba(240, 255, 252, 0.98)
+    );
+
+  border:
+    1.5px solid rgba(0, 207, 199, 0.45);
+
+  box-shadow:
+    0 12px 30px rgba(0, 25, 29, 0.07);
+}
+
+/* ============================================================
+   NO QUEUE
+   ============================================================ */
+
+.patient-dashboard .patient-no-queue {
+  width: min(700px, calc(100% - 40px));
+  margin: 40px auto;
+  padding: 40px 28px;
+  box-sizing: border-box;
+  text-align: center;
+}
+
+/* ============================================================
+   LOADING
+   ============================================================ */
+
+.patient-dashboard .patient-loading-card {
+  width: min(700px, calc(100% - 40px));
+  margin: 40px auto;
+  box-sizing: border-box;
+}
+
+/* ============================================================
+   DASHBOARD ACTIONS
+   ============================================================ */
+
+.patient-dashboard .dashboard-actions {
+  width: min(850px, calc(100% - 40px));
+  margin: 0 auto 40px;
+
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  flex-wrap: wrap;
+
+  gap: 10px;
+}
+
+.patient-dashboard .dashboard-actions .button {
+  min-height: 42px;
+}
+
+/* ============================================================
+   GENERAL TYPOGRAPHY OVERRIDES
+   ============================================================ */
+
+.patient-dashboard .muted {
+  color: #809294;
+}
+
+.patient-dashboard .eyebrow {
+  color: #007d76;
+}
+
+.patient-dashboard .card-label {
+  color: #809294;
+}
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+/* ============================================================
+   SMALL MOBILE
+   ============================================================ */
+
+/* ============================================================
+   FINAL VIDEO / PAGE OVERRIDES
+   ============================================================ */
+
+html,
+body,
+#root {
+  min-height: 100%;
+}
+
+.patient-dashboard {
+  background: transparent !important;
+}
+
+.patient-dashboard-video,
+.patient-dashboard-video-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+}
+
+.patient-dashboard-video {
+  width: 100% !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  object-fit: cover !important;
+  transform: scale(1.045) !important;
+}
+
+/* Keep the interface readable while letting the video remain visible. */
+.patient-dashboard .patient-status-card,
+.patient-dashboard .patient-summary > article,
+.patient-dashboard .prediction-main,
+.patient-dashboard .probability-card,
+.patient-dashboard .waiting-triage-card,
+.patient-dashboard .patient-result-card,
+.patient-dashboard .public-queue-section,
+.patient-dashboard .empty-card,
+.patient-dashboard .loading-card {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(248, 255, 253, 0.91),
+      rgba(230, 250, 243, 0.87)
+    );
+}
+
+/* No artificial green block after the queue/content. */
+.patient-dashboard::after {
+  display: none !important;
+  content: none !important;
+}
+
+/* ============================================================
+   FINAL PAGE HEADER — WHITE TEXT
+   ============================================================ */
+
+.patient-dashboard .patient-page-header .eyebrow {
+  color: #ffffff !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.28);
+}
+
+.patient-dashboard .patient-page-header h1 {
+  color: #ffffff !important;
+  text-shadow: 0 3px 18px rgba(0, 0, 0, 0.30);
+}
+
+.patient-dashboard .patient-page-header .muted {
+  color: rgba(255, 255, 255, 0.92) !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.25);
+}
+
+/* ============================================================
+   REFERENCE-STYLE LIVE PUBLIC QUEUE
+   ============================================================ */
+
+.patient-dashboard .public-queue-section {
+  position: relative;
+  overflow: hidden;
+}
+
+.patient-dashboard .public-queue-heading {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.patient-dashboard .public-queue-heading h2 {
+  margin: 3px 0 0;
+  color: #00191d;
+  font-size: clamp(1.6rem, 3vw, 2.2rem);
+  line-height: 1.1;
+}
+
+.patient-dashboard .public-queue-description {
+  margin: 8px 0 0;
+  color: #809294;
+  font-size: 0.9rem;
+}
+
+.patient-dashboard .public-queue-section .live-pill {
+  flex-shrink: 0;
+}
+
+.patient-dashboard .public-queue-row {
+  min-height: 74px;
+  padding: 15px 18px;
+}
+
+.patient-dashboard .public-queue-row.own-queue-row {
+  box-shadow: inset 4px 0 0 #00aaa9;
+}
+
+.patient-dashboard .public-queue-row .own-label {
+  justify-self: end;
+}
+
+.patient-dashboard .public-queue-row .status-badge {
+  width: fit-content;
+}
+
+.patient-dashboard .public-queue-empty {
+  padding: 28px 20px;
+  text-align: center;
+  color: #71888b;
+  background: rgba(246, 255, 252, 0.90);
+  border: 1px dashed rgba(0, 170, 169, 0.25);
+  border-radius: 12px;
+}
+
+/* ============================================================
+   FINAL VIDEO VISIBILITY / AUTOPLAY FIX
+   Keep the background video visible behind the full dashboard.
+   ============================================================ */
+
+.patient-dashboard {
+  position: relative !important;
+  isolation: isolate !important;
+  background: transparent !important;
+}
+
+.patient-dashboard-video {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  max-width: none !important;
+  object-fit: cover !important;
+  object-position: center center !important;
+  z-index: 0 !important;
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  pointer-events: none !important;
+}
+
+.patient-dashboard-video-overlay {
+  position: fixed !important;
+  inset: 0 !important;
+  width: 100% !important;
+  height: 100vh !important;
+  height: 100dvh !important;
+  max-width: none !important;
+  z-index: 1 !important;
+  pointer-events: none !important;
+}
+
+.patient-dashboard > *:not(.patient-dashboard-video):not(.patient-dashboard-video-overlay) {
+  position: relative;
+  z-index: 2;
+}
+/* ============================================================
+   WHITE HEADER TEXT OVER BACKGROUND VIDEO
+   ============================================================ */
+
+.patient-dashboard .page-header .eyebrow {
+  color: #ffffff !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.35);
+}
+
+.patient-dashboard .page-header h1 {
+  color: #ffffff !important;
+  text-shadow: 0 3px 18px rgba(0, 0, 0, 0.35);
+}
+
+.patient-dashboard .page-header .muted {
+  color: rgba(255, 255, 255, 0.95) !important;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* ============================================================
+   RESPONSIVE HARDENING
+   Optimized for desktop, tablet, mobile, and small screens
+   ============================================================ */
+
+.patient-dashboard,
+.patient-dashboard * {
+  box-sizing: border-box;
+}
+
+.patient-dashboard {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: clip;
+}
+
+.patient-dashboard img,
+.patient-dashboard video,
+.patient-dashboard canvas,
+.patient-dashboard svg {
+  max-width: 100%;
+}
+
+.patient-dashboard .patient-page-header,
+.patient-dashboard .page-header,
+.patient-dashboard .patient-status-card,
+.patient-dashboard .patient-summary,
+.patient-dashboard .waiting-triage-card,
+.patient-dashboard .prediction-grid,
+.patient-dashboard .probability-card,
+.patient-dashboard .patient-result-card,
+.patient-dashboard .patient-action-message,
+.patient-dashboard .public-queue-section,
+.patient-dashboard .patient-no-queue,
+.patient-dashboard .patient-loading-card {
+  min-width: 0;
+}
+
+/* Header */
+.patient-dashboard .patient-page-header,
+.patient-dashboard .page-header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.patient-dashboard .patient-page-header > *,
+.patient-dashboard .page-header > * {
+  min-width: 0;
+}
+
+.patient-dashboard .patient-page-header h1,
+.patient-dashboard .page-header h1,
+.patient-dashboard .patient-status-card h2,
+.patient-dashboard .waiting-triage-card h2,
+.patient-dashboard .probability-card h2,
+.patient-dashboard .public-queue-section h2 {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+.patient-dashboard .patient-page-header .muted,
+.patient-dashboard .page-header .muted,
+.patient-dashboard .patient-status-card .muted,
+.patient-dashboard .waiting-triage-card .muted,
+.patient-dashboard .prediction-main .muted,
+.patient-dashboard .probability-card .muted,
+.patient-dashboard .public-queue-description {
+  overflow-wrap: anywhere;
+}
+
+/* Summary */
+.patient-dashboard .patient-summary > article {
+  min-width: 0;
+}
+
+.patient-dashboard .patient-summary article strong {
+  min-width: 0;
+  max-width: 100%;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+
+/* Prediction cards */
+.patient-dashboard .prediction-main {
+  min-width: 0;
+}
+
+.patient-dashboard .prediction-number,
+.patient-dashboard .state-text {
+  max-width: 100%;
+  overflow-wrap: anywhere;
+}
+
+.patient-dashboard .prediction-main,
+.patient-dashboard .probability-card,
+.patient-dashboard .waiting-triage-card,
+.patient-dashboard .patient-result-card {
+  min-width: 0;
+}
+
+/* Completed result */
+.patient-dashboard .patient-result-card > * {
+  min-width: 0;
+}
+
+.patient-dashboard .completed-result-icon {
+  flex: 0 0 48px;
+}
+
+/* Public queue */
+.patient-dashboard .public-queue-section,
+.patient-dashboard .public-queue-list,
+.patient-dashboard .public-queue-row,
+.patient-dashboard .public-queue-cell {
+  min-width: 0;
+}
+
+.patient-dashboard .public-queue-row > * {
+  min-width: 0;
+}
+
+.patient-dashboard .public-queue-row strong,
+.patient-dashboard .public-queue-row .card-label,
+.patient-dashboard .public-queue-row .status-badge {
+  max-width: 100%;
+}
+
+/* Buttons */
+.patient-dashboard .dashboard-actions {
+  min-width: 0;
+}
+
+.patient-dashboard .dashboard-actions .button {
+  min-width: 0;
+  max-width: 100%;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+
+/* Video viewport safety */
+.patient-dashboard-video,
+.patient-dashboard-video-overlay {
+  max-width: none !important;
+}
+
+/* ============================================================
+   LARGE TABLET
+   ============================================================ */
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+/* ============================================================
+   SMALL PHONES
+   ============================================================ */
+
+/* ============================================================
+   VERY SMALL PHONES
+   ============================================================ */
+
+/* ============================================================
+   LANDSCAPE PHONES
+   ============================================================ */
+
+/* ============================================================
+   TOUCH DEVICES
+   ============================================================ */
+
+/* ============================================================
+   FINAL RESPONSIVE STATE / CONTENT SAFETY
+   ============================================================ */
+
+.patient-dashboard .page-header,
+.patient-dashboard .alert,
+.patient-dashboard .empty-card,
+.patient-dashboard .loading-card {
+  width: min(1180px, calc(100% - 40px));
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.patient-dashboard .empty-card,
+.patient-dashboard .loading-card {
+  margin: 28px auto 40px;
+  border-radius: 18px;
+}
+
+.patient-dashboard .alert {
+  margin-left: auto;
+  margin-right: auto;
+  overflow-wrap: anywhere;
+}
+
+.patient-dashboard .page-header > div,
+.patient-dashboard .empty-card > *,
+.patient-dashboard .loading-card > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.patient-dashboard .empty-card .dashboard-actions {
+  width: 100%;
+  max-width: 100%;
+}
+
+.patient-dashboard .public-queue-row {
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, 1fr) minmax(0, 1.2fr) minmax(0, auto);
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+/* ============================================================
+   FINAL MOBILE SPACING + FULL-PAGE SCROLL FIX
+   ============================================================ */
+
+.patient-dashboard {
+  min-height: 100dvh !important;
+  height: auto !important;
+  overflow-x: clip !important;
+  overflow-y: visible !important;
+  padding-bottom: calc(140px + env(safe-area-inset-bottom, 0px)) !important;
+  box-sizing: border-box !important;
+}
+
+/* ============================================================
+   MOBILE SUMMARY CARD REFINEMENT
+   Keep Token and Status cards compact and place Status on the
+   right side of the first summary row on small screens.
+   ============================================================ */
+
+/* ============================================================
+   MOBILE PUBLIC QUEUE CARD REFINEMENT
+   Medium-width cards with status aligned to the right.
+   ============================================================ */
+
+
+/* ============================================================
+   RECEPTION QR SCANNER + 6-DIGIT BACKUP CODE
+   ============================================================ */
+
+.patient-dashboard .reception-scan-actions {
+  width: 100% !important;
+  margin: 22px auto 0 !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.patient-dashboard .reception-scan-button,
+.patient-dashboard .reception-cancel-button,
+.patient-dashboard .manual-qr-submit {
+  min-width: 190px !important;
+  min-height: 48px !important;
+  text-align: center !important;
+}
+
+.patient-dashboard .reception-scanner-card {
+  width: min(760px, 100%) !important;
+  margin: 24px auto 0 !important;
+  padding: 24px !important;
+  box-sizing: border-box !important;
+  text-align: center !important;
+  border: 1px solid #d8e7e7 !important;
+  border-radius: 20px !important;
+  background: rgba(255, 255, 255, 0.88) !important;
+  box-shadow: 0 14px 36px rgba(0, 25, 29, 0.08) !important;
+}
+
+.patient-dashboard .reception-scanner-viewport {
+  width: min(620px, 100%) !important;
+  margin: 0 auto !important;
+  display: flex !important;
+  justify-content: center !important;
+  align-items: center !important;
+  overflow: hidden !important;
+  border-radius: 18px !important;
+}
+
+.patient-dashboard .reception-scanner-viewport video,
+.patient-dashboard .reception-scanner-viewport canvas,
+.patient-dashboard .reception-scanner-viewport > div {
+  max-width: 100% !important;
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.patient-dashboard .reception-cancel-button {
+  margin-left: auto !important;
+  margin-right: auto !important;
+}
+
+.patient-dashboard .manual-qr-form {
+  width: min(520px, 100%) !important;
+  margin: 30px auto 0 !important;
+  padding: 24px !important;
+  box-sizing: border-box !important;
+  text-align: center !important;
+  border: 1px solid rgba(0, 170, 169, 0.22) !important;
+  border-radius: 18px !important;
+  background: linear-gradient(145deg, rgba(247, 255, 253, 0.97), rgba(234, 250, 246, 0.93)) !important;
+}
+
+.patient-dashboard .manual-qr-divider {
+  display: flex !important;
+  align-items: center !important;
+  gap: 12px !important;
+  margin-bottom: 18px !important;
+  color: #809294 !important;
+  font-size: 0.72rem !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.12em !important;
+}
+
+.patient-dashboard .manual-qr-divider::before,
+.patient-dashboard .manual-qr-divider::after {
+  content: "" !important;
+  flex: 1 1 auto !important;
+  height: 1px !important;
+  background: #d7e6e5 !important;
+}
+
+.patient-dashboard .manual-qr-form .eyebrow {
+  margin-bottom: 6px !important;
+}
+
+.patient-dashboard .manual-qr-form h3 {
+  margin: 0 !important;
+  color: #00191d !important;
+  font-size: 1.25rem !important;
+}
+
+.patient-dashboard .manual-qr-help {
+  width: min(460px, 100%) !important;
+  margin: 8px auto 16px !important;
+  line-height: 1.55 !important;
+}
+
+.patient-dashboard .manual-qr-input {
+  display: block !important;
+  width: min(280px, 100%) !important;
+  height: 58px !important;
+  margin: 0 auto !important;
+  padding: 8px 14px !important;
+  box-sizing: border-box !important;
+  border: 1.5px solid #b9d8d5 !important;
+  border-radius: 14px !important;
+  background: #ffffff !important;
+  color: #00191d !important;
+  font-family: ui-monospace, SFMono-Regular, Consolas, monospace !important;
+  font-size: 1.65rem !important;
+  font-weight: 900 !important;
+  letter-spacing: 0.22em !important;
+  text-align: center !important;
+  outline: none !important;
+  box-shadow: 0 6px 18px rgba(0, 25, 29, 0.05) !important;
+}
+
+.patient-dashboard .manual-qr-input:focus {
+  border-color: #00aaa9 !important;
+  box-shadow: 0 0 0 4px rgba(0, 170, 169, 0.10) !important;
+}
+
+.patient-dashboard .manual-qr-input::placeholder {
+  color: #b9c8c8 !important;
+  opacity: 1 !important;
+}
+
+.patient-dashboard .manual-qr-submit {
+  margin: 14px auto 0 !important;
+}
+
+.patient-dashboard .verification-progress {
+  margin-top: 12px !important;
+  text-align: center !important;
+}
+
+@media (max-width: 640px) {
+  .patient-dashboard .reception-scan-button,
+  .patient-dashboard .reception-cancel-button,
+  .patient-dashboard .manual-qr-submit {
+    width: 100% !important;
+    max-width: 300px !important;
+  }
+
+  .patient-dashboard .reception-scanner-card {
+    padding: 14px !important;
+  }
+
+  .patient-dashboard .manual-qr-form {
+    padding: 18px 14px !important;
+  }
+
+  .patient-dashboard .manual-qr-input {
+    height: 54px !important;
+    font-size: 1.45rem !important;
+    letter-spacing: 0.16em !important;
+  }
+}
+
+/* ============================================================
+   PAST MEDICAL RECORDS SECTION
+   ============================================================ */
+
+.past-medical-records-section {
+  width: min(1180px, calc(100% - 40px));
+  margin: 32px auto 40px;
+  box-sizing: border-box;
+}
+
+.past-medical-records-section .section-heading {
+  margin-bottom: 12px;
+}
+
+.past-medical-records-section .section-heading .eyebrow {
+  color: #004d40;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+}
+
+.past-medical-records-section .section-heading h2 {
+  color: #00191d;
+  font-size: 1.85rem;
+  font-weight: 800;
+  margin: 4px 0 6px;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.6);
+}
+
+.past-medical-records-section .section-heading .muted {
+  color: #0f3833 !important;
+  font-size: 1.05rem;
+  font-weight: 600 !important;
+  text-shadow: 0 1px 2px rgba(255, 255, 255, 0.8), 0 0 8px rgba(255, 255, 255, 0.4);
+  line-height: 1.5;
+  margin: 0;
+}
+
+.past-records-empty {
+  text-align: center;
+  padding: 36px 20px;
+}
+
+.past-records-list {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-top: 20px;
+}
+
+.past-record-card {
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(10px);
+  border: 1px solid #d8ebe8;
+  border-radius: 18px;
+  padding: 24px 28px;
+  box-shadow: 0 8px 24px rgba(0, 35, 30, 0.06);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.past-record-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 12px 30px rgba(0, 35, 30, 0.1);
+}
+
+.past-record-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eef5f4;
+  padding-bottom: 14px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.past-record-badge {
+  display: inline-block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  color: #0f766e;
+  background: #e6f7f5;
+  padding: 4px 10px;
+  border-radius: 999px;
+  border: 1px solid #b2e6e0;
+}
+
+.past-record-date {
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: #475569;
+}
+
+.past-record-meta-row {
+  display: flex;
+  gap: 30px;
+  margin-bottom: 18px;
+  flex-wrap: wrap;
+}
+
+.past-record-meta-row .meta-label {
+  font-size: 0.8rem;
+  color: #64748b;
+  margin-right: 6px;
+  font-weight: 600;
+}
+
+.past-record-meta-row strong {
+  font-size: 0.95rem;
+  color: #0f172a;
+}
+
+.past-record-field {
+  margin-bottom: 14px;
+}
+
+.past-record-field .field-title {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 750;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: #0f766e;
+  margin-bottom: 4px;
+}
+
+.past-record-field p {
+  margin: 0;
+  font-size: 0.92rem;
+  color: #334155;
+  line-height: 1.6;
+}
+
+.past-record-nurse-summary {
+  margin-top: 18px;
+  padding: 16px;
+  background: #f8fcfb;
+  border: 1px solid #e0f2ee;
+  border-radius: 12px;
+}
+
+.nurse-summary-title {
+  display: block;
+  font-size: 0.82rem;
+  font-weight: 800;
+  color: #0f766e;
+  margin-bottom: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.nurse-summary-details {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.nurse-summary-details .sub-label {
+  font-size: 0.8rem;
+  font-weight: 700;
+  color: #64748b;
+  margin-right: 6px;
+}
+
+.nurse-summary-details strong {
+  font-size: 0.88rem;
+  color: #0f172a;
+}
+
+.nurse-summary-details p {
+  margin: 2px 0 0;
+  font-size: 0.88rem;
+  color: #334155;
+  line-height: 1.5;
+}
+
+/* ============================================================
+   SMS SETTINGS SECTION
+   ============================================================ */
+
+.sms-settings-section {
+  width: min(850px, calc(100% - 40px));
+  margin: 30px auto 26px;
+  padding: 24px;
+  box-sizing: border-box;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255, 255, 255, 0.99),
+      rgba(244, 255, 253, 0.98)
+    );
+  border: 1px solid #d6e4e5;
+  border-radius: 20px;
+  box-shadow: 0 14px 36px rgba(0, 25, 29, 0.08);
+}
+
+.sms-heading {
+  margin-bottom: 8px;
+}
+
+.sms-badge-icon {
+  font-size: 1.6rem;
+  display: inline-block;
+}
+
+
+.doctor-info-card .card-label {
+  margin-bottom: 12px;
+}
+
+.doctor-name {
+  display: block;
+  font-size: 25px;
+  line-height: 1.25;
+  margin-bottom: 8px;
+}
+
+.doctor-info-card .muted {
+  margin: 0;
+  font-size: 17px;
+}
+
+@media (max-width: 900px) {
+  .patient-dashboard .prediction-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .patient-dashboard .prediction-main {
+    min-height: 150px;
+  }
+}
+
+/* ============================================================
+   FCM NOTIFICATION TOGGLE & BANNER STYLES
+   ============================================================ */
+
+.header-badge-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.notification-toggle-button {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  border: 1px solid rgba(255, 255, 255, 0.28);
+  background: rgba(255, 255, 255, 0.12);
+  color: #ffffff;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+}
+
+.notification-toggle-button:hover:not(:disabled) {
+  background: rgba(255, 255, 255, 0.22);
+  transform: translateY(-1px);
+}
+
+.notification-toggle-button.active {
+  background: rgba(34, 197, 94, 0.22);
+  border-color: rgba(34, 197, 94, 0.6);
+  color: #bbf7d0;
+}
+
+.notification-toggle-button.active:hover:not(:disabled) {
+  background: rgba(34, 197, 94, 0.32);
+}
+
+.notification-toggle-button:disabled {
+  opacity: 0.65;
+  cursor: not-allowed;
+}
+
+.notif-icon {
+  font-size: 14px;
+  line-height: 1;
+}
+
+.notif-text {
+  font-size: 12.5px;
+  letter-spacing: 0.2px;
+}
+
+.notification-banner {
+  background: rgba(14, 165, 233, 0.2);
+  border: 1px solid rgba(56, 189, 248, 0.5);
+  color: #e0f2fe;
+  padding: 10px 16px;
+  border-radius: 8px;
+  margin-bottom: 16px;
+  font-size: 14px;
+  animation: fadeInDown 0.25s ease-out;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

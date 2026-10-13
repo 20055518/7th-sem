@@ -1,0 +1,744 @@
+
+/* ============================================================
+   CARE+
+   QR SCANNER
+   Dark Teal + Cyan Theme
+   ============================================================ */
+
+
+/* ============================================================
+   QR SCANNER AREA
+   ============================================================ */
+
+.care-qr-scanner {
+
+  width: 100%;
+
+  min-height: calc(
+    100vh - 80px
+  );
+
+  box-sizing: border-box;
+
+  padding:
+    40px
+    24px
+    70px;
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: flex-start;
+
+  background:
+    radial-gradient(
+      circle at 15% 10%,
+      rgba(0, 207, 199,
+        0.12
+      ),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 85% 25%,
+      rgba(101, 224, 209,
+        0.08
+      ),
+      transparent 30%
+    ),
+    linear-gradient(
+      180deg,
+      #00191d 0%,
+      #032a30 48%,
+      #00252b 100%
+    );
+
+  color: #ffffff;
+
+}
+
+
+/* ============================================================
+   MAIN SCANNER CARD
+   ============================================================ */
+
+.qr-scanner-card {
+
+  width: min(
+    720px,
+    100%
+  );
+
+  box-sizing: border-box;
+
+  padding:
+    30px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(
+        255,
+        255,
+        255,
+        0.98
+      ),
+      rgba(
+        240,
+        255,
+        252,
+        0.98
+      )
+    );
+
+  border:
+    1px solid
+    rgba(101, 224, 209,
+      0.38
+    );
+
+  border-radius: 28px;
+
+  box-shadow:
+    0 25px 65px
+    rgba(
+      0,
+      0,
+      0,
+      0.30
+    ),
+    0 0 40px
+    rgba(0, 207, 199,
+      0.08
+    );
+
+}
+
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.qr-scanner-header {
+
+  display: flex;
+
+  align-items: center;
+
+  gap: 18px;
+
+  margin-bottom: 28px;
+
+}
+
+
+/* ============================================================
+   QR ICON
+   ============================================================ */
+
+.qr-scanner-icon {
+
+  width: 62px;
+
+  height: 62px;
+
+  flex-shrink: 0;
+
+  display: grid;
+
+  place-items: center;
+
+  border-radius: 18px;
+
+  background:
+    linear-gradient(
+      135deg,
+      #00aaa9,
+      #00aaa9
+    );
+
+  color: #00191d;
+
+  font-size: 0.78rem;
+
+  font-weight: 900;
+
+  letter-spacing: 0.06em;
+
+  box-shadow:
+    0 10px 25px
+    rgba(0, 207, 199,
+      0.20
+    );
+
+}
+
+
+.qr-scanner-icon span {
+
+  font-weight: 900;
+
+}
+
+
+/* ============================================================
+   EYEBROW
+   ============================================================ */
+
+.qr-scanner-eyebrow {
+
+  margin: 0 0 5px;
+
+  color: #00aaa9;
+
+  font-size: 0.70rem;
+
+  font-weight: 900;
+
+  letter-spacing: 0.12em;
+
+}
+
+
+/* ============================================================
+   TITLE
+   ============================================================ */
+
+.qr-scanner-header h2 {
+
+  margin: 0;
+
+  color: #00191d;
+
+  font-size: clamp(
+    1.45rem,
+    3vw,
+    2rem
+  );
+
+  line-height: 1.15;
+
+}
+
+
+/* ============================================================
+   DESCRIPTION
+   ============================================================ */
+
+.qr-scanner-description {
+
+  margin: 7px 0 0;
+
+  color: #809294;
+
+  font-size: 0.95rem;
+
+  line-height: 1.5;
+
+}
+
+
+/* ============================================================
+   QR SCANNER WRAPPER
+   ============================================================ */
+
+.qr-scanner-wrapper {
+
+  width: 100%;
+
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+}
+
+
+/* ============================================================
+   CAMERA CONTAINER
+   ============================================================ */
+
+.qr-reader-container {
+
+  position: relative;
+
+  width: min(
+    560px,
+    100%
+  );
+
+  margin: 0 auto;
+
+  overflow: hidden;
+
+  box-sizing: border-box;
+
+  border-radius: 22px;
+
+  background:
+    #00191d;
+
+  border:
+    2px solid
+    rgba(0, 207, 199,
+      0.55
+    );
+
+  box-shadow:
+    0 20px 50px
+    rgba(11, 19, 41,
+      0.35
+    ),
+    0 0 35px
+    rgba(0, 207, 199,
+      0.12
+    );
+
+}
+
+
+/* ============================================================
+   CAMERA INNER BORDER
+   ============================================================ */
+
+.qr-reader-container::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 0;
+
+  z-index: 3;
+
+  pointer-events: none;
+
+  border-radius: inherit;
+
+  box-shadow:
+    inset 0 0 0 1px
+    rgba(101, 224, 209,
+      0.12
+    );
+
+}
+
+
+/* ============================================================
+   CAMERA VIDEO
+   ============================================================ */
+
+.qr-reader-container video {
+
+  display: block !important;
+
+  width: 100% !important;
+
+  height: auto !important;
+
+  min-height: 0 !important;
+
+  max-height: none !important;
+
+  object-fit: contain !important;
+
+  background:
+    #00191d;
+
+}
+
+
+/* ============================================================
+   HTML5 QR READER CONTAINER
+   ============================================================ */
+
+.qr-reader-container > div {
+
+  max-width: 100% !important;
+
+}
+
+
+/* ============================================================
+   QR IMAGE
+   ============================================================ */
+
+.qr-reader-container img {
+
+  max-width: 100%;
+
+  display: block;
+
+}
+
+
+/* ============================================================
+   HIDE HTML5-QRCODE DASHBOARD UI
+   ============================================================ */
+
+.qr-reader-container
+  #qr-reader__dashboard_section_csr {
+
+  display: none !important;
+
+}
+
+
+.qr-reader-container
+  #qr-reader__dashboard_section_swaplink {
+
+  display: none !important;
+
+}
+
+
+/* ============================================================
+   SCANNER HELP
+   ============================================================ */
+
+.scanner-help {
+
+  margin: 18px 0 0;
+
+  padding: 12px 16px;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 9px;
+
+  text-align: center;
+
+  color: #809294;
+
+  font-size: 0.92rem;
+
+  line-height: 1.6;
+
+}
+
+
+/* ============================================================
+   SCANNER HELP ICON
+   ============================================================ */
+
+.scanner-help-icon {
+
+  color: #00aaa9;
+
+  font-size: 0.75rem;
+
+}
+
+
+/* ============================================================
+   SECURITY NOTE
+   ============================================================ */
+
+.scanner-security {
+
+  margin-top: 18px;
+
+  padding: 15px 17px;
+
+  display: flex;
+
+  align-items: flex-start;
+
+  gap: 12px;
+
+  background:
+    rgba(0, 207, 199,
+      0.07
+    );
+
+  border:
+    1px solid
+    rgba(
+      0,
+      170,
+      169,
+      0.22
+    );
+
+  border-radius: 14px;
+
+}
+
+
+/* ============================================================
+   SECURITY ICON
+   ============================================================ */
+
+.security-icon {
+
+  width: 28px;
+
+  height: 28px;
+
+  flex-shrink: 0;
+
+  display: grid;
+
+  place-items: center;
+
+  border-radius: 50%;
+
+  background:
+    rgba(0, 207, 199,
+      0.15
+    );
+
+  color: #00aaa9;
+
+  font-size: 0.8rem;
+
+  font-weight: 900;
+
+}
+
+
+/* ============================================================
+   SECURITY TITLE
+   ============================================================ */
+
+.scanner-security strong {
+
+  display: block;
+
+  color: #00191d;
+
+  font-size: 0.88rem;
+
+}
+
+
+/* ============================================================
+   SECURITY DESCRIPTION
+   ============================================================ */
+
+.scanner-security p {
+
+  margin: 3px 0 0;
+
+  color: #809294;
+
+  font-size: 0.80rem;
+
+  line-height: 1.45;
+
+}
+
+
+/* ============================================================
+   SCANNER FOCUS EFFECT
+   ============================================================ */
+
+.qr-reader-container:focus-within {
+
+  border-color:
+    #00cfc7;
+
+  box-shadow:
+    0 20px 50px
+    rgba(11, 19, 41,
+      0.35
+    ),
+    0 0 45px
+    rgba(0, 207, 199,
+      0.22
+    );
+
+}
+
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 760px) {
+
+  .care-qr-scanner {
+
+    padding:
+      30px
+      18px
+      55px;
+
+  }
+
+
+  .qr-scanner-card {
+
+    padding: 24px;
+
+    border-radius: 24px;
+
+  }
+
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 640px) {
+
+  .care-qr-scanner {
+
+    min-height: calc(
+      100vh - 70px
+    );
+
+    padding:
+      24px
+      12px
+      45px;
+
+  }
+
+
+  .qr-scanner-card {
+
+    padding: 18px;
+
+    border-radius: 20px;
+
+  }
+
+
+  .qr-scanner-header {
+
+    align-items: flex-start;
+
+    gap: 13px;
+
+    margin-bottom: 22px;
+
+  }
+
+
+  .qr-scanner-icon {
+
+    width: 52px;
+
+    height: 52px;
+
+    border-radius: 15px;
+
+    font-size: 0.70rem;
+
+  }
+
+
+  .qr-scanner-description {
+
+    font-size: 0.88rem;
+
+  }
+
+
+  .qr-reader-container {
+
+    width: 100%;
+
+    border-radius: 17px;
+
+  }
+
+
+  .scanner-help {
+
+    padding:
+      10px
+      5px;
+
+    font-size: 0.88rem;
+
+  }
+
+
+  .scanner-security {
+
+    padding:
+      13px;
+
+  }
+
+}
+
+
+/* ============================================================
+   SMALL MOBILE
+   ============================================================ */
+
+@media (max-width: 380px) {
+
+  .care-qr-scanner {
+
+    padding:
+      18px
+      8px
+      35px;
+
+  }
+
+
+  .qr-scanner-card {
+
+    padding: 14px;
+
+    border-radius: 18px;
+
+  }
+
+
+  .qr-scanner-header {
+
+    gap: 10px;
+
+  }
+
+
+  .qr-scanner-icon {
+
+    width: 46px;
+
+    height: 46px;
+
+  }
+
+
+  .qr-scanner-header h2 {
+
+    font-size: 1.3rem;
+
+  }
+
+
+  .qr-scanner-description {
+
+    font-size: 0.82rem;
+
+  }
+
+
+  .qr-reader-container {
+
+    border-radius: 15px;
+
+  }
+
+
+  .scanner-security {
+
+    gap: 9px;
+
+  }
+
+}

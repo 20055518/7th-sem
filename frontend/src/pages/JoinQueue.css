@@ -1,0 +1,669 @@
+/* ============================================================
+   JOIN QUEUE PAGE
+   ============================================================ */
+
+.join-queue-page {
+  flex: 1 0 auto;
+  min-height: auto;
+  padding: 0 clamp(12px, 3vw, 24px) 32px;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: visible;
+  background:
+    radial-gradient(
+      circle at 8% 12%,
+      rgba(0, 207, 199, 0.14),
+      transparent 28rem
+    ),
+    linear-gradient(145deg, #00191d 0%, #032a30 52%, #00252b 100%);
+}
+
+.join-queue-card {
+  width: min(100%, 900px);
+  margin: clamp(24px, 6vw, 70px) auto 0;
+  padding: clamp(24px, 5vw, 55px) clamp(16px, 4vw, 50px);
+  background:
+    linear-gradient(145deg, rgba(255, 255, 255, 0.98), rgba(243, 250, 249, 0.98));
+  border: 1px solid rgba(0, 207, 199, 0.35);
+  border-radius: clamp(18px, 3vw, 28px);
+  box-shadow: 0 18px 50px rgba(0, 25, 29, 0.18);
+}
+
+/* ============================================================
+   HEADER
+   ============================================================ */
+
+.join-queue-header {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.join-queue-header h1 {
+  margin: 12px 0;
+  color: #00191d;
+  font-size: clamp(2.3rem, 5vw, 4.2rem);
+  line-height: 1.05;
+}
+
+.join-queue-header .muted {
+  max-width: 650px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* ============================================================
+   FORM
+   ============================================================ */
+
+.join-queue-form {
+  display: flex;
+  flex-direction: column;
+  gap: 28px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.form-group label {
+  color: #006f6c;
+  font-size: 1rem;
+  font-weight: 700;
+}
+
+.form-group select {
+  width: 100%;
+  min-height: 58px;
+  padding: 0 18px;
+  border: 1px solid #b7d2d7;
+  border-radius: 12px;
+  background: #ffffff;
+  color: #075985;
+  font-size: 1rem;
+  outline: none;
+}
+
+.form-group select:focus {
+  border-color: #00aaa9;
+  box-shadow: 0 0 0 3px rgba(0, 170, 169, 0.14);
+}
+
+.join-queue-page .button.primary {
+  background: linear-gradient(135deg, #00191d 0%, #032a30 100%);
+  box-shadow: 0 8px 24px rgba(0, 207, 199, 0.18);
+}
+
+.join-queue-page .button.primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #032a30 0%, #00191d 100%);
+  box-shadow: 0 10px 28px rgba(0, 207, 199, 0.24);
+}
+
+/* ============================================================
+   DOCTOR LIST
+   ============================================================ */
+
+.doctor-selection-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 16px;
+}
+
+.doctor-option {
+  position: relative;
+  width: 100%;
+  min-height: 190px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-rows: auto auto 1fr;
+  align-items: start;
+  column-gap: 16px;
+  row-gap: 10px;
+  padding: 20px;
+  border: 1px solid #c7e6d3;
+  border-radius: 18px;
+  background:
+    linear-gradient(145deg, #ffffff 0%, #f0fbf4 100%);
+  color: #006f6c;
+  text-align: left;
+  cursor: pointer;
+  transition:
+    transform 0.2s ease,
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    background 0.2s ease;
+  overflow: hidden;
+  box-shadow: 0 6px 18px rgba(0, 25, 29, 0.06);
+}
+
+.doctor-option:hover:not(:disabled) {
+  transform: translateY(-2px);
+  border-color: #00aaa9;
+  background: linear-gradient(145deg, #ffffff 0%, #eef9f8 100%);
+  box-shadow: 0 12px 26px rgba(0, 25, 29, 0.14);
+}
+
+.doctor-option:focus-visible {
+  outline: 3px solid rgba(0, 170, 169, 0.35);
+  outline-offset: 3px;
+}
+
+.doctor-option.selected {
+  border-color: #00aaa9;
+  background: linear-gradient(145deg, #eef9f8 0%, #dff4f2 100%);
+  box-shadow:
+    0 0 0 2px rgba(0, 170, 169, 0.16),
+    0 12px 26px rgba(0, 25, 29, 0.14);
+}
+
+.doctor-option.selected::after {
+  position: absolute;
+  top: 12px;
+  left: 0;
+  width: 4px;
+  height: calc(100% - 24px);
+  border-radius: 0 4px 4px 0;
+  background: #00aaa9;
+  content: "";
+}
+
+.doctor-option.unavailable {
+  opacity: 0.72;
+  cursor: not-allowed;
+  background: #eef3f3;
+  box-shadow: none;
+}
+
+/* ============================================================
+   DOCTOR INFORMATION
+   ============================================================ */
+
+.doctor-option-main {
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.doctor-option-main strong {
+  display: block;
+  min-width: 0;
+  color: #075985;
+  font-size: 1.05rem;
+  line-height: 1.3;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.doctor-option-main span {
+  display: block;
+  min-width: 0;
+  max-width: 100%;
+  color: #527064;
+  font-size: 0.9rem;
+  line-height: 1.4;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* ============================================================
+   AVAILABILITY
+   ============================================================ */
+
+.doctor-availability {
+  grid-column: 2;
+  grid-row: 1;
+  flex-shrink: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  padding: 7px 11px;
+  border-radius: 999px;
+  font-size: 0.82rem;
+  font-weight: 700;
+  white-space: nowrap;
+}
+
+.doctor-availability.available {
+  background: #e4fffb;
+  color: #008786;
+  border: 1px solid rgba(0, 170, 169, 0.35);
+}
+
+.doctor-availability.busy {
+  background: rgba(255, 193, 7, 0.12);
+  color: #9a7100;
+}
+
+.doctor-availability.unavailable {
+  background: #eef3f3;
+  color: #647b7e;
+}
+
+/* ============================================================
+   DOCTOR CAPACITY
+   ============================================================ */
+
+.doctor-capacity {
+  grid-column: 1 / -1;
+  grid-row: 2;
+  color: #0b6b68;
+  font-size: 0.88rem;
+  font-weight: 700;
+  line-height: 1.4;
+}
+
+.doctor-shift {
+  grid-column: 1 / -1;
+  grid-row: 3;
+  align-self: end;
+  color: #647b7e;
+  font-size: 0.84rem;
+  line-height: 1.4;
+}
+
+.doctor-availability-reason {
+  grid-column: 1 / -1;
+  color: #8a3d3d;
+  font-size: 0.8rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.doctor-option:has(.doctor-availability.unavailable) .doctor-capacity {
+  color: #647b7e;
+}
+
+/* ============================================================
+   SELECTED DOCTOR
+   ============================================================ */
+
+.selected-doctor-card {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  padding: 18px 20px;
+  border: 1px solid rgba(0, 170, 169, 0.35);
+  border-radius: 16px;
+  background: linear-gradient(135deg, #eef9f8, #e5f6f4);
+  box-shadow: inset 4px 0 0 #00aaa9;
+}
+
+.selected-doctor-card strong {
+  color: #0f172a;
+  font-size: 1.1rem;
+  overflow-wrap: anywhere;
+}
+
+.selected-doctor-card .muted {
+  margin: 0;
+}
+
+/* ============================================================
+   BUTTONS
+   ============================================================ */
+
+.join-submit-button {
+  width: 100%;
+  min-height: 56px;
+}
+
+.dashboard-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* ============================================================
+   SUCCESS
+   ============================================================ */
+
+.join-success-icon {
+  width: 72px;
+  height: 72px;
+  margin: 20px auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  background: #e4fffb;
+  color: #00aaa9;
+  font-size: 2rem;
+  font-weight: 800;
+}
+
+.queue-created-summary {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  margin: 28px 0;
+}
+
+.queue-created-item {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 18px;
+  border: 1px solid #d8e7e7;
+  border-radius: 14px;
+  background: #eef8f7;
+}
+
+.queue-created-item span {
+  color: #334155;
+  font-size: 0.82rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.queue-created-item strong {
+  color: #0f172a;
+  overflow-wrap: anywhere;
+}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 700px) {
+  .join-queue-page {
+    padding: 0 14px 40px;
+  }
+
+  .join-queue-card {
+    margin-top: 35px;
+    padding: 32px 20px;
+    border-radius: 20px;
+  }
+
+  .join-queue-header {
+    margin-bottom: 28px;
+  }
+
+  .join-queue-header h1 {
+    font-size: 2.4rem;
+  }
+
+  .doctor-selection-list {
+    grid-template-columns: 1fr;
+  }
+
+  .doctor-option {
+    min-height: 175px;
+    padding: 16px;
+  }
+
+  .doctor-option-main strong {
+    font-size: 1rem;
+  }
+
+  .doctor-option-main span {
+    font-size: 0.85rem;
+  }
+
+  .doctor-availability {
+    font-size: 0.75rem;
+    padding: 6px 9px;
+  }
+
+  .queue-created-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .dashboard-actions {
+    flex-direction: column;
+  }
+
+  .dashboard-actions .button {
+    width: 100%;
+  }
+}
+
+/* ============================================================
+   SMALL MOBILE DEVICES
+   ============================================================ */
+
+@media (max-width: 420px) {
+  .join-queue-card {
+    padding: 25px 15px;
+  }
+
+  .join-queue-header h1 {
+    font-size: 2rem;
+  }
+
+  .doctor-option {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto auto auto auto;
+    min-height: 0;
+  }
+
+  .doctor-availability {
+    grid-column: 1;
+    grid-row: 2;
+    justify-self: start;
+  }
+
+  .doctor-capacity {
+    grid-column: 1;
+    grid-row: 3;
+  }
+
+  .doctor-shift {
+    grid-column: 1;
+    grid-row: 4;
+  }
+
+  .doctor-availability-reason {
+    grid-column: 1;
+    grid-row: 5;
+  }
+}
+
+/* ============================================================
+   RESPONSIVE CENTERING AND CONTENT SAFETY
+   ============================================================ */
+
+.join-queue-page {
+  width: 100%;
+  min-width: 0;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-x: hidden;
+  box-sizing: border-box;
+}
+
+.join-queue-page .app-nav {
+  flex: 0 0 auto;
+  width: min(1180px, 100%);
+}
+
+.join-queue-card {
+  flex: 0 1 auto;
+  width: min(900px, 100%);
+  max-width: 100%;
+  min-width: 0;
+  margin-left: auto;
+  margin-right: auto;
+  box-sizing: border-box;
+}
+
+.join-queue-card > *,
+.join-queue-form > *,
+.doctor-option > * {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.join-queue-header h1,
+.join-queue-header .muted,
+.selected-doctor-card strong,
+.doctor-option-main strong,
+.doctor-option-main span,
+.doctor-capacity,
+.doctor-shift,
+.doctor-availability-reason {
+  overflow-wrap: anywhere;
+}
+
+.doctor-option-main span {
+  white-space: normal;
+}
+
+.join-queue-card .alert {
+  width: 100%;
+  box-sizing: border-box;
+  overflow-wrap: anywhere;
+}
+
+.queue-created-alert {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 16px 20px !important;
+  line-height: 1.6;
+}
+
+.queue-created-alert .queue-alert-title {
+  margin: 0;
+  font-weight: 800;
+  font-size: 1.05rem;
+  color: #15803d;
+}
+
+.queue-created-alert .queue-alert-row {
+  margin: 0;
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #166534;
+  line-height: 1.55;
+}
+
+@media (max-width: 700px) {
+  .join-queue-page {
+    padding-left: 10px;
+    padding-right: 10px;
+    padding-bottom: calc(32px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .join-queue-page .app-nav {
+    width: 100%;
+  }
+
+  .join-queue-card {
+    width: 100%;
+    margin-top: 24px;
+    padding: 28px 18px;
+    border-radius: 18px;
+  }
+
+  .join-queue-header h1 {
+    font-size: clamp(1.85rem, 8vw, 2.4rem);
+  }
+
+  .form-group select {
+    min-height: 52px;
+    padding-left: 14px;
+    padding-right: 14px;
+  }
+
+  .doctor-selection-list {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .doctor-option {
+    grid-template-columns: minmax(0, 1fr) auto;
+    padding: 16px;
+  }
+}
+
+@media (max-width: 420px) {
+  .join-queue-page {
+    padding-left: 7px;
+    padding-right: 7px;
+  }
+
+  .join-queue-card {
+    margin-top: 18px;
+    padding: 22px 13px;
+    border-radius: 16px;
+  }
+
+  .join-queue-form {
+    gap: 22px;
+  }
+
+  .join-queue-header {
+    margin-bottom: 22px;
+  }
+
+  .join-queue-header h1 {
+    font-size: clamp(1.65rem, 8.5vw, 2rem);
+  }
+
+  .doctor-option {
+    padding: 14px;
+  }
+
+  .doctor-option-main strong {
+    font-size: 0.98rem;
+  }
+
+  .doctor-option-main span {
+    font-size: 0.82rem;
+  }
+}
+
+
+/* ============================================================
+   CARE+ NAVBAR GREEN THEME
+   Use the same palette across Care+ pages.
+   ============================================================ */
+
+:root {
+  --care-navbar-bg: #00191d;
+  --care-navbar-bg-2: #032a30;
+  --care-navbar-accent: #00aaa9;
+  --care-navbar-accent-bright: #00cfc7;
+  --care-navbar-soft: #eef8f7;
+}
+
+.join-queue-page .join-queue-header .eyebrow {
+  color: #008786;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.28);
+}
+
+.join-queue-page .join-queue-header .muted {
+  color: #527064;
+}
+
+.join-queue-page .join-queue-card {
+  box-shadow:
+    0 22px 60px rgba(0, 25, 29, 0.24),
+    0 0 0 1px rgba(0, 207, 199, 0.08);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .join-queue-page *,
+  .join-queue-page *::before,
+  .join-queue-page *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+.waiting-nurse-status {
+  color: #b45309;
+}
+
+.waiting-button {
+  opacity: 0.75;
+  cursor: not-allowed;
+}

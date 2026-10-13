@@ -1,0 +1,628 @@
+/* ============================================================
+   NURSE DASHBOARD RESPONSIVE STYLES
+   Keep this file separate from Nurse.css
+   ============================================================ */
+
+
+/* ============================================================
+   BASE RESPONSIVE SAFETY
+   ============================================================ */
+
+html:has(.nurse-dashboard),
+body:has(.nurse-dashboard) {
+  height: auto !important;
+  min-height: 100% !important;
+  max-height: none !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+
+#root:has(.nurse-dashboard) {
+  height: auto !important;
+  min-height: 100vh !important;
+  min-height: 100dvh !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+.dashboard-page.nurse-dashboard,
+.nurse-dashboard {
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: auto !important;
+  height: auto !important;
+  max-height: none !important;
+
+  /* IMPORTANT:
+     Do not split overflow-x/overflow-y on this element.
+     The document handles scrolling; this page stays in normal flow. */
+  overflow: visible !important;
+
+  box-sizing: border-box !important;
+  touch-action: pan-y;
+
+  padding-bottom:
+    calc(32px + env(safe-area-inset-bottom, 0px)) !important;
+}
+
+.nurse-dashboard .page-header,
+.nurse-dashboard > .alert,
+.nurse-dashboard .nurse-stats,
+.nurse-dashboard .queue-section,
+.nurse-dashboard .nurse-assessment-card,
+.nurse-dashboard .nurse-assessment-form,
+.nurse-dashboard .nurse-form-grid,
+.nurse-dashboard .nurse-patient-summary {
+  min-width: 0;
+  max-width: 100%;
+  height: auto !important;
+  max-height: none !important;
+}
+
+.nurse-dashboard .queue-table-wrap {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  height: auto !important;
+  max-height: none !important;
+  overflow-x: auto;
+  overflow-y: visible !important;
+  -webkit-overflow-scrolling: touch;
+}
+
+.nurse-dashboard .queue-table {
+  height: auto !important;
+  max-height: none !important;
+}
+
+.nurse-dashboard .queue-table th,
+.nurse-dashboard .queue-table td {
+  white-space: normal;
+}
+
+.nurse-dashboard .queue-table td {
+  overflow-wrap: anywhere;
+}
+
+.nurse-dashboard .queue-table td:last-child {
+  white-space: nowrap;
+}
+
+.nurse-dashboard .nurse-patient-summary > * {
+  min-width: 0;
+}
+
+.nurse-dashboard .summary-value,
+.nurse-dashboard .summary-email,
+.nurse-dashboard .field-error {
+  overflow-wrap: anywhere;
+}
+
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 900px) {
+
+  .nurse-patient-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .nurse-dashboard .nurse-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+}
+
+
+/* ============================================================
+   MEDIUM TABLET
+   ============================================================ */
+
+@media (max-width: 768px) {
+
+  .nurse-dashboard {
+    padding-bottom:
+      calc(140px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  .nurse-dashboard .nurse-assessment-card {
+    padding: 20px 16px;
+  }
+
+  .nurse-dashboard .section-heading {
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .nurse-dashboard .section-heading .mini-button {
+    flex-shrink: 0;
+  }
+
+  .nurse-dashboard .queue-table {
+    min-width: 600px;
+  }
+
+  .nurse-dashboard .dashboard-actions {
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .nurse-dashboard .dashboard-actions .button {
+    flex: 1 1 180px;
+    min-width: 0;
+  }
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 640px) {
+
+  .nurse-dashboard {
+    padding-bottom:
+      calc(150px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  .nurse-dashboard .nurse-stats {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .nurse-patient-summary {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .nurse-form-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .nurse-assessment-card {
+    padding: 18px 14px;
+    border-radius: 16px;
+  }
+
+  .nurse-field input,
+  .nurse-field select,
+  .nurse-field textarea {
+    min-height: 48px;
+    font-size: 0.95rem;
+  }
+
+  .nurse-dashboard .button.primary,
+  .nurse-dashboard .button.secondary {
+    width: 100%;
+    min-height: 48px;
+  }
+
+  .nurse-dashboard .queue-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: visible !important;
+    display: block;
+  }
+
+  .nurse-dashboard .queue-table {
+    min-width: 620px;
+  }
+
+  .nurse-dashboard .dashboard-actions {
+    width: 100%;
+    flex-wrap: wrap;
+  }
+}
+
+
+/* ============================================================
+   MOBILE CARD / TABLE LAYOUT
+   ============================================================ */
+
+@media (max-width: 480px) {
+
+  html:has(.nurse-dashboard),
+  body:has(.nurse-dashboard) {
+    overflow-y: auto !important;
+  }
+
+  .nurse-dashboard {
+    height: auto !important;
+    min-height: 100vh !important;
+    min-height: 100dvh !important;
+    max-height: none !important;
+    overflow: visible !important;
+
+    padding-bottom:
+      calc(180px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  .nurse-dashboard .nurse-assessment-card {
+    padding: 16px 12px;
+    border-radius: 15px;
+  }
+
+  .nurse-dashboard .section-heading {
+    flex-direction: column;
+  }
+
+  .nurse-dashboard .section-heading .mini-button {
+    width: 100%;
+  }
+
+  .nurse-dashboard .dashboard-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: static !important;
+    width: 100%;
+    align-items: stretch;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .nurse-dashboard .dashboard-actions .button {
+    display: flex;
+    width: 100%;
+    min-height: 48px;
+    flex: 0 0 auto;
+  }
+
+  .nurse-dashboard .mini-button {
+    min-height: 42px;
+  }
+
+  /* Critical: no nested vertical scroller on mobile. */
+  .nurse-dashboard .queue-table-wrap {
+    display: block;
+    width: 100%;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .nurse-dashboard .queue-table {
+    display: block;
+    width: 100%;
+    height: auto !important;
+    min-width: 0 !important;
+    max-height: none !important;
+  }
+
+  .nurse-dashboard .queue-table thead {
+    display: none;
+  }
+
+  .nurse-dashboard .queue-table tbody {
+    display: grid;
+    gap: 12px;
+    height: auto;
+  }
+
+  .nurse-dashboard .queue-table tr {
+    display: grid;
+    gap: 10px;
+
+    padding: 16px;
+
+    border: 1px solid #dbe7e8;
+    border-radius: 14px;
+
+    background: #ffffff;
+
+    box-shadow:
+      0 5px 16px rgba(15, 23, 42, 0.06);
+
+    height: auto;
+    min-height: 0;
+  }
+
+  .nurse-dashboard .queue-table tr:hover td {
+    background: transparent;
+  }
+
+  .nurse-dashboard .queue-table td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 12px;
+    min-width: 0;
+
+    padding: 0 0 9px;
+
+    border-bottom: 1px solid #eef2f3;
+
+    text-align: right;
+  }
+
+  .nurse-dashboard .queue-table td::before {
+    flex: 0 0 auto;
+
+    color: #64748b;
+    font-size: 0.68rem;
+    font-weight: 800;
+
+    letter-spacing: 0.08em;
+    text-align: left;
+    text-transform: uppercase;
+  }
+
+  .nurse-dashboard .queue-table td:nth-child(1)::before {
+    content: "Token";
+  }
+
+  .nurse-dashboard .queue-table td:nth-child(2)::before {
+    content: "Patient";
+  }
+
+  .nurse-dashboard .queue-table td:nth-child(3)::before {
+    content: "Department";
+  }
+
+  .nurse-dashboard .queue-table td:nth-child(4)::before {
+    content: "Doctor";
+  }
+
+  .nurse-dashboard .queue-table td:nth-child(5)::before {
+    content: "Priority";
+  }
+
+  .nurse-dashboard .queue-table td:nth-child(6) {
+    padding-top: 2px;
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+
+  .nurse-dashboard .queue-table td:nth-child(6)::before {
+    content: "Action";
+  }
+
+  .nurse-dashboard .queue-table .patient-email-text {
+    max-width: 62%;
+    text-align: right;
+  }
+
+  .nurse-dashboard .queue-table .mini-button {
+    min-width: 112px;
+  }
+}
+
+
+/* ============================================================
+   SMALL PHONES
+   ============================================================ */
+
+@media (max-width: 420px) {
+
+  .nurse-dashboard {
+    padding-bottom:
+      calc(190px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  .nurse-dashboard .mini-button {
+    min-height: 38px;
+    padding: 8px 16px;
+  }
+
+  .nurse-dashboard .page-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .nurse-dashboard .nurse-stats .summary-card strong {
+    font-size: 1.35rem;
+  }
+
+  .nurse-dashboard .queue-table tr {
+    padding: 14px;
+  }
+
+  .nurse-dashboard .queue-table td {
+    gap: 9px;
+  }
+
+  .nurse-dashboard .queue-table .patient-email-text {
+    max-width: 58%;
+  }
+}
+
+
+/* ============================================================
+   VERY SMALL PHONES
+   ============================================================ */
+
+@media (max-width: 340px) {
+
+  .nurse-dashboard {
+    padding-bottom:
+      calc(210px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  .nurse-dashboard .nurse-assessment-card {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .nurse-dashboard .queue-table tr {
+    padding: 12px;
+  }
+
+  .nurse-dashboard .queue-table td::before {
+    font-size: 0.62rem;
+  }
+
+  .nurse-dashboard .queue-table .patient-email-text {
+    max-width: 55%;
+    font-size: 0.84rem;
+  }
+
+  .nurse-dashboard .queue-table .mini-button {
+    min-width: 100px;
+  }
+}
+
+
+/* ============================================================
+   LANDSCAPE PHONES
+   ============================================================ */
+
+@media (max-height: 520px) and (orientation: landscape) {
+
+  .nurse-dashboard {
+    padding-bottom:
+      calc(100px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  .nurse-dashboard .nurse-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .nurse-patient-summary {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+
+/* ============================================================
+   TOUCH DEVICES
+   ============================================================ */
+
+@media (hover: none) and (pointer: coarse) {
+
+  .nurse-dashboard .nurse-stats .summary-card,
+  .nurse-patient-summary .token-card,
+  .nurse-patient-summary .summary-card,
+  .nurse-dashboard .queue-table tr {
+    transform: none !important;
+  }
+
+  .nurse-dashboard .dashboard-actions .button {
+    min-height: 48px !important;
+  }
+
+  .nurse-dashboard .mini-button {
+    min-height: 44px;
+  }
+}
+
+
+/* ============================================================
+   FINAL SCROLL OVERRIDE
+   This block must remain LAST in the file.
+   ============================================================ */
+
+html:has(.nurse-dashboard),
+body:has(.nurse-dashboard),
+#root:has(.nurse-dashboard) {
+  height: auto !important;
+  min-height: 100% !important;
+  max-height: none !important;
+}
+
+html:has(.nurse-dashboard),
+body:has(.nurse-dashboard) {
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+
+#root:has(.nurse-dashboard) {
+  overflow: visible !important;
+}
+
+.dashboard-page.nurse-dashboard,
+.nurse-dashboard {
+  height: auto !important;
+  min-height: 100vh !important;
+  min-height: 100dvh !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+/* Never create a vertical scroll container inside the dashboard. */
+.nurse-dashboard .queue-section,
+.nurse-dashboard .nurse-assessment-card,
+.nurse-dashboard .queue-table-wrap,
+.nurse-dashboard .queue-table,
+.nurse-dashboard .queue-table tbody {
+  height: auto !important;
+  max-height: none !important;
+}
+
+/* ============================================================
+   LAST ASSESS BUTTON VISIBILITY FIX
+   Keep the final queue card/button above the mobile viewport
+   bottom edge and any fixed UI/safe-area region.
+   ============================================================ */
+
+.nurse-dashboard .queue-table {
+  scroll-margin-bottom: 140px;
+}
+
+@media (max-width: 480px) {
+
+  .nurse-dashboard .queue-table-wrap {
+    padding-bottom: 140px !important;
+    box-sizing: border-box !important;
+  }
+
+  .nurse-dashboard .queue-table tbody {
+    padding-bottom:
+      calc(110px + env(safe-area-inset-bottom, 0px)) !important;
+    box-sizing: border-box !important;
+  }
+
+  .nurse-dashboard .queue-table tr:last-child {
+    margin-bottom:
+      calc(60px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  .nurse-dashboard .queue-table td:last-child {
+    padding-bottom: 4px !important;
+  }
+
+  .nurse-dashboard .queue-table td:last-child .mini-button {
+    position: relative;
+    z-index: 3;
+  }
+}
+
+@media (max-width: 420px) {
+
+  .nurse-dashboard .queue-table-wrap {
+    padding-bottom: 160px !important;
+  }
+
+  .nurse-dashboard .queue-table tbody {
+    padding-bottom:
+      calc(120px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  .nurse-dashboard .queue-table tr:last-child {
+    margin-bottom:
+      calc(70px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+}
+
+@media (max-width: 340px) {
+
+  .nurse-dashboard .queue-table-wrap {
+    padding-bottom: 170px !important;
+  }
+
+  .nurse-dashboard .queue-table tbody {
+    padding-bottom:
+      calc(130px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  .nurse-dashboard .queue-table tr:last-child {
+    margin-bottom:
+      calc(80px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+}

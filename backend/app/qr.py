@@ -11,12 +11,7 @@ def generate_qr_token() -> str:
 
 def generate_qr_image_data(token: str) -> str:
     qr_image = qrcode.make(token)
-
     image_buffer = io.BytesIO()
-    qr_image.save(image_buffer, format="PNG")
-
-    encoded_image = base64.b64encode(
-        image_buffer.getvalue()
-    ).decode("ascii")
-
+    qr_image.save(image_buffer, "PNG")
+    encoded_image = base64.b64encode(image_buffer.getvalue()).decode("ascii")
     return f"data:image/png;base64,{encoded_image}"

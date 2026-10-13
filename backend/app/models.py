@@ -21,10 +21,13 @@ class TimestampedBase(BaseModel):
 class PyObjectId(str):
     """Wrapper so API accepts / returns ObjectId as string."""
 
-    @validatorclassmethod
-    @validator(pre=True, always=True)
-    def _validate(cls, v):
-        return v
+    @classmethod
+    def __get_validators__(cls):
+        yield cls.validate
+
+    @classmethod
+    def validate(cls, v):
+        return str(v)
 
 
 # ---------------------------------------------------------------------------

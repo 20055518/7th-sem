@@ -1,0 +1,604 @@
+/* ============================================================
+   CARE+ GLOBAL CSS
+   Shared foundation for ALL pages
+   Import this file once from main.jsx / main.tsx
+   ============================================================ */
+
+:root {
+  font-family:
+    "Plus Jakarta Sans",
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    sans-serif;
+
+  color: #0f172a;
+  background: #f8fcfb;
+
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --care-teal: #0f766e;
+  --care-teal-dark: #075985;
+  --care-cyan: #00cfc7;
+  --care-cyan-dark: #00aaa9;
+  --care-green-soft: #eef8f7;
+
+  --page-bg: #f8fcfb;
+  --text-main: #0f172a;
+  --text-muted: #64748b;
+  --border: #dbe7e8;
+}
+
+/* ============================================================
+   DOCUMENT / SCROLL FOUNDATION
+   ============================================================ */
+
+html {
+  width: 100%;
+  min-height: 100%;
+  height: auto;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow-x: hidden;
+  overflow-y: auto;
+  -webkit-overflow-scrolling: touch;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+
+  width: 100%;
+  min-width: 320px;
+  min-height: 0;
+  height: auto;
+
+  overflow-x: hidden;
+  overflow-y: auto;
+
+  -webkit-overflow-scrolling: touch;
+
+  background: #f8fcfb;
+  color: #0f172a;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  overflow: visible;
+}
+
+/* ============================================================
+   UNIVERSAL BOX SIZING / MEDIA
+   ============================================================ */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+img,
+svg,
+video,
+canvas {
+  max-width: 100%;
+}
+
+img {
+  height: auto;
+}
+
+video {
+  display: block;
+}
+
+/* ============================================================
+   GENERIC PAGE FOUNDATION
+   ============================================================ */
+
+.page,
+.page-container,
+.app-page,
+.dashboard-page,
+.patient-page,
+.doctor-page,
+.nurse-page,
+.reception-page,
+.admin-page,
+.landing-page {
+  position: relative;
+  flex: none;
+  width: 100%;
+  min-height: 0;
+  height: auto;
+  max-height: none;
+  overflow-x: hidden;
+  overflow-y: visible;
+}
+
+/* Shared breathing room at the bottom of normal pages before footer. */
+.page,
+.page-container,
+.app-page,
+.dashboard-page,
+.patient-page,
+.doctor-page,
+.nurse-page,
+.reception-page,
+.admin-page {
+  padding-bottom: 0;
+}
+
+/* ============================================================
+   SHARED WIDTH HELPERS
+   ============================================================ */
+
+.container,
+.content-width {
+  width: min(1180px, calc(100% - 40px));
+  max-width: 1180px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+/* ============================================================
+   SHARED TYPOGRAPHY
+   ============================================================ */
+
+.eyebrow {
+  margin: 0 0 12px;
+  color: var(--care-teal);
+  font-size: 0.74rem;
+  font-weight: 850;
+  letter-spacing: 0.12em;
+  line-height: 1.3;
+  text-transform: uppercase;
+}
+
+.muted {
+  color: var(--text-muted);
+  line-height: 1.65;
+}
+
+h1,
+h2,
+h3,
+h4,
+p {
+  overflow-wrap: anywhere;
+}
+
+/* ============================================================
+   SHARED BUTTONS
+   ============================================================ */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+
+  min-height: 46px;
+  max-width: 100%;
+
+  padding: 11px 18px;
+
+  border: 1px solid transparent;
+  border-radius: 10px;
+
+  font: inherit;
+  font-size: 0.92rem;
+  font-weight: 750;
+
+  line-height: 1.2;
+  text-align: center;
+  text-decoration: none;
+  white-space: normal;
+  overflow-wrap: anywhere;
+
+  cursor: pointer;
+
+  transition:
+    transform 0.15s ease,
+    box-shadow 0.15s ease,
+    background 0.15s ease,
+    border-color 0.15s ease;
+}
+
+.button:hover:not(:disabled) {
+  transform: translateY(-1px);
+}
+
+.button:focus-visible,
+button:focus-visible,
+a:focus-visible,
+input:focus-visible,
+select:focus-visible,
+textarea:focus-visible {
+  outline: 3px solid rgba(0, 207, 199, 0.28);
+  outline-offset: 2px;
+}
+
+.button.primary,
+.primary {
+  background: linear-gradient(
+    135deg,
+    var(--care-teal) 0%,
+    var(--care-teal-dark) 100%
+  );
+  color: #ffffff;
+  box-shadow: 0 4px 14px rgba(0, 207, 199, 0.25);
+}
+
+.button.secondary,
+.secondary {
+  background: #ffffff;
+  border-color: #cbd5e1;
+  color: #1e293b;
+}
+
+.button:disabled,
+button:disabled {
+  cursor: not-allowed;
+  opacity: 0.55;
+}
+
+/* ============================================================
+   SHARED FORM ELEMENTS
+   ============================================================ */
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+}
+
+input,
+select,
+textarea {
+  width: 100%;
+  max-width: 100%;
+  padding: 11px 14px;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #0f172a;
+  outline: none;
+}
+
+input,
+select {
+  min-height: 46px;
+}
+
+textarea {
+  min-height: 110px;
+  resize: vertical;
+}
+
+input::placeholder,
+textarea::placeholder {
+  color: #94a3b8;
+}
+
+input:focus,
+select:focus,
+textarea:focus {
+  border-color: var(--care-teal);
+  box-shadow: 0 0 0 3px rgba(0, 207, 199, 0.15);
+}
+
+/* ============================================================
+   SHARED CARDS
+   ============================================================ */
+
+.card,
+.summary-card,
+.empty-card,
+.loading-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  box-shadow:
+    0 4px 20px -2px rgba(15, 23, 42, 0.04),
+    0 2px 6px -1px rgba(15, 23, 42, 0.02);
+}
+
+/* ============================================================
+   SHARED HEADER
+   ============================================================ */
+
+.page-header {
+  width: min(1180px, calc(100% - 40px));
+  max-width: 1180px;
+
+  margin: 28px auto;
+
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+
+  gap: 20px;
+}
+
+.page-header h1 {
+  margin: 0;
+  color: #0f172a;
+  font-size: clamp(2.2rem, 5vw, 4rem);
+  font-weight: 850;
+  line-height: 1.05;
+  letter-spacing: -0.025em;
+}
+
+/* ============================================================
+   SHARED LIVE PILL
+   ============================================================ */
+
+.live-pill {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: fit-content;
+
+  padding: 6px 12px;
+  border-radius: 999px;
+  border: 1px solid #b7d2d7;
+
+  background: var(--care-green-soft);
+  color: var(--care-teal);
+
+  font-size: 0.82rem;
+  font-weight: 750;
+  white-space: nowrap;
+}
+
+/* ============================================================
+   SHARED TABLE SCROLLING
+   ============================================================ */
+
+.queue-table-wrap,
+.table-wrapper,
+.table-responsive,
+.admin-table-wrapper {
+  width: 100%;
+  max-width: 100%;
+  overflow-x: auto;
+  overflow-y: visible;
+  -webkit-overflow-scrolling: touch;
+}
+
+/* ============================================================
+   TOUCH TARGETS
+   ============================================================ */
+
+button,
+.button,
+select,
+input {
+  touch-action: manipulation;
+}
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 900px) {
+  .container,
+  .content-width,
+  .page-header {
+    width: calc(100% - 32px);
+  }
+
+  .page-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 14px;
+  }
+}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 640px) {
+  html,
+  body {
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+  }
+
+  #root {
+    min-height: 100dvh !important;
+    height: auto !important;
+    overflow: visible !important;
+  }
+
+  .page,
+  .page-container,
+  .app-page,
+  .dashboard-page,
+  .patient-page,
+  .doctor-page,
+  .nurse-page,
+  .reception-page,
+  .admin-page,
+  .landing-page {
+    min-height: 100dvh !important;
+    height: auto !important;
+    max-height: none !important;
+
+    overflow-x: hidden !important;
+    overflow-y: visible !important;
+
+    padding-bottom:
+      calc(32px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .container,
+  .content-width,
+  .page-header {
+    width: calc(100% - 24px);
+  }
+
+  .page-header {
+    margin-top: 28px;
+    margin-bottom: 22px;
+  }
+
+  .page-header h1 {
+    font-size: clamp(2rem, 9vw, 2.6rem);
+  }
+
+  .button {
+    min-height: 50px;
+  }
+}
+
+/* ============================================================
+   SMALL PHONES
+   ============================================================ */
+
+@media (max-width: 420px) {
+  .container,
+  .content-width,
+  .page-header {
+    width: calc(100% - 20px);
+  }
+
+  .page,
+  .page-container,
+  .app-page,
+  .dashboard-page,
+  .patient-page,
+  .doctor-page,
+  .nurse-page,
+  .reception-page,
+  .admin-page,
+  .landing-page {
+    padding-bottom:
+      calc(32px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .page-header {
+    margin-top: 24px;
+  }
+
+  .button {
+    min-height: 48px;
+  }
+}
+
+/* ============================================================
+   VERY SMALL PHONES
+   ============================================================ */
+
+@media (max-width: 360px) {
+  .container,
+  .content-width,
+  .page-header {
+    width: calc(100% - 16px);
+  }
+
+  .page,
+  .page-container,
+  .app-page,
+  .dashboard-page,
+  .patient-page,
+  .doctor-page,
+  .nurse-page,
+  .reception-page,
+  .admin-page,
+  .landing-page {
+    padding-bottom:
+      calc(32px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* ============================================================
+   LANDSCAPE PHONES
+   ============================================================ */
+
+@media (max-height: 650px) and (max-width: 900px) and (orientation: landscape) {
+  html,
+  body {
+    overflow-y: auto !important;
+  }
+
+  #root {
+    height: auto !important;
+  }
+
+  .page,
+  .page-container,
+  .app-page,
+  .dashboard-page,
+  .patient-page,
+  .doctor-page,
+  .nurse-page,
+  .reception-page,
+  .admin-page,
+  .landing-page {
+    min-height: 100dvh !important;
+    height: auto !important;
+    padding-bottom: 32px;
+  }
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}
+
+/* ============================================================
+   PRINT
+   ============================================================ */
+
+@media print {
+  html,
+  body {
+    overflow: visible !important;
+    background: #ffffff;
+  }
+
+  #root {
+    min-height: 0 !important;
+  }
+
+  .page,
+  .page-container,
+  .app-page,
+  .dashboard-page,
+  .patient-page,
+  .doctor-page,
+  .nurse-page,
+  .reception-page,
+  .admin-page,
+  .landing-page {
+    min-height: 0 !important;
+    padding-bottom: 0 !important;
+  }
+}

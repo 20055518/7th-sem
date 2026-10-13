@@ -1,0 +1,700 @@
+/* ============================================================
+   CARE+ RECEPTION DASHBOARD
+   RESPONSIVE STYLES
+   Keep this file separate from ReceptionDashboard.css
+   ============================================================ */
+
+
+/* ============================================================
+   DOCUMENT SCROLL / GLOBAL FLOW
+   ============================================================ */
+
+html:has(.reception-dashboard),
+body:has(.reception-dashboard) {
+  height: auto !important;
+  min-height: 100% !important;
+  max-height: none !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+}
+
+#root:has(.reception-dashboard) {
+  height: auto !important;
+  min-height: 100vh !important;
+  min-height: 100dvh !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+.reception-dashboard {
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: auto !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  overflow-x: clip !important;
+  box-sizing: border-box !important;
+
+  padding-bottom:
+    calc(32px + env(safe-area-inset-bottom, 0px)) !important;
+}
+
+.reception-dashboard > *,
+.reception-dashboard .page-header,
+.reception-dashboard .reception-toolbar,
+.reception-dashboard > .alert,
+.reception-dashboard .queue-section,
+.reception-dashboard .reception-qr-card {
+  min-width: 0;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+
+/* ============================================================
+   TOOLBAR / DEPARTMENT CONTROL
+   Fixes the large blank vertical gap on mobile.
+   ============================================================ */
+
+.reception-dashboard .reception-toolbar {
+  width: min(1180px, calc(100% - 40px));
+  min-height: 0 !important;
+  height: auto !important;
+  max-height: none !important;
+  box-sizing: border-box;
+}
+
+.reception-dashboard .department-control {
+  min-width: 0;
+  flex: 1 1 240px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.reception-dashboard .department-select {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
+}
+
+
+/* ============================================================
+   DESKTOP / LARGE TABLET
+   ============================================================ */
+
+@media (min-width: 851px) {
+
+  .reception-dashboard .reception-toolbar {
+    align-items: flex-end;
+    flex-direction: row;
+    gap: 20px;
+  }
+
+  .reception-dashboard .department-control {
+    flex: 1 1 auto;
+  }
+
+  .reception-dashboard .reception-toolbar > .button {
+    flex: 0 0 auto;
+    white-space: nowrap;
+  }
+}
+
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 850px) {
+
+  .reception-dashboard {
+    padding-bottom:
+      calc(150px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  .reception-dashboard .page-header,
+  .reception-dashboard .reception-toolbar,
+  .reception-dashboard > .alert,
+  .reception-dashboard .queue-section,
+  .reception-dashboard .reception-qr-card {
+    width: calc(100% - 32px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .reception-dashboard .page-header {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  /* Critical gap fix:
+     toolbar becomes a compact vertical stack. */
+  .reception-dashboard .reception-toolbar {
+    display: flex;
+    flex-direction: column;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+
+    gap: 14px !important;
+
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+  }
+
+  .reception-dashboard .department-control {
+    width: 100%;
+    flex: 0 0 auto !important;
+    gap: 7px;
+  }
+
+  .reception-dashboard .department-select {
+    width: 100%;
+    min-width: 0;
+    min-height: 46px;
+  }
+
+  .reception-dashboard .reception-toolbar > .button {
+    width: 100%;
+    flex: 0 0 auto;
+    min-height: 46px;
+  }
+
+  .reception-dashboard .queue-table-wrap {
+    width: 100%;
+    max-width: 100%;
+    overflow-x: auto;
+    overflow-y: visible;
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 640px) {
+
+  .reception-dashboard {
+    padding-bottom:
+      calc(180px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  .reception-dashboard .page-header,
+  .reception-dashboard .reception-toolbar,
+  .reception-dashboard > .alert,
+  .reception-dashboard .queue-section,
+  .reception-dashboard .reception-qr-card {
+    width: calc(100% - 20px) !important;
+  }
+
+  .reception-dashboard .page-header {
+    margin-top: 16px;
+    margin-bottom: 14px;
+    padding: 20px 16px;
+    border-radius: 16px;
+    gap: 10px;
+  }
+
+  .reception-dashboard .page-header h1 {
+    font-size: clamp(1.6rem, 8vw, 2.2rem);
+    line-height: 1.08;
+  }
+
+  .reception-dashboard .page-header .muted {
+    font-size: 0.86rem;
+    line-height: 1.5;
+  }
+
+  .reception-dashboard .live-pill {
+    align-self: flex-start;
+    padding: 8px 12px;
+  }
+
+  /* Compact toolbar: no artificial empty area. */
+  .reception-dashboard .reception-toolbar {
+    margin: 12px auto 16px !important;
+    padding: 16px !important;
+    border-radius: 15px !important;
+
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+
+    gap: 12px !important;
+
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+  }
+
+  .reception-dashboard .department-control {
+    width: 100%;
+    flex: 0 0 auto !important;
+    gap: 7px !important;
+  }
+
+  .reception-dashboard .card-label {
+    margin-bottom: 0;
+    line-height: 1.2;
+  }
+
+  .reception-dashboard .department-select {
+    width: 100% !important;
+    min-height: 48px !important;
+    height: 48px !important;
+    padding: 10px 40px 10px 14px;
+  }
+
+  .reception-dashboard .reception-toolbar > .button {
+    width: 100% !important;
+    min-height: 48px !important;
+    height: 48px !important;
+    flex: 0 0 auto !important;
+  }
+
+  .reception-dashboard .queue-section {
+    margin-top: 14px;
+    padding: 16px 13px;
+    border-radius: 15px;
+  }
+
+  .reception-dashboard .queue-section .section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .reception-dashboard .queue-count {
+    align-self: flex-start;
+  }
+
+  /* Mobile queue cards */
+  .reception-dashboard .queue-table-wrap {
+    width: 100% !important;
+    max-width: 100% !important;
+    overflow: visible !important;
+    border: 0 !important;
+    background: transparent !important;
+  }
+
+  .reception-dashboard .queue-table {
+    width: 100% !important;
+    min-width: 0 !important;
+    display: block !important;
+    border-collapse: separate !important;
+  }
+
+  .reception-dashboard .queue-table thead {
+    display: none !important;
+  }
+
+  .reception-dashboard .queue-table tbody {
+    display: grid !important;
+    width: 100%;
+    gap: 12px;
+  }
+
+  .reception-dashboard .queue-table tbody tr {
+    display: grid !important;
+    grid-template-columns: 1fr !important;
+    gap: 10px !important;
+
+    width: 100%;
+    margin: 0;
+
+    padding: 15px !important;
+
+    border: 1px solid #dcebea !important;
+    border-radius: 15px !important;
+    background: #ffffff !important;
+
+    box-shadow:
+      0 6px 18px rgba(0, 25, 29, 0.07);
+
+    box-sizing: border-box;
+    overflow: visible !important;
+  }
+
+  .reception-dashboard .queue-table tbody td {
+    width: 100%;
+    min-width: 0;
+
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+
+    gap: 10px;
+
+    padding: 0 0 9px !important;
+
+    border-bottom: 1px solid #eef3f3 !important;
+
+    text-align: right;
+    overflow-wrap: anywhere;
+    box-sizing: border-box;
+  }
+
+  .reception-dashboard .queue-table tbody td::before {
+    flex: 0 0 auto;
+
+    color: #647b7e;
+    font-size: 0.66rem;
+    font-weight: 900;
+    letter-spacing: 0.07em;
+    line-height: 1.3;
+    text-align: left;
+    text-transform: uppercase;
+  }
+
+  .reception-dashboard .queue-table tbody td:nth-child(1)::before {
+    content: "Token";
+  }
+
+  .reception-dashboard .queue-table tbody td:nth-child(2)::before {
+    content: "Position";
+  }
+
+  .reception-dashboard .queue-table tbody td:nth-child(3)::before {
+    content: "Department";
+  }
+
+  .reception-dashboard .queue-table tbody td:nth-child(4)::before {
+    content: "Patient";
+  }
+
+  .reception-dashboard .queue-table tbody td:nth-child(5)::before {
+    content: "Doctor";
+  }
+
+  .reception-dashboard .queue-table tbody td:nth-child(6)::before {
+    content: "Status";
+  }
+
+  .reception-dashboard .queue-table tbody td:nth-child(7)::before {
+    content: "Risk";
+  }
+
+  .reception-dashboard .queue-table tbody td:nth-child(8) {
+    padding-top: 2px !important;
+    padding-bottom: 0 !important;
+    border-bottom: 0 !important;
+    align-items: center;
+  }
+
+  .reception-dashboard .queue-table tbody td:nth-child(8)::before {
+    content: "QR";
+  }
+
+  .reception-dashboard .queue-table .patient-email,
+  .reception-dashboard .queue-table .doctor-email {
+    min-width: 0;
+    max-width: 62%;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    white-space: normal;
+  }
+
+  .reception-dashboard .queue-table .department-badge,
+  .reception-dashboard .queue-table .status-badge,
+  .reception-dashboard .queue-table .risk-badge {
+    max-width: 62%;
+    white-space: normal;
+    text-align: right;
+    overflow-wrap: anywhere;
+  }
+
+  .reception-dashboard .queue-table .mini-button {
+    min-width: 0;
+    min-height: 42px;
+    width: auto;
+    max-width: 62%;
+    padding: 9px 14px;
+  }
+
+  /* QR result */
+  .reception-dashboard .reception-qr-card {
+    width: calc(100% - 20px) !important;
+    margin: 18px auto 40px !important;
+    padding: 18px 13px 26px !important;
+
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .reception-dashboard .reception-qr-card .qr-section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .reception-dashboard .qr-section-heading .mini-button {
+    align-self: stretch;
+    width: 100%;
+  }
+
+  .reception-dashboard .qr-result-layout {
+    width: 100%;
+    height: auto !important;
+    min-height: 0 !important;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+    overflow: visible !important;
+  }
+
+  .reception-dashboard .qr-image-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+  }
+
+  .reception-dashboard .qr-image-container .qr-image {
+    width: min(280px, 78vw) !important;
+    max-width: 100%;
+    height: auto;
+  }
+
+  .reception-dashboard .qr-information {
+    width: 100%;
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 10px;
+    overflow: visible !important;
+  }
+
+  .reception-dashboard .qr-info-item {
+    width: 100%;
+    min-width: 0;
+    height: auto !important;
+    max-height: none !important;
+    padding: 13px 14px;
+    overflow: visible !important;
+  }
+
+  .reception-dashboard .qr-info-item strong,
+  .reception-dashboard .qr-info-item code,
+  .reception-dashboard .qr-information .qr-instruction {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+    word-break: break-word;
+    white-space: normal;
+  }
+
+  .reception-dashboard .qr-information .qr-instruction {
+    width: 100%;
+    margin: 0;
+    padding: 14px 15px;
+    font-size: 0.84rem;
+    line-height: 1.55;
+  }
+}
+
+
+/* ============================================================
+   SMALL PHONES
+   ============================================================ */
+
+@media (max-width: 420px) {
+
+  .reception-dashboard {
+    padding-bottom:
+      calc(200px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  .reception-dashboard .page-header,
+  .reception-dashboard .reception-toolbar,
+  .reception-dashboard > .alert,
+  .reception-dashboard .queue-section,
+  .reception-dashboard .reception-qr-card {
+    width: calc(100% - 14px) !important;
+  }
+
+  .reception-dashboard .page-header,
+  .reception-dashboard .reception-toolbar,
+  .reception-dashboard .queue-section {
+    padding-left: 12px;
+    padding-right: 12px;
+  }
+
+  .reception-dashboard .reception-toolbar {
+    gap: 11px !important;
+  }
+
+  .reception-dashboard .department-select,
+  .reception-dashboard .reception-toolbar > .button {
+    min-height: 47px !important;
+    height: 47px !important;
+  }
+
+  .reception-dashboard .queue-table tbody tr {
+    padding: 13px !important;
+    border-radius: 14px !important;
+  }
+
+  .reception-dashboard .queue-table tbody td {
+    gap: 8px;
+    font-size: 0.84rem;
+  }
+
+  .reception-dashboard .queue-table .patient-email,
+  .reception-dashboard .queue-table .doctor-email,
+  .reception-dashboard .queue-table .department-badge,
+  .reception-dashboard .queue-table .status-badge,
+  .reception-dashboard .queue-table .risk-badge,
+  .reception-dashboard .queue-table .mini-button {
+    max-width: 60%;
+  }
+
+  .reception-dashboard .reception-qr-card {
+    padding: 16px 10px 24px !important;
+    margin-bottom: 44px !important;
+  }
+
+  .reception-dashboard .qr-image-container .qr-image {
+    width: min(250px, 76vw) !important;
+  }
+}
+
+
+/* ============================================================
+   VERY SMALL PHONES
+   ============================================================ */
+
+@media (max-width: 360px) {
+
+  .reception-dashboard {
+    padding-bottom:
+      calc(220px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  .reception-dashboard .page-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .reception-dashboard .queue-section,
+  .reception-dashboard .reception-toolbar {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .reception-dashboard .queue-table tbody tr {
+    padding: 12px !important;
+  }
+
+  .reception-dashboard .queue-table tbody td {
+    gap: 7px;
+    font-size: 0.81rem;
+  }
+
+  .reception-dashboard .queue-table .mini-button {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .reception-dashboard .department-select,
+  .reception-dashboard .reception-toolbar > .button {
+    min-height: 46px !important;
+    height: 46px !important;
+  }
+
+  .reception-dashboard .qr-image-container .qr-image {
+    width: min(230px, 72vw) !important;
+  }
+}
+
+
+/* ============================================================
+   LANDSCAPE PHONES
+   ============================================================ */
+
+@media (max-height: 520px) and (orientation: landscape) {
+
+  .reception-dashboard {
+    padding-bottom:
+      calc(120px + env(safe-area-inset-bottom, 0px)) !important;
+  }
+
+  .reception-dashboard .reception-toolbar {
+    flex-direction: row !important;
+    align-items: flex-end !important;
+    gap: 12px !important;
+  }
+
+  .reception-dashboard .department-control {
+    flex: 1 1 auto !important;
+  }
+
+  .reception-dashboard .reception-toolbar > .button {
+    width: auto !important;
+    flex: 0 0 auto !important;
+  }
+}
+
+
+/* ============================================================
+   TOUCH DEVICES
+   ============================================================ */
+
+@media (hover: none) and (pointer: coarse) {
+
+  .reception-dashboard .queue-table tbody tr {
+    transform: none !important;
+  }
+
+  .reception-dashboard .mini-button,
+  .reception-dashboard .reception-toolbar > .button {
+    min-height: 48px;
+  }
+}
+
+
+/* ============================================================
+   FINAL SCROLL GUARANTEE
+   Keep this block LAST.
+   ============================================================ */
+
+html:has(.reception-dashboard),
+body:has(.reception-dashboard) {
+  height: auto !important;
+  max-height: none !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+
+#root:has(.reception-dashboard) {
+  height: auto !important;
+  min-height: 100vh !important;
+  min-height: 100dvh !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+.reception-dashboard {
+  height: auto !important;
+  min-height: 100vh !important;
+  min-height: 100dvh !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+.reception-dashboard .reception-toolbar,
+.reception-dashboard .queue-section,
+.reception-dashboard .queue-table-wrap,
+.reception-dashboard .queue-table,
+.reception-dashboard .queue-table tbody,
+.reception-dashboard .reception-qr-card,
+.reception-dashboard .qr-result-layout,
+.reception-dashboard .qr-information {
+  height: auto !important;
+  max-height: none !important;
+}

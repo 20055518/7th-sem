@@ -1,0 +1,983 @@
+/* ============================================================
+   PATIENT DASHBOARD RESPONSIVE
+   Keep this file separate from PatientDashboard.css
+   ============================================================ */
+
+/* ------------------------------------------------------------
+   DOCUMENT / PAGE SCROLL
+   ------------------------------------------------------------ */
+
+html:has(.patient-dashboard),
+body:has(.patient-dashboard),
+#root:has(.patient-dashboard) {
+  height: auto !important;
+  min-height: 100% !important;
+  overflow-y: auto !important;
+  overflow-x: hidden !important;
+}
+
+.patient-dashboard {
+  flex: 1 0 auto;
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+  min-height: auto !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow: visible !important;
+  overflow-x: clip !important;
+  overflow-y: visible !important;
+  padding-bottom: calc(32px + env(safe-area-inset-bottom, 0px));
+  box-sizing: border-box;
+}
+
+.patient-dashboard,
+.patient-dashboard * {
+  box-sizing: border-box;
+}
+
+.patient-dashboard img,
+.patient-dashboard video,
+.patient-dashboard canvas,
+.patient-dashboard svg {
+  max-width: 100%;
+}
+
+/* ------------------------------------------------------------
+   LARGE TABLET / SMALL DESKTOP
+   ------------------------------------------------------------ */
+
+@media (max-width: 1024px) {
+  .patient-dashboard .patient-page-header,
+  .patient-dashboard .page-header,
+  .patient-dashboard .patient-status-card,
+  .patient-dashboard .patient-summary,
+  .patient-dashboard .waiting-triage-card,
+  .patient-dashboard .prediction-grid,
+  .patient-dashboard .probability-card,
+  .patient-dashboard .patient-result-card,
+  .patient-dashboard .patient-action-message {
+    width: min(100% - 32px, 1180px);
+  }
+
+  .patient-dashboard .patient-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .patient-dashboard .prediction-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .patient-dashboard .public-queue-section {
+    width: min(100% - 32px, 850px);
+  }
+
+  .patient-dashboard .public-queue-row {
+    grid-template-columns:
+      minmax(0, 1.15fr)
+      minmax(0, 1fr)
+      minmax(0, 1.2fr)
+      auto;
+  }
+}
+
+/* ------------------------------------------------------------
+   TABLET
+   ------------------------------------------------------------ */
+
+@media (max-width: 768px) {
+  .patient-dashboard {
+    padding-bottom: calc(32px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .patient-dashboard .patient-page-header,
+  .patient-dashboard .page-header {
+    width: calc(100% - 28px);
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 20px;
+    gap: 14px;
+    align-items: flex-start;
+  }
+
+  .patient-dashboard .patient-page-header h1,
+  .patient-dashboard .page-header h1 {
+    font-size: clamp(1.9rem, 7vw, 2.7rem);
+    line-height: 1.08;
+  }
+
+  .patient-dashboard .patient-page-header .muted,
+  .patient-dashboard .page-header .muted {
+    font-size: 0.92rem;
+    line-height: 1.55;
+  }
+
+  .patient-dashboard .live-pill {
+    flex-shrink: 0;
+  }
+
+  .patient-dashboard .patient-status-card {
+    width: calc(100% - 28px);
+    margin-top: 20px;
+    padding: 22px 20px;
+  }
+
+  .patient-dashboard .patient-summary {
+    width: calc(100% - 28px);
+    gap: 10px;
+  }
+
+  .patient-dashboard .patient-summary > article {
+    min-height: 94px;
+    padding: 16px;
+  }
+
+  .patient-dashboard .prediction-grid,
+  .patient-dashboard .probability-card,
+  .patient-dashboard .waiting-triage-card,
+  .patient-dashboard .patient-result-card,
+  .patient-dashboard .patient-action-message {
+    width: calc(100% - 28px);
+  }
+
+  .patient-dashboard .prediction-main,
+  .patient-dashboard .probability-card,
+  .patient-dashboard .waiting-triage-card,
+  .patient-dashboard .patient-result-card {
+    padding: 22px 18px;
+  }
+
+  .patient-dashboard .public-queue-section {
+    width: calc(100% - 28px);
+    padding: 22px 16px;
+  }
+
+  .patient-dashboard .public-queue-heading {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    gap: 14px;
+  }
+
+  .patient-dashboard .public-queue-row {
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(0, 1fr);
+    gap: 12px 16px;
+    padding: 14px;
+  }
+
+  .patient-dashboard .public-queue-row > .public-queue-cell:nth-child(1) {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .patient-dashboard .public-queue-row > .public-queue-cell:nth-child(2) {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .patient-dashboard .public-queue-row > .public-queue-cell:nth-child(3) {
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: end;
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  .patient-dashboard .public-queue-row > .own-label {
+    grid-column: 1;
+    grid-row: 2;
+    justify-self: start;
+    align-self: center;
+  }
+
+  .patient-dashboard .public-queue-row strong,
+  .patient-dashboard .public-queue-row .card-label,
+  .patient-dashboard .public-queue-row .status-badge,
+  .patient-dashboard .own-label {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  .patient-dashboard .public-queue-row .status-badge,
+  .patient-dashboard .own-label {
+    white-space: normal;
+  }
+
+  .patient-dashboard .dashboard-actions {
+    width: calc(100% - 28px);
+    justify-content: stretch;
+  }
+
+  .patient-dashboard .dashboard-actions .button {
+    flex: 1 1 180px;
+    min-width: 0;
+  }
+
+  .patient-dashboard .patient-result-card {
+    align-items: flex-start;
+  }
+}
+
+/* ------------------------------------------------------------
+   MOBILE
+   ------------------------------------------------------------ */
+
+@media (max-width: 600px) {
+  .patient-dashboard {
+    padding-bottom: calc(32px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .patient-dashboard .patient-page-header,
+  .patient-dashboard .page-header,
+  .patient-dashboard .patient-status-card,
+  .patient-dashboard .patient-summary,
+  .patient-dashboard .prediction-grid,
+  .patient-dashboard .probability-card,
+  .patient-dashboard .waiting-triage-card,
+  .patient-dashboard .patient-result-card,
+  .patient-dashboard .patient-action-message,
+  .patient-dashboard .public-queue-section,
+  .patient-dashboard .dashboard-actions,
+  .patient-dashboard .alert,
+  .patient-dashboard .empty-card,
+  .patient-dashboard .loading-card {
+    width: calc(100% - 20px);
+    max-width: none;
+  }
+
+  .patient-dashboard .patient-page-header,
+  .patient-dashboard .page-header {
+    margin-top: 16px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .patient-dashboard .patient-page-header h1,
+  .patient-dashboard .page-header h1 {
+    font-size: clamp(1.8rem, 9vw, 2.35rem);
+    line-height: 1.08;
+  }
+
+  .patient-dashboard .patient-page-header .muted,
+  .patient-dashboard .page-header .muted {
+    font-size: 0.88rem;
+  }
+
+  .patient-dashboard .live-pill {
+    align-self: flex-start;
+    min-height: 34px;
+    padding: 7px 11px;
+    font-size: 0.72rem;
+  }
+
+  .patient-dashboard .patient-status-card {
+    margin: 16px auto;
+    padding: 20px 15px;
+    border-radius: 16px;
+  }
+
+  .patient-dashboard .patient-status-card h2 {
+    font-size: clamp(1.45rem, 7vw, 2rem);
+    line-height: 1.12;
+  }
+
+  .patient-dashboard .patient-status-card .muted {
+    font-size: 0.88rem;
+    line-height: 1.5;
+  }
+
+  .patient-dashboard .patient-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 9px;
+    margin-top: 14px;
+    margin-bottom: 18px;
+  }
+
+  .patient-dashboard .patient-summary > article {
+    min-height: 82px;
+    padding: 13px 12px;
+    border-radius: 13px;
+  }
+
+  .patient-dashboard .patient-summary article > span {
+    font-size: 0.63rem;
+    letter-spacing: 0.06em;
+  }
+
+  .patient-dashboard .patient-summary article strong {
+    font-size: 0.96rem;
+    line-height: 1.22;
+    overflow-wrap: anywhere;
+  }
+
+  .patient-dashboard .patient-summary .token-card strong {
+    font-size: 1.28rem;
+  }
+
+  .patient-dashboard .prediction-main,
+  .patient-dashboard .probability-card,
+  .patient-dashboard .waiting-triage-card,
+  .patient-dashboard .patient-result-card {
+    padding: 19px 15px;
+    border-radius: 15px;
+  }
+
+  .patient-dashboard .prediction-number {
+    font-size: clamp(1.85rem, 10vw, 2.7rem);
+  }
+
+  .patient-dashboard .state-text {
+    font-size: 1.12rem;
+  }
+
+  .patient-dashboard .probability-meta span,
+  .patient-dashboard .probability-meta strong {
+    font-size: 0.74rem;
+  }
+
+  .patient-dashboard .probability-row {
+    margin-top: 15px;
+  }
+
+  .patient-dashboard .public-queue-section {
+    margin: 20px auto 32px;
+    padding: 18px 12px;
+    border-radius: 15px;
+  }
+
+  .patient-dashboard .public-queue-heading {
+    flex-direction: column;
+    gap: 9px;
+  }
+
+  .patient-dashboard .public-queue-heading h2,
+  .patient-dashboard .public-queue-section h2 {
+    font-size: 1.45rem;
+    line-height: 1.15;
+  }
+
+  .patient-dashboard .public-queue-description {
+    font-size: 0.82rem;
+    line-height: 1.45;
+  }
+
+  .patient-dashboard .public-queue-list {
+    width: 100%;
+    max-width: 100%;
+    margin-top: 14px;
+    overflow: hidden;
+    border-radius: 12px;
+  }
+
+  .patient-dashboard .public-queue-row {
+    width: 100%;
+    min-width: 0;
+    grid-template-columns:
+      minmax(0, 1fr)
+      minmax(0, 1fr);
+    grid-template-rows: auto auto;
+    gap: 10px 14px;
+    padding: 14px 13px;
+  }
+
+  .patient-dashboard .public-queue-row > .public-queue-cell:nth-child(1) {
+    grid-column: 1;
+    grid-row: 1;
+  }
+
+  .patient-dashboard .public-queue-row > .public-queue-cell:nth-child(2) {
+    grid-column: 2;
+    grid-row: 1;
+  }
+
+  .patient-dashboard .public-queue-row > .public-queue-cell:nth-child(3) {
+    grid-column: 2;
+    grid-row: 2;
+    justify-self: end;
+    align-items: flex-end;
+    text-align: right;
+  }
+
+  .patient-dashboard .public-queue-row > .own-label {
+    grid-column: 1;
+    grid-row: 2;
+    justify-self: start;
+    align-self: center;
+  }
+
+  .patient-dashboard .public-queue-row .card-label {
+    font-size: 0.63rem;
+  }
+
+  .patient-dashboard .public-queue-row strong {
+    font-size: 0.92rem;
+  }
+
+  .patient-dashboard .public-queue-row .status-badge {
+    max-width: 100%;
+    white-space: nowrap;
+    font-size: 0.64rem;
+    padding: 4px 7px;
+  }
+
+  .patient-dashboard .dashboard-actions {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    margin-bottom: 36px;
+  }
+
+  .patient-dashboard .dashboard-actions .button {
+    width: 100%;
+    min-height: 46px;
+    flex: 0 0 auto;
+  }
+
+  .patient-dashboard .patient-result-card {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .patient-dashboard .completed-result-icon {
+    width: 44px;
+    height: 44px;
+    flex-basis: 44px;
+  }
+}
+
+/* ------------------------------------------------------------
+   SMALL PHONES
+   ------------------------------------------------------------ */
+
+@media (max-width: 420px) {
+  .patient-dashboard {
+    padding-bottom: calc(32px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .patient-dashboard .patient-page-header,
+  .patient-dashboard .page-header,
+  .patient-dashboard .patient-status-card,
+  .patient-dashboard .patient-summary,
+  .patient-dashboard .prediction-grid,
+  .patient-dashboard .probability-card,
+  .patient-dashboard .waiting-triage-card,
+  .patient-dashboard .patient-result-card,
+  .patient-dashboard .patient-action-message,
+  .patient-dashboard .public-queue-section,
+  .patient-dashboard .dashboard-actions,
+  .patient-dashboard .alert,
+  .patient-dashboard .empty-card,
+  .patient-dashboard .loading-card {
+    width: calc(100% - 16px);
+  }
+
+  .patient-dashboard .patient-summary {
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .patient-dashboard .patient-summary > article {
+    min-height: 76px;
+    padding: 11px 10px;
+  }
+
+  .patient-dashboard .patient-summary article strong {
+    font-size: 0.9rem;
+  }
+
+  .patient-dashboard .patient-summary .token-card strong {
+    font-size: 1.18rem;
+  }
+
+  .patient-dashboard .public-queue-section {
+    padding: 16px 10px;
+  }
+
+  .patient-dashboard .public-queue-row {
+    gap: 9px 11px;
+    padding: 13px 11px;
+  }
+
+  .patient-dashboard .public-queue-row .status-badge {
+    font-size: 0.62rem;
+    padding: 4px 6px;
+  }
+}
+
+/* ------------------------------------------------------------
+   VERY SMALL PHONES
+   ------------------------------------------------------------ */
+
+@media (max-width: 360px) {
+  .patient-dashboard .patient-page-header,
+  .patient-dashboard .page-header,
+  .patient-dashboard .patient-status-card,
+  .patient-dashboard .patient-summary,
+  .patient-dashboard .prediction-grid,
+  .patient-dashboard .probability-card,
+  .patient-dashboard .waiting-triage-card,
+  .patient-dashboard .patient-result-card,
+  .patient-dashboard .patient-action-message,
+  .patient-dashboard .public-queue-section,
+  .patient-dashboard .dashboard-actions,
+  .patient-dashboard .alert,
+  .patient-dashboard .empty-card,
+  .patient-dashboard .loading-card {
+    width: calc(100% - 12px);
+  }
+
+  .patient-dashboard .patient-summary {
+    grid-template-columns: 1fr;
+  }
+
+  .patient-dashboard .public-queue-row {
+    grid-template-columns: 1fr;
+    gap: 9px;
+  }
+
+  .patient-dashboard .public-queue-row > .public-queue-cell:nth-child(1),
+  .patient-dashboard .public-queue-row > .public-queue-cell:nth-child(2),
+  .patient-dashboard .public-queue-row > .public-queue-cell:nth-child(3),
+  .patient-dashboard .public-queue-row > .own-label {
+    grid-column: 1;
+    grid-row: auto;
+    justify-self: start;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .patient-dashboard .public-queue-row .status-badge {
+    white-space: normal;
+  }
+
+  .patient-dashboard .prediction-number {
+    font-size: 1.8rem;
+  }
+
+  .patient-dashboard .patient-status-card h2 {
+    font-size: 1.3rem;
+  }
+}
+
+/* ------------------------------------------------------------
+   LANDSCAPE PHONES
+   ------------------------------------------------------------ */
+
+@media (max-height: 520px) and (orientation: landscape) {
+  .patient-dashboard {
+    padding-bottom: 80px;
+  }
+
+  .patient-dashboard .patient-page-header,
+  .patient-dashboard .page-header {
+    margin-top: 12px;
+  }
+
+  .patient-dashboard .patient-status-card {
+    margin-top: 12px;
+    padding-top: 16px;
+    padding-bottom: 16px;
+  }
+
+  .patient-dashboard .patient-summary > article {
+    min-height: 76px;
+  }
+
+  .patient-dashboard .prediction-main {
+    min-height: 135px;
+  }
+}
+
+/* ------------------------------------------------------------
+   TOUCH DEVICES
+   ------------------------------------------------------------ */
+
+@media (hover: none) and (pointer: coarse) {
+  .patient-dashboard .patient-summary > article,
+  .patient-dashboard .prediction-main,
+  .patient-dashboard .probability-card,
+  .patient-dashboard .public-queue-row {
+    transform: none !important;
+  }
+
+  .patient-dashboard .dashboard-actions .button {
+    min-height: 48px;
+  }
+}
+
+/* ------------------------------------------------------------
+   REDUCED MOTION
+   ------------------------------------------------------------ */
+
+@media (prefers-reduced-motion: reduce) {
+  .patient-dashboard *,
+  .patient-dashboard *::before,
+  .patient-dashboard *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* ============================================================
+   FINAL RESPONSIVE OVERRIDES
+   Samsung S20 Ultra / mobile / tablet hardening
+   Keep this file loaded AFTER PatientDashboard.css
+   ============================================================ */
+
+/* Document scrolling must belong to the browser, not the page card. */
+html:has(.patient-dashboard),
+body:has(.patient-dashboard) {
+  height: auto !important;
+  min-height: 100% !important;
+  max-height: none !important;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+}
+
+#root:has(.patient-dashboard) {
+  height: auto !important;
+  min-height: 100vh !important;
+  min-height: 100dvh !important;
+  max-height: none !important;
+  overflow: visible !important;
+}
+
+/* The dashboard itself must grow with its content. */
+.patient-dashboard {
+  flex: 1 0 auto;
+  width: 100% !important;
+  min-width: 0 !important;
+  min-height: auto !important;
+  height: auto !important;
+  max-height: none !important;
+  overflow-x: clip !important;
+  overflow-y: visible !important;
+  box-sizing: border-box !important;
+  padding-bottom: calc(
+    32px + env(safe-area-inset-bottom, 0px)
+  ) !important;
+}
+
+/* ------------------------------------------------------------
+   TABLET
+   ------------------------------------------------------------ */
+
+@media (max-width: 900px) {
+  .patient-dashboard .patient-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+
+  .patient-dashboard .prediction-grid {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* ------------------------------------------------------------
+   MOBILE
+   ------------------------------------------------------------ */
+
+@media (max-width: 600px) {
+
+  .patient-dashboard .patient-page-header,
+  .patient-dashboard .page-header {
+    width: calc(100% - 24px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    margin-top: 18px !important;
+    flex-direction: row !important;
+    align-items: flex-end !important;
+    justify-content: space-between !important;
+    gap: 12px !important;
+  }
+
+  .patient-dashboard .patient-page-header > div,
+  .patient-dashboard .page-header > div {
+    min-width: 0 !important;
+    flex: 1 1 auto !important;
+  }
+
+  .patient-dashboard .patient-page-header h1,
+  .patient-dashboard .page-header h1 {
+    font-size: clamp(2rem, 9vw, 2.45rem) !important;
+    line-height: 1.02 !important;
+    white-space: nowrap !important;
+    overflow: visible !important;
+  }
+
+  .patient-dashboard .live-pill {
+    flex: 0 0 auto !important;
+    align-self: flex-end !important;
+    white-space: nowrap !important;
+  }
+
+  /* Four desktop cards -> two columns on phones. */
+  .patient-dashboard .patient-summary {
+    width: calc(100% - 24px) !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 10px !important;
+    margin: 16px auto 18px !important;
+  }
+
+  .patient-dashboard .patient-summary > article {
+    width: 100% !important;
+    min-width: 0 !important;
+    min-height: 92px !important;
+    padding: 15px 14px !important;
+    border-radius: 14px !important;
+  }
+
+  .patient-dashboard .patient-summary article > span {
+    font-size: 0.66rem !important;
+    line-height: 1.15 !important;
+    margin-bottom: 7px !important;
+    white-space: nowrap !important;
+  }
+
+  .patient-dashboard .patient-summary article strong {
+    font-size: 1rem !important;
+    line-height: 1.2 !important;
+    white-space: nowrap !important;
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+  }
+
+  .patient-dashboard .patient-summary .token-card strong {
+    font-size: 1.28rem !important;
+  }
+
+  .patient-dashboard .prediction-grid {
+    width: calc(100% - 24px) !important;
+    grid-template-columns: 1fr !important;
+    gap: 12px !important;
+  }
+
+  .patient-dashboard .prediction-main,
+  .patient-dashboard .probability-card,
+  .patient-dashboard .waiting-triage-card,
+  .patient-dashboard .patient-result-card {
+    width: 100% !important;
+    padding: 20px 16px !important;
+    border-radius: 16px !important;
+  }
+
+  .patient-dashboard .prediction-number {
+    font-size: clamp(2rem, 10vw, 2.8rem) !important;
+    line-height: 1.05 !important;
+    white-space: normal !important;
+  }
+
+  .patient-dashboard .public-queue-section {
+    width: calc(100% - 24px) !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 18px 12px !important;
+    overflow: visible !important;
+  }
+
+  .patient-dashboard .public-queue-list {
+    width: 100% !important;
+    max-width: none !important;
+    height: auto !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  /* Queue rows stay as compact two-column cards on mobile. */
+  .patient-dashboard .public-queue-row {
+    width: 100% !important;
+    min-width: 0 !important;
+    display: grid !important;
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr) !important;
+    grid-template-rows: auto auto !important;
+    gap: 10px 14px !important;
+    padding: 14px !important;
+    overflow: visible !important;
+    box-sizing: border-box !important;
+  }
+
+  .patient-dashboard .public-queue-row
+    > .public-queue-cell:nth-child(1) {
+    grid-column: 1 !important;
+    grid-row: 1 !important;
+  }
+
+  .patient-dashboard .public-queue-row
+    > .public-queue-cell:nth-child(2) {
+    grid-column: 2 !important;
+    grid-row: 1 !important;
+  }
+
+  .patient-dashboard .public-queue-row
+    > .public-queue-cell:nth-child(3) {
+    grid-column: 2 !important;
+    grid-row: 2 !important;
+    justify-self: end !important;
+    align-items: flex-end !important;
+    text-align: right !important;
+  }
+
+  .patient-dashboard .public-queue-row > .own-label {
+    grid-column: 1 !important;
+    grid-row: 2 !important;
+    justify-self: start !important;
+    align-self: center !important;
+  }
+
+  .patient-dashboard .public-queue-row .card-label {
+    font-size: 0.64rem !important;
+    white-space: nowrap !important;
+  }
+
+  .patient-dashboard .public-queue-row strong {
+    font-size: 0.94rem !important;
+    white-space: nowrap !important;
+  }
+
+  .patient-dashboard .public-queue-row .status-badge,
+  .patient-dashboard .public-queue-row .own-label {
+    white-space: nowrap !important;
+    max-width: 100% !important;
+  }
+}
+
+/* ------------------------------------------------------------
+   SMALL PHONES
+   ------------------------------------------------------------ */
+
+@media (max-width: 420px) {
+
+  .patient-dashboard {
+    padding-bottom: calc(
+      32px + env(safe-area-inset-bottom, 0px)
+    ) !important;
+  }
+
+  .patient-dashboard .patient-page-header,
+  .patient-dashboard .page-header {
+    width: calc(100% - 20px) !important;
+  }
+
+  .patient-dashboard .patient-page-header h1,
+  .patient-dashboard .page-header h1 {
+    font-size: clamp(1.85rem, 9vw, 2.2rem) !important;
+  }
+
+  .patient-dashboard .patient-summary {
+    width: calc(100% - 20px) !important;
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    gap: 9px !important;
+  }
+
+  .patient-dashboard .patient-summary > article {
+    min-height: 84px !important;
+    padding: 13px 12px !important;
+  }
+
+  .patient-dashboard .patient-summary article strong {
+    font-size: 0.95rem !important;
+  }
+
+  .patient-dashboard .patient-summary .token-card strong {
+    font-size: 1.18rem !important;
+  }
+
+  .patient-dashboard .prediction-grid,
+  .patient-dashboard .probability-card,
+  .patient-dashboard .waiting-triage-card,
+  .patient-dashboard .patient-result-card {
+    width: calc(100% - 20px) !important;
+  }
+
+  .patient-dashboard .public-queue-section {
+    width: calc(100% - 20px) !important;
+  }
+}
+
+/* ------------------------------------------------------------
+   VERY SMALL PHONES
+   ------------------------------------------------------------ */
+
+@media (max-width: 360px) {
+
+  .patient-dashboard .patient-summary {
+    width: calc(100% - 16px) !important;
+    grid-template-columns: 1fr !important;
+  }
+
+  .patient-dashboard .patient-summary > article {
+    min-height: 78px !important;
+  }
+
+  .patient-dashboard .patient-page-header,
+  .patient-dashboard .page-header {
+    width: calc(100% - 16px) !important;
+  }
+
+  .patient-dashboard .patient-page-header h1,
+  .patient-dashboard .page-header h1 {
+    font-size: 1.8rem !important;
+  }
+
+  .patient-dashboard .public-queue-row {
+    grid-template-columns: 1fr !important;
+    grid-template-rows: auto !important;
+    gap: 9px !important;
+  }
+
+  .patient-dashboard .public-queue-row
+    > .public-queue-cell:nth-child(1),
+  .patient-dashboard .public-queue-row
+    > .public-queue-cell:nth-child(2),
+  .patient-dashboard .public-queue-row
+    > .public-queue-cell:nth-child(3),
+  .patient-dashboard .public-queue-row
+    > .own-label {
+    grid-column: 1 !important;
+    grid-row: auto !important;
+    justify-self: start !important;
+    align-items: flex-start !important;
+    text-align: left !important;
+  }
+}
+
+/* ------------------------------------------------------------
+   LANDSCAPE PHONES
+   ------------------------------------------------------------ */
+
+@media (max-height: 520px) and (orientation: landscape) {
+
+  .patient-dashboard {
+    padding-bottom: 100px !important;
+  }
+
+  .patient-dashboard .patient-summary {
+    grid-template-columns: repeat(4, minmax(0, 1fr)) !important;
+  }
+
+  .patient-dashboard .prediction-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+  }
+}
+
+/* ------------------------------------------------------------
+   TOUCH DEVICES
+   ------------------------------------------------------------ */
+
+@media (hover: none) and (pointer: coarse) {
+
+  .patient-dashboard .patient-summary > article,
+  .patient-dashboard .prediction-main,
+  .patient-dashboard .probability-card,
+  .patient-dashboard .public-queue-row {
+    transform: none !important;
+  }
+
+  .patient-dashboard .dashboard-actions .button {
+    min-height: 48px !important;
+  }
+}

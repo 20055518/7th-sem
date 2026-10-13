@@ -1,0 +1,553 @@
+
+/* ============================================================
+   PATIENT QR PAGE
+   Responsive layout for desktop, tablet and mobile
+   ============================================================ */
+
+.patient-qr-page,
+.patient-qr-page * {
+  box-sizing: border-box;
+}
+
+.patient-qr-page {
+  flex: 1 0 auto;
+  width: 100%;
+  min-height: auto;
+  padding: 0 0 32px;
+  overflow-x: hidden;
+  overflow-y: visible;
+  background: #f7fbfb;
+  color: #0f172a;
+}
+
+/* ============================================================
+   NAVBAR
+   ============================================================ */
+
+.patient-qr-page .app-nav {
+  width: min(1180px, calc(100% - 40px));
+  max-width: 1180px;
+  margin: 0 auto;
+}
+
+/* ============================================================
+   SPACE ABOVE NAVBAR
+   ============================================================ */
+
+.patient-qr-page .app-nav {
+  margin-top: 14px;
+}
+
+/* ============================================================
+   PAGE HEADER
+   ============================================================ */
+
+.patient-qr-page .page-header {
+  width: min(1180px, calc(100% - 40px));
+  max-width: 1180px;
+  margin: 42px auto 28px;
+}
+
+.patient-qr-page .page-header h1 {
+  margin: 8px 0 12px;
+  color: #0f172a;
+  font-size: clamp(2.5rem, 5vw, 4.1rem);
+  line-height: 1.05;
+  letter-spacing: -0.045em;
+}
+
+.patient-qr-page .page-header > div > p:last-child {
+  width: min(100%, 720px);
+  margin: 0;
+  color: #60777a;
+  line-height: 1.7;
+}
+
+/* ============================================================
+   ALERT / LOADING
+   ============================================================ */
+
+.patient-qr-page > .alert,
+.patient-qr-page > .loading-card {
+  width: min(1180px, calc(100% - 40px));
+  max-width: 1180px;
+  margin: 18px auto;
+}
+
+/* ============================================================
+   MAIN CARD
+   ============================================================ */
+
+.patient-qr-card {
+  width: min(860px, calc(100% - 40px));
+  max-width: 860px;
+  margin: 28px auto 0;
+  padding: 36px;
+  background: #ffffff;
+  border: 1px solid rgba(20, 50, 55, 0.08);
+  border-radius: 24px;
+  box-shadow: 0 18px 55px rgba(28, 54, 58, 0.08);
+
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  overflow: visible;
+}
+
+/* ============================================================
+   CARD HEADER
+   ============================================================ */
+
+.patient-qr-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 26px;
+  border-bottom: 1px solid rgba(20, 50, 55, 0.08);
+}
+
+.patient-qr-header h2 {
+  margin: 8px 0 0;
+  color: #075985;
+  font-size: clamp(2.3rem, 5vw, 3.4rem);
+  line-height: 1.05;
+}
+
+/* ============================================================
+   QR INFORMATION
+   ============================================================ */
+
+.patient-qr-info {
+  display: flex;
+  align-items: center;
+  gap: 22px;
+  padding: 30px 0;
+}
+
+.qr-icon-box {
+  flex: 0 0 96px;
+  width: 96px;
+  height: 96px;
+  display: grid;
+  place-items: center;
+  border-radius: 18px;
+  background: #eef8f7;
+  border: 1px solid #d8e7e7;
+  color: #00aaa9;
+  font-size: 1.2rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+}
+
+.patient-qr-info > div:last-child {
+  min-width: 0;
+}
+
+.patient-qr-info h3 {
+  margin: 0 0 8px;
+  color: #0f172a;
+  font-size: 1.35rem;
+}
+
+.patient-qr-info p {
+  margin: 0;
+  color: #60777a;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+/* ============================================================
+   QUEUE DETAILS
+   ============================================================ */
+
+.patient-qr-details {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 14px;
+}
+
+.patient-qr-detail {
+  min-width: 0;
+  padding: 20px;
+  border-radius: 16px;
+  background: #f8fcfb;
+  border: 1px solid rgba(20, 50, 55, 0.06);
+}
+
+.patient-qr-detail span {
+  display: block;
+  margin-bottom: 7px;
+  color: #64748b;
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.07em;
+}
+
+.patient-qr-detail strong {
+  display: block;
+  color: #075985;
+  font-size: 1.1rem;
+  line-height: 1.35;
+  overflow-wrap: anywhere;
+}
+
+/* ============================================================
+   INSTRUCTIONS
+   ============================================================ */
+
+.patient-qr-instruction {
+  margin-top: 28px;
+  padding: 25px;
+  border-radius: 18px;
+  background: #f8fcfb;
+  border: 1px solid #e7f0ef;
+
+  height: auto;
+  min-height: 0;
+  max-height: none;
+  overflow: visible;
+}
+
+.patient-qr-instruction .eyebrow {
+  margin: 0 0 12px;
+}
+
+.patient-qr-instruction ol {
+  margin: 0;
+  padding-left: 24px;
+  color: #334155;
+}
+
+.patient-qr-instruction li {
+  margin: 10px 0;
+  line-height: 1.65;
+  overflow-wrap: anywhere;
+}
+
+/* ============================================================
+   ACTIONS
+   ============================================================ */
+
+.patient-qr-actions {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 30px;
+  padding-bottom: 4px;
+}
+
+.patient-qr-actions .button {
+  min-width: 170px;
+  min-height: 46px;
+  text-align: center;
+  text-decoration: none;
+}
+
+/* ============================================================
+   EMPTY
+   ============================================================ */
+
+.patient-qr-empty {
+  width: min(700px, calc(100% - 40px));
+  max-width: 700px;
+  margin: 30px auto 0;
+  text-align: center;
+}
+
+/* ============================================================
+   LARGE TABLETS
+   ============================================================ */
+
+@media (max-width: 1024px) {
+  .patient-qr-page .app-nav {
+    width: calc(100% - 32px);
+  }
+
+  .patient-qr-page .page-header {
+    width: calc(100% - 32px);
+  }
+
+  .patient-qr-card {
+    width: min(820px, calc(100% - 32px));
+    padding: 30px;
+  }
+}
+
+/* ============================================================
+   TABLET
+   ============================================================ */
+
+@media (max-width: 760px) {
+  .patient-qr-details {
+    grid-template-columns: 1fr;
+  }
+
+  .patient-qr-info {
+    align-items: flex-start;
+  }
+}
+
+/* ============================================================
+   MOBILE
+   ============================================================ */
+
+@media (max-width: 640px) {
+  html,
+  body,
+  #root {
+    width: 100%;
+    min-height: 100%;
+    height: auto;
+    overflow-x: hidden !important;
+    overflow-y: auto !important;
+  }
+
+  .patient-qr-page {
+    width: 100%;
+    min-height: 100dvh;
+    height: auto !important;
+    max-height: none !important;
+    padding: 0 0 calc(150px + env(safe-area-inset-bottom, 0px));
+    overflow-x: hidden !important;
+    overflow-y: visible !important;
+  }
+
+  .patient-qr-page .app-nav {
+    width: calc(100% - 24px);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .patient-qr-page .page-header {
+    width: calc(100% - 32px);
+    margin: 42px auto 20px;
+  }
+
+  .patient-qr-page .page-header h1 {
+    font-size: clamp(2rem, 9vw, 2.55rem);
+    line-height: 1.05;
+  }
+
+  .patient-qr-page .page-header > div > p:last-child {
+    font-size: 0.92rem;
+    line-height: 1.6;
+  }
+
+  .patient-qr-card {
+    width: calc(100% - 32px);
+    max-width: none;
+    margin: 20px auto 0;
+    padding: 22px 18px;
+    border-radius: 19px;
+
+    height: auto !important;
+    min-height: 0 !important;
+    max-height: none !important;
+    overflow: visible !important;
+  }
+
+  .patient-qr-header {
+    flex-direction: column;
+    gap: 12px;
+    padding-bottom: 20px;
+  }
+
+  .patient-qr-header h2 {
+    font-size: clamp(2rem, 9vw, 2.4rem);
+  }
+
+  .patient-qr-info {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 16px;
+    padding: 22px 0;
+  }
+
+  .qr-icon-box {
+    flex-basis: auto;
+    width: 72px;
+    height: 72px;
+    font-size: 0.95rem;
+  }
+
+  .patient-qr-info h3 {
+    font-size: 1.25rem;
+  }
+
+  .patient-qr-info p {
+    font-size: 0.95rem;
+    line-height: 1.6;
+  }
+
+  .patient-qr-details {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .patient-qr-detail {
+    padding: 15px 14px;
+    border-radius: 14px;
+  }
+
+  .patient-qr-detail strong {
+    font-size: 1.02rem;
+  }
+
+  .patient-qr-instruction {
+    margin-top: 20px;
+    padding: 20px 18px;
+    border-radius: 16px;
+  }
+
+  .patient-qr-instruction ol {
+    padding-left: 23px;
+  }
+
+  .patient-qr-instruction li {
+    margin: 9px 0;
+    line-height: 1.58;
+    font-size: 0.98rem;
+  }
+
+  .patient-qr-actions {
+    width: 100%;
+    flex-direction: column;
+    align-items: stretch;
+    gap: 12px;
+    margin-top: 24px;
+    padding-bottom: calc(34px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .patient-qr-actions .button {
+    width: 100%;
+    min-width: 0;
+    min-height: 50px;
+  }
+
+  .patient-qr-page > .alert,
+  .patient-qr-page > .loading-card {
+    width: calc(100% - 32px);
+  }
+
+  .patient-qr-empty {
+    width: calc(100% - 32px);
+  }
+}
+
+/* ============================================================
+   SMALL PHONES
+   ============================================================ */
+
+@media (max-width: 420px) {
+  .patient-qr-page .app-nav {
+    width: calc(100% - 20px);
+  }
+
+  .patient-qr-page .page-header {
+    width: calc(100% - 28px);
+    margin-top: 36px;
+  }
+
+  .patient-qr-card {
+    width: calc(100% - 28px);
+    padding: 20px 15px;
+    border-radius: 17px;
+  }
+
+  .patient-qr-header h2 {
+    font-size: 1.95rem;
+  }
+
+  .patient-qr-instruction {
+    padding: 18px 15px;
+  }
+
+  .patient-qr-instruction li {
+    font-size: 0.94rem;
+  }
+}
+
+/* ============================================================
+   VERY SMALL PHONES
+   ============================================================ */
+
+@media (max-width: 360px) {
+  .patient-qr-page .app-nav {
+    width: calc(100% - 16px);
+  }
+
+  .patient-qr-page .page-header {
+    width: calc(100% - 24px);
+  }
+
+  .patient-qr-card {
+    width: calc(100% - 24px);
+    padding: 18px 13px;
+  }
+
+  .patient-qr-header h2 {
+    font-size: 1.8rem;
+  }
+
+  .patient-qr-instruction li {
+    font-size: 0.91rem;
+  }
+}
+
+/* ============================================================
+   LANDSCAPE PHONES
+   ============================================================ */
+
+@media (max-height: 620px) and (max-width: 760px) and (orientation: landscape) {
+  .patient-qr-page {
+    padding-bottom: 32px;
+  }
+
+  .patient-qr-page .page-header {
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+
+  .patient-qr-card {
+    margin-top: 14px;
+  }
+}
+
+/* ============================================================
+   TOUCH DEVICES
+   ============================================================ */
+
+@media (hover: none) and (pointer: coarse) {
+  .patient-qr-actions .button {
+    min-height: 50px;
+  }
+}
+
+/* ============================================================
+   SHORT MOBILE VIEWPORTS
+   ============================================================ */
+
+@media (max-height: 700px) and (max-width: 640px) {
+  .patient-qr-page {
+    padding-bottom: calc(32px + env(safe-area-inset-bottom, 0px));
+  }
+}
+
+/* ============================================================
+   REDUCED MOTION
+   ============================================================ */
+
+@media (prefers-reduced-motion: reduce) {
+  .patient-qr-page *,
+  .patient-qr-page *::before,
+  .patient-qr-page *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
+}

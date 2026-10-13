@@ -1,349 +1,112 @@
-import { useEffect, useState } from "react";
-import { Link, Route, Routes, useNavigate } from "react-router-dom";
-import QRScanner from "./QRScanner";
-import { generateQueueQr, loginPatient } from "./api";
+import { lazy, Suspense } from "react";
+import { Routes, Route } from "react-router-dom";
+import Footer from "./components/Footer";
+import { useLocation } from "react-router-dom";
 
-function LandingPage() {
-  const [apiStatus, setApiStatus] = useState("Checking backend...");
+// ============================================================
+// LAZY-LOADED PAGE MODULES
+// Reduces bundle size and loads role dashboards on demand
+// ============================================================
 
-  useEffect(() => {
-    fetch("http://127.0.0.1:8000/api/db-health")
-      .then((response) => {
-        if (!response.ok) {
-          throw new Error("Backend request failed");
+const LandingPage = lazy(() => import("./pages/LandingPage"));
+const Login = lazy(() => import("./pages/Login"));
+const Signup = lazy(() => import("./pages/Signup"));
+
+const PatientDashboard = lazy(() => import("./pages/PatientDashboard"));
+const JoinQueue = lazy(() => import("./pages/JoinQueue"));
+const PatientQR = lazy(() => import("./pages/PatientQR"));
+const QueueAccess = lazy(() => import("./pages/QueueAccess"));
+
+const DoctorDashboard = lazy(() => import("./pages/DoctorDashboard"));
+const NurseDashboard = lazy(() => import("./pages/NurseDashboard"));
+const ReceptionDashboard = lazy(() => import("./pages/ReceptionDashboard"));
+const AdminDashboard = lazy(() => import("./pages/AdminDashboard"));
+
+const About = lazy(() => import("./pages/About"));
+
+// ============================================================
+// FALLBACK SPINNER
+// ============================================================
+
+function LoadingFallback() {
+  return (
+    <div
+      style={{
+        display: "flex",
+        flexDirection: "column",
+        justifyContent: "center",
+        alignItems: "center",
+        minHeight: "100vh",
+        background: "#f8fafc",
+        color: "#0284c7",
+        fontFamily: "system-ui, -apple-system, sans-serif",
+        gap: "1rem",
+      }}
+    >
+      <div
+        style={{
+          width: "48px",
+          height: "48px",
+          border: "4px solid #e2e8f0",
+          borderTop: "4px solid #0284c7",
+          borderRadius: "50%",
+          animation: "carePlusSpin 0.8s linear infinite",
+        }}
+      />
+      <span style={{ fontWeight: 600, fontSize: "1.1rem", color: "#334155" }}>
+        Loading Care+...
+      </span>
+      <style>{`
+        @keyframes carePlusSpin {
+          0% { transform: rotate(0deg); }
+          100% { transform: rotate(360deg); }
         }
-
-        return response.json();
-      })
-      .then((data) => setApiStatus(data.database))
-      .catch(() => setApiStatus("Backend is unavailable"));
-  }, []);
-
-  return (
-    <main className="landing-shell">
-      <nav className="topbar" aria-label="Primary navigation">
-        <Link className="brand" to="/">
-          CarePath<span>+</span>
-        </Link>
-        <Link className="nav-link" to="/login">
-          Staff sign in
-        </Link>
-      </nav>
-
-      <section className="hero">
-        <p className="eyebrow">SMART PATIENT JOURNEY</p>
-        <h1>Know where you are. Know when to go.</h1>
-        <p className="hero-copy">
-          Secure QR queue access and live waiting-time updates for a calmer
-          hospital visit.
-        </p>
-
-        <div className="hero-actions">
-          <Link className="button primary" to="/patient-dashboard">
-            Patient dashboard
-          </Link>
-          <Link className="button secondary" to="/about">
-            How it works
-          </Link>
-        </div>
-      </section>
-
-      <section className="feature-grid" aria-label="Platform features">
-        <article>
-          <strong>QR access</strong>
-          <span>Private, token-based queue verification.</span>
-        </article>
-
-        <article>
-          <strong>Live status</strong>
-          <span>Updates without refreshing the page.</span>
-        </article>
-
-        <article>
-          <strong>Clear guidance</strong>
-          <span>Notifications and route instructions when it is your turn.</span>
-        </article>
-      </section>
-
-      <section className="dashboard-links">
-        <h2>Dashboard previews</h2>
-
-        <div className="hero-actions">
-          <Link className="button secondary" to="/doctor-dashboard">
-            Doctor
-          </Link>
-
-          <Link className="button secondary" to="/reception-dashboard">
-            Reception
-          </Link>
-
-          <Link className="button secondary" to="/admin-dashboard">
-            Admin
-          </Link>
-        </div>
-      </section>
-
-      <p className="api-status" role="status">
-        Backend status: {apiStatus}
-      </p>
-    </main>
+      `}</style>
+    </div>
   );
 }
 
-function DashboardPage({ role, title, description }) {
-  return (
-    <main className="placeholder">
-      <Link to="/">CarePath+</Link>
-
-      <p className="eyebrow">{role.toUpperCase()} DASHBOARD</p>
-      <h1>{title}</h1>
-      <p>{description}</p>
-
-      <section className="feature-grid" aria-label={`${role} dashboard modules`}>
-        <article>
-          <strong>Queue status</strong>
-          <span>Queue information will appear here.</span>
-        </article>
-
-        <article>
-          <strong>Notifications</strong>
-          <span>Important updates will appear here.</span>
-        </article>
-
-        <article>
-          <strong>Statistics</strong>
-          <span>Dashboard statistics will appear here.</span>
-        </article>
-      </section>
-
-      <Link className="button secondary" to="/">
-        Return home
-      </Link>
-    </main>
-  );
-}
-
-function QueueAccessPage() {
-  const [scanned, setScanned] = useState(false);
-
-  return (
-    <main className="placeholder">
-      <Link to="/">CarePath+</Link>
-
-      <h1>Scan Your Queue QR Code</h1>
-      <p>Allow camera access and scan the QR code provided by reception.</p>
-
-      <QRScanner onScan={() => setScanned(true)} />
-
-      {scanned && (
-        <p role="status">
-          QR code scanned successfully.
-        </p>
-      )}
-
-      <Link className="button secondary" to="/">
-        Return home
-      </Link>
-    </main>
-  );
-}
-
-function LoginPage() {
-  const navigate = useNavigate();
-  const [email, setEmail] = useState("patient1@example.com");
-  const [password, setPassword] = useState("TestPassword123!");
-  const [error, setError] = useState("");
-
-  async function handleSubmit(event) {
-    event.preventDefault();
-    setError("");
-
-    try {
-      await loginPatient(email, password);
-      navigate("/patient-qr");
-    } catch (loginError) {
-      setError(loginError.message);
-    }
-  }
-
-  return (
-    <main className="placeholder">
-      <Link to="/">CarePath+</Link>
-      <h1>Patient Login</h1>
-
-      <form onSubmit={handleSubmit}>
-        <input
-          type="email"
-          value={email}
-          onChange={(event) => setEmail(event.target.value)}
-          placeholder="Email"
-          required
-        />
-
-        <input
-          type="password"
-          value={password}
-          onChange={(event) => setPassword(event.target.value)}
-          placeholder="Password"
-          required
-        />
-
-        <button className="button primary" type="submit">
-          Login
-        </button>
-      </form>
-
-      {error && <p role="alert">{error}</p>}
-    </main>
-  );
-}
-
-function PatientQRPage() {
-  const [department, setDepartment] = useState("Cardiology");
-  const [tokenNumber, setTokenNumber] = useState("1");
-  const [qrImageData, setQrImageData] = useState("");
-  const [error, setError] = useState("");
-
-  async function handleGenerateQr(event) {
-    event.preventDefault();
-    setError("");
-
-    try {
-      const data = await generateQueueQr(
-        department,
-        Number(tokenNumber),
-      );
-
-      setQrImageData(data.qr_image_data);
-    } catch (qrError) {
-      setError(qrError.message);
-    }
-  }
-
-  return (
-    <main className="placeholder">
-      <Link to="/">CarePath+</Link>
-
-      <h1>My Queue QR Code</h1>
-
-      <form onSubmit={handleGenerateQr}>
-        <input
-          value={department}
-          onChange={(event) => setDepartment(event.target.value)}
-          placeholder="Department"
-          required
-        />
-
-        <input
-          type="number"
-          value={tokenNumber}
-          onChange={(event) => setTokenNumber(event.target.value)}
-          placeholder="Token number"
-          min="1"
-          required
-        />
-
-        <button className="button primary" type="submit">
-          Generate QR
-        </button>
-      </form>
-
-      {error && <p role="alert">{error}</p>}
-
-      {qrImageData && (
-        <img
-          src={qrImageData}
-          alt="Patient queue QR code"
-          width="300"
-        />
-      )}
-    </main>
-  );
-}
-function PlaceholderPage({ title }) {
-  return (
-    <main className="placeholder">
-      <Link to="/">CarePath+</Link>
-      <h1>{title}</h1>
-      <p>This route is reserved for a later implementation phase.</p>
-    </main>
-  );
-}
+// ============================================================
+// APPLICATION ROUTES
+// ============================================================
 
 export default function App() {
+   const location = useLocation();
+
+  const hideFooter =
+    location.pathname === "/login" ||
+    location.pathname === "/signup";
+
   return (
-    <Routes>
-      <Route path="/" element={<LandingPage />} />
+    <Suspense fallback={<LoadingFallback />}>
+      <Routes>
+        {/* Public Landing & Info */}
+        <Route path="/" element={<LandingPage />} />
+        <Route path="/about" element={<About />} />
 
-      <Route
-        path="/patient-dashboard"
-        element={
-          <DashboardPage
-            role="patient"
-            title="Patient Dashboard"
-            description="View your token, queue position, estimated waiting time, and doctor information."
-          />
-        }
-      />
+        {/* Authentication */}
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<Signup />} />
 
-      <Route
-        path="/doctor-dashboard"
-        element={
-          <DashboardPage
-            role="doctor"
-            title="Doctor Dashboard"
-            description="Manage the current queue, patient status, consultation progress, and waiting information."
-          />
-        }
-      />
+        {/* Patient Experience */}
+        <Route path="/patient-dashboard" element={<PatientDashboard />} />
+        <Route path="/join-queue" element={<JoinQueue />} />
+        <Route path="/patient-qr" element={<PatientQR />} />
+        <Route path="/queue-access" element={<QueueAccess />} />
 
-      <Route
-        path="/reception-dashboard"
-        element={
-          <DashboardPage
-            role="reception"
-            title="Reception Dashboard"
-            description="Register patients, generate tokens, and monitor hospital queues."
-          />
-        }
-      />
+        {/* Clinical & Staff Workspaces */}
+        <Route path="/doctor-dashboard" element={<DoctorDashboard />} />
+        <Route path="/nurse-dashboard" element={<NurseDashboard />} />
+        <Route path="/reception-dashboard" element={<ReceptionDashboard />} />
 
-      <Route
-        path="/admin-dashboard"
-        element={
-          <DashboardPage
-            role="admin"
-            title="Admin Dashboard"
-            description="Manage users, doctors, departments, rooms, queues, and system reports."
-          />
-        }
-      />
+        {/* System Administration */}
+        <Route path="/admin-dashboard" element={<AdminDashboard />} />
 
-      <Route
-        path="/about"
-        element={<PlaceholderPage title="About CarePath" />}
-      />
+        {/* Fallback */}
+        <Route path="*" element={<LandingPage />} />
+      </Routes>
 
-      <Route
-        path="/login"
-        element={<LoginPage />}
-      />
-
-      <Route
-        path="/queue-access"
-        element={<QueueAccessPage />}
-      />
-
-      <Route
-        path="/patient-qr"
-        element={<PatientQRPage />}
-      />
-
-      <Route
-        path="*"
-        element={<PlaceholderPage title="Page Not Found" />}
-      />
-    </Routes>
-
+      {!hideFooter && <Footer />}
+    </Suspense>
   );
 }

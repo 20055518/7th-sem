@@ -1,0 +1,977 @@
+/* ============================================================
+   NURSE DASHBOARD
+   Executive Violet & Slate Theme
+   ============================================================ */
+
+.nurse-dashboard {
+  flex: 1 0 auto;
+  min-height: auto;
+  padding-bottom: 32px;
+  box-sizing: border-box;
+  overflow: visible; /* FIX: was overflow-x: hidden; overflow-y: visible;
+                         Mixing "visible" with a non-visible value on the
+                         other axis forces BOTH axes to compute as "auto",
+                         which turned this element into its own nested
+                         scroll container and trapped/hid content below
+                         the fold. Use a single non-conflicting value. */
+  touch-action: pan-y;
+  background:
+    radial-gradient(
+      circle at 100% 0%,
+      #d1f2ec 0%,
+      #eef8f7 35%,
+      transparent 60rem
+    ),
+    #f8fcfb;
+}
+
+/* ------------------------------------------------------------
+   STATS
+   ------------------------------------------------------------ */
+.nurse-dashboard .nurse-stats {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.nurse-dashboard .nurse-stats .summary-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 18px 22px;
+  box-shadow: 0 4px 16px rgba(15, 23, 42, 0.03);
+  min-width: 0;
+  overflow: hidden;
+}
+
+.nurse-dashboard .nurse-stats .summary-card span {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 750;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: #64748b;
+  margin-bottom: 6px;
+}
+
+.nurse-dashboard .nurse-stats .summary-card strong {
+  display: block;
+  font-size: 1.6rem;
+  font-weight: 800;
+  color: #075985;
+}
+
+/* ------------------------------------------------------------
+   QUEUE TABLE STYLING
+   ------------------------------------------------------------ */
+.nurse-dashboard .token-text {
+  color: #0f766e;
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+
+.nurse-dashboard .patient-email-text {
+  display: block;
+  max-width: 240px;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-weight: 600;
+  color: #0f172a;
+}
+
+.nurse-dashboard .mini-button {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #0f766e;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.nurse-dashboard .mini-button:hover {
+  background: #eef8f7;
+  border-color: #cbdedc;
+  color: #075985;
+  transform: translateY(-1px);
+}
+
+.nurse-dashboard .close-btn {
+  background: #f1f5f9;
+  border: 1px solid #cbd5e1;
+  color: #475569;
+}
+
+.nurse-dashboard .close-btn:hover {
+  background: #e2e8f0;
+  border-color: #94a3b8;
+  color: #0f172a;
+}
+
+/* ------------------------------------------------------------
+   PATIENT SUMMARY CARDS (PREVENT FONT OUT OF THE BOX)
+   ------------------------------------------------------------ */
+.nurse-patient-summary {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 16px;
+  margin-bottom: 26px;
+}
+
+.nurse-patient-summary .token-card,
+.nurse-patient-summary .summary-card {
+  min-width: 0;
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 14px;
+  padding: 16px 18px;
+  box-shadow: 0 4px 14px rgba(15, 23, 42, 0.03);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  transition: transform 0.15s ease, box-shadow 0.15s ease, border-color 0.15s ease;
+}
+
+.nurse-patient-summary .token-card {
+  background: linear-gradient(135deg, #eef8f7 0%, #ffffff 100%);
+  border-color: #b7d2d7;
+}
+
+.nurse-patient-summary .token-card:hover,
+.nurse-patient-summary .summary-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 20px rgba(0, 207, 199, 0.08);
+  border-color: #cbdedc;
+}
+
+.nurse-patient-summary .summary-label {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 750;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: #64748b;
+  margin-bottom: 6px;
+}
+
+.nurse-patient-summary .summary-token {
+  display: block;
+  font-size: 1.45rem;
+  font-weight: 850;
+  color: #0f766e;
+  line-height: 1.2;
+}
+
+.nurse-patient-summary .summary-value {
+  display: block;
+  font-size: 1.05rem;
+  font-weight: 700;
+  color: #0f172a;
+  line-height: 1.35;
+  min-width: 0;
+}
+
+/* Specific fix for long email text overflowing the box */
+.nurse-patient-summary .summary-email {
+  font-size: 0.92rem;
+  font-weight: 650;
+  color: #1e293b;
+  word-break: break-all;
+  overflow-wrap: anywhere;
+  white-space: normal;
+  line-height: 1.4;
+}
+
+/* ------------------------------------------------------------
+   ASSESSMENT FORM & INPUTS
+   ------------------------------------------------------------ */
+.nurse-assessment-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 18px;
+  padding: 26px;
+  box-shadow: 0 10px 30px -5px rgba(15, 23, 42, 0.04);
+}
+
+.nurse-assessment-form {
+  display: flex;
+  flex-direction: column;
+  gap: 22px;
+}
+
+.nurse-form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 18px;
+}
+
+.nurse-field {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+}
+
+.nurse-field.full-width {
+  grid-column: 1 / -1;
+}
+
+.nurse-field-label {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #334155;
+}
+
+/* ------------------------------------------------------------
+   FIELD VALIDATION ERRORS
+   ------------------------------------------------------------ */
+
+.nurse-field .input-error {
+  border-color: #dc2626 !important;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.10) !important;
+}
+
+.nurse-field .input-error:focus {
+  border-color: #dc2626 !important;
+  box-shadow: 0 0 0 3px rgba(220, 38, 38, 0.14) !important;
+}
+
+.nurse-field .field-error {
+  display: block;
+  margin-top: 2px;
+  color: #dc2626;
+  font-size: 0.78rem;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.nurse-field input,
+.nurse-field select,
+.nurse-field textarea {
+  width: 100%;
+  box-sizing: border-box;
+  padding: 11px 14px;
+  border: 1.5px solid #cbd5e1;
+  border-radius: 10px;
+  background: #ffffff;
+  color: #0f172a;
+  font-size: 0.92rem;
+  font-family: inherit;
+  outline: none;
+  transition: border-color 0.15s ease, box-shadow 0.15s ease;
+}
+
+.nurse-field input:focus,
+.nurse-field select:focus,
+.nurse-field textarea:focus {
+  border-color: #0f766e;
+  box-shadow: 0 0 0 3px rgba(0, 207, 199, 0.15);
+}
+
+.nurse-field input::placeholder,
+.nurse-field textarea::placeholder {
+  color: #94a3b8;
+}
+
+.nurse-dashboard .button.primary {
+  background: linear-gradient(135deg, #0f766e 0%, #075985 100%);
+  color: #ffffff;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 10px;
+  font-weight: 750;
+  font-size: 0.95rem;
+  box-shadow: 0 4px 14px rgba(0, 207, 199, 0.25);
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.nurse-dashboard .button.primary:hover:not(:disabled) {
+  background: linear-gradient(135deg, #075985 0%, #032a30 100%);
+  box-shadow: 0 6px 20px rgba(0, 207, 199, 0.35);
+  transform: translateY(-1px);
+}
+
+.nurse-dashboard .button.secondary {
+  background: #ffffff;
+  border: 1px solid #cbd5e1;
+  color: #334155;
+  padding: 12px 20px;
+  border-radius: 10px;
+  font-weight: 750;
+  font-size: 0.95rem;
+  cursor: pointer;
+  transition: all 0.15s ease;
+}
+
+.nurse-dashboard .button.secondary:hover:not(:disabled) {
+  background: #f8fcfb;
+  border-color: #94a3b8;
+  color: #0f172a;
+  transform: translateY(-1px);
+}
+
+/* ------------------------------------------------------------
+   RESPONSIVE CONTENT SAFETY
+   ------------------------------------------------------------ */
+.nurse-dashboard {
+  width: 100%;
+  min-width: 0;
+  /* FIX: removed the duplicate/conflicting overflow declarations that
+     were here before (overflow: visible; overflow-x: clip;). That pair
+     re-introduced the same "visible + non-visible axis" bug as above.
+     The single `overflow: visible;` set once, up top, is sufficient —
+     horizontal clipping is already handled at the html/body/#root level
+     in Nurseresponsive.css. */
+}
+
+.nurse-dashboard .page-header,
+.nurse-dashboard > .alert,
+.nurse-dashboard .nurse-stats,
+.nurse-dashboard .queue-section {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.nurse-dashboard .queue-table-wrap {
+  max-width: 100%;
+  min-width: 0;
+  overflow-x: auto;
+  overflow-y: visible;
+  -webkit-overflow-scrolling: touch;
+}
+
+.nurse-dashboard .queue-table th,
+.nurse-dashboard .queue-table td {
+  white-space: normal;
+}
+
+.nurse-dashboard .queue-table td {
+  overflow-wrap: anywhere;
+}
+
+.nurse-dashboard .queue-table td:last-child {
+  white-space: nowrap;
+}
+
+.nurse-dashboard .nurse-assessment-card,
+.nurse-dashboard .nurse-assessment-form,
+.nurse-dashboard .nurse-form-grid,
+.nurse-dashboard .nurse-patient-summary {
+  min-width: 0;
+  max-width: 100%;
+}
+
+.nurse-dashboard .nurse-patient-summary > * {
+  min-width: 0;
+}
+
+.nurse-dashboard .summary-value,
+.nurse-dashboard .summary-email,
+.nurse-dashboard .field-error {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 768px) {
+  .nurse-dashboard .nurse-assessment-card {
+    padding: 20px 16px;
+  }
+
+  .nurse-dashboard .section-heading {
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  .nurse-dashboard .section-heading .mini-button {
+    flex-shrink: 0;
+  }
+
+  .nurse-dashboard .queue-table {
+    min-width: 600px;
+  }
+
+  .nurse-dashboard .dashboard-actions {
+    width: 100%;
+    align-items: stretch;
+  }
+
+  .nurse-dashboard .dashboard-actions .button {
+    flex: 1 1 180px;
+    min-width: 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .nurse-dashboard {
+    padding-bottom: calc(110px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .nurse-dashboard .nurse-assessment-card {
+    padding: 16px 12px;
+    border-radius: 15px;
+  }
+
+  .nurse-dashboard .section-heading {
+    flex-direction: column;
+  }
+
+  .nurse-dashboard .section-heading .mini-button {
+    width: 100%;
+  }
+
+  .nurse-dashboard .queue-table {
+    min-width: 540px;
+  }
+
+  .nurse-dashboard .dashboard-actions {
+    flex-direction: column;
+    gap: 10px;
+    position: static;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .nurse-dashboard .dashboard-actions .button {
+    width: 100%;
+    flex: 0 0 auto;
+  }
+
+  .nurse-dashboard .mini-button {
+    min-height: 42px;
+  }
+
+  .nurse-dashboard .queue-table-wrap {
+    overflow: visible;
+  }
+
+  .nurse-dashboard .queue-table {
+    display: block;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .nurse-dashboard .queue-table thead {
+    display: none;
+  }
+
+  .nurse-dashboard .queue-table tbody {
+    display: grid;
+    gap: 12px;
+  }
+
+  .nurse-dashboard .queue-table tr {
+    display: grid;
+    gap: 10px;
+    padding: 16px;
+    border: 1px solid #dbe7e8;
+    border-radius: 14px;
+    background: #ffffff;
+    box-shadow: 0 5px 16px rgba(15, 23, 42, 0.06);
+  }
+
+  .nurse-dashboard .queue-table tr:hover td {
+    background: transparent;
+  }
+
+  .nurse-dashboard .queue-table td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-width: 0;
+    padding: 0 0 9px;
+    border-bottom: 1px solid #eef2f3;
+    text-align: right;
+  }
+
+  .nurse-dashboard .queue-table td::before {
+    flex: 0 0 auto;
+    color: #64748b;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-align: left;
+    text-transform: uppercase;
+  }
+
+  .nurse-dashboard .queue-table td:nth-child(1)::before {
+    content: "Token";
+  }
+
+  .nurse-dashboard .queue-table td:nth-child(2)::before {
+    content: "Patient";
+  }
+
+  .nurse-dashboard .queue-table td:nth-child(3)::before {
+    content: "Department";
+  }
+
+  .nurse-dashboard .queue-table td:nth-child(4)::before {
+    content: "Doctor";
+  }
+
+  .nurse-dashboard .queue-table td:nth-child(5)::before {
+    content: "Priority";
+  }
+
+  .nurse-dashboard .queue-table td:nth-child(6) {
+    padding-top: 2px;
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+
+  .nurse-dashboard .queue-table td:nth-child(5)::before {
+    content: "Action";
+  }
+
+  .nurse-dashboard .queue-table .patient-email-text {
+    max-width: 62%;
+    text-align: right;
+  }
+
+  .nurse-dashboard .queue-table .mini-button {
+    min-width: 112px;
+  }
+}
+
+/* ------------------------------------------------------------
+   RESPONSIVE DESIGN
+   ------------------------------------------------------------ */
+@media (max-width: 900px) {
+  .nurse-patient-summary {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+
+  .nurse-dashboard .nurse-stats {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 12px;
+  }
+}
+
+@media (max-width: 640px) {
+  .nurse-dashboard .nurse-stats {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .nurse-patient-summary {
+    grid-template-columns: 1fr;
+    gap: 10px;
+  }
+
+  .nurse-form-grid {
+    grid-template-columns: 1fr;
+    gap: 14px;
+  }
+
+  .nurse-assessment-card {
+    padding: 18px 14px;
+    border-radius: 16px;
+  }
+
+  .nurse-field input,
+  .nurse-field select,
+  .nurse-field textarea {
+    min-height: 48px;
+    font-size: 0.95rem;
+  }
+
+  .nurse-dashboard .button.primary,
+  .nurse-dashboard .button.secondary {
+    width: 100%;
+    min-height: 48px;
+  }
+
+  .nurse-dashboard .queue-table-wrap {
+    width: 100%;
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    display: block;
+  }
+
+  .nurse-dashboard .queue-table {
+    min-width: 620px;
+  }
+}
+
+@media (max-width: 420px) {
+  .nurse-assessment-card {
+    padding: 14px 10px;
+  }
+
+  .nurse-dashboard .mini-button {
+    min-height: 38px;
+    padding: 8px 16px;
+  }
+
+  .nurse-dashboard .page-header h1 {
+    font-size: 1.8rem;
+  }
+
+  .nurse-dashboard .nurse-stats .summary-card strong {
+    font-size: 1.35rem;
+  }
+}
+
+/* ------------------------------------------------------------
+   FINAL MOBILE OVERRIDES
+   Keep these after the legacy responsive rules above so the
+   mobile card layout and normal page scrolling cannot be reset.
+   ------------------------------------------------------------ */
+@media (max-width: 480px) {
+  html,
+  body {
+    overflow-y: auto !important;
+  }
+
+  .nurse-dashboard {
+    height: auto !important;
+    min-height: 100vh;
+    overflow: visible !important; /* FIX: was overflow-x: clip !important;
+                                      overflow-y: visible !important; — the
+                                      split values were the root cause of
+                                      the nested/hidden scroll. A single
+                                      `overflow: visible` avoids it. */
+    padding-bottom: calc(110px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .nurse-dashboard .queue-table-wrap {
+    display: block;
+    width: 100%;
+    overflow: visible !important;
+  }
+
+  .nurse-dashboard .queue-table {
+    display: block;
+    width: 100%;
+    min-width: 0 !important;
+  }
+
+  .nurse-dashboard .queue-table thead {
+    display: none;
+  }
+
+  .nurse-dashboard .queue-table tbody {
+    display: grid;
+    gap: 12px;
+  }
+
+  .nurse-dashboard .queue-table tr {
+    display: grid;
+    gap: 10px;
+    padding: 16px;
+    border: 1px solid #dbe7e8;
+    border-radius: 14px;
+    background: #ffffff;
+    box-shadow: 0 5px 16px rgba(15, 23, 42, 0.06);
+  }
+
+  .nurse-dashboard .queue-table td {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    min-width: 0;
+    padding: 0 0 9px;
+    border-bottom: 1px solid #eef2f3;
+    text-align: right;
+  }
+
+  .nurse-dashboard .queue-table td::before {
+    flex: 0 0 auto;
+    color: #64748b;
+    font-size: 0.68rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-align: left;
+    text-transform: uppercase;
+  }
+
+  .nurse-dashboard .queue-table td:nth-child(1)::before { content: "Token"; }
+  .nurse-dashboard .queue-table td:nth-child(2)::before { content: "Patient"; }
+  .nurse-dashboard .queue-table td:nth-child(3)::before { content: "Department"; }
+  .nurse-dashboard .queue-table td:nth-child(4)::before { content: "Doctor"; }
+  .nurse-dashboard .queue-table td:nth-child(5) {
+    padding-top: 2px;
+    padding-bottom: 0;
+    border-bottom: 0;
+  }
+
+  .nurse-dashboard .queue-table td:nth-child(6)::before {
+    content: "Action";
+  }
+
+  .nurse-dashboard .queue-table .patient-email-text {
+    max-width: 62%;
+    text-align: right;
+  }
+
+  .nurse-dashboard .queue-table .mini-button {
+    min-width: 112px;
+  }
+
+  .nurse-dashboard .dashboard-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    position: static !important;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    border: 0;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .nurse-dashboard .dashboard-actions .button {
+    display: flex;
+    width: 100%;
+    min-height: 48px;
+    flex: 0 0 auto;
+  }
+}
+
+/* ============================================================
+   FINAL MOBILE ASSESSMENT ACTION FIX
+   Keep Complete Assessment + Cancel accessible on phones.
+   ============================================================ */
+
+@media (max-width: 640px) {
+  .nurse-dashboard .nurse-assessment-form {
+    padding-bottom: 82px;
+  }
+
+  .nurse-dashboard .nurse-assessment-form .dashboard-actions {
+    position: sticky !important;
+    bottom: 0;
+    z-index: 30;
+
+    width: calc(100% + 28px);
+    margin: 0 -14px;
+    padding: 12px 14px calc(12px + env(safe-area-inset-bottom, 0px));
+
+    display: grid !important;
+    grid-template-columns: minmax(0, 1.45fr) minmax(110px, 0.75fr);
+    gap: 10px;
+
+    background: rgba(255, 255, 255, 0.97);
+    border-top: 1px solid #dbe7e8;
+    box-shadow: 0 -8px 24px rgba(15, 23, 42, 0.10);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+  }
+
+  .nurse-dashboard .nurse-assessment-form .dashboard-actions .button {
+    width: 100% !important;
+    min-width: 0;
+    min-height: 50px;
+    margin: 0;
+    flex: none !important;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 420px) {
+  .nurse-dashboard .nurse-assessment-form {
+    padding-bottom: 80px;
+  }
+
+  .nurse-dashboard .nurse-assessment-form .dashboard-actions {
+    width: calc(100% + 20px);
+    margin-left: -10px;
+    margin-right: -10px;
+    padding-left: 10px;
+    padding-right: 10px;
+    grid-template-columns: minmax(0, 1.35fr) minmax(92px, 0.65fr);
+    gap: 8px;
+  }
+
+  .nurse-dashboard .nurse-assessment-form .dashboard-actions .button {
+    min-height: 48px;
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 0.9rem;
+  }
+}
+
+@media (max-width: 340px) {
+  .nurse-dashboard .nurse-assessment-form .dashboard-actions {
+    grid-template-columns: 1fr 0.7fr;
+    gap: 7px;
+  }
+
+  .nurse-dashboard .nurse-assessment-form .dashboard-actions .button {
+    font-size: 0.82rem;
+  }
+}
+
+@media (max-height: 600px) and (max-width: 640px) {
+  .nurse-dashboard .nurse-assessment-form .dashboard-actions {
+    padding-top: 8px;
+    padding-bottom: calc(8px + env(safe-area-inset-bottom, 0px));
+  }
+
+  .nurse-dashboard .nurse-assessment-form .dashboard-actions .button {
+    min-height: 44px;
+  }
+}
+/* Refresh button */
+.nurse-dashboard .refresh-btn {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* Past Records Button */
+.nurse-dashboard .past-records-btn {
+  background: #f0fdfa !important;
+  color: #0f766e !important;
+  border-color: #99f6e4 !important;
+}
+
+.nurse-dashboard .past-records-btn:hover {
+  background: #ccfbf1 !important;
+  border-color: #5eead4 !important;
+}
+
+/* Past Records Modal and Cards */
+.admin-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 1000;
+  padding: 20px;
+  box-sizing: border-box;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: rgba(11, 19, 41, 0.48);
+  backdrop-filter: blur(5px);
+}
+
+.admin-modal {
+  width: min(500px, 100%);
+  max-height: calc(100vh - 40px);
+  overflow-y: auto;
+  padding: 27px;
+  box-sizing: border-box;
+  border: 1px solid #e2e8f0;
+  border-radius: 20px;
+  background: #ffffff;
+  box-shadow: 0 30px 80px rgba(11, 19, 41, 0.25);
+}
+
+.past-records-modal .modal-header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eef5f4;
+  padding-bottom: 14px;
+}
+
+.past-records-modal .past-record-card {
+  background: #f8fcfb;
+  border: 1px solid #e0f2ee;
+  border-radius: 14px;
+  padding: 18px 22px;
+  margin-bottom: 16px;
+}
+
+.past-records-modal .past-record-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #eef5f4;
+  padding-bottom: 10px;
+  margin-bottom: 12px;
+}
+
+.past-records-modal .past-record-badge {
+  font-size: 0.72rem;
+  font-weight: 800;
+  color: #0f766e;
+  background: #e6f7f5;
+  padding: 3px 8px;
+  border-radius: 999px;
+  border: 1px solid #b2e6e0;
+}
+
+.past-records-modal .past-record-date {
+  font-size: 0.82rem;
+  font-weight: 700;
+  color: #475569;
+}
+
+.past-records-modal .past-record-meta-row {
+  display: flex;
+  gap: 24px;
+  margin-bottom: 12px;
+  font-size: 0.88rem;
+}
+
+.past-records-modal .meta-label {
+  font-size: 0.78rem;
+  color: #64748b;
+  margin-right: 4px;
+  font-weight: 600;
+}
+
+.past-records-modal .past-record-field {
+  margin-bottom: 10px;
+}
+
+.past-records-modal .past-record-field .field-title {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 750;
+  text-transform: uppercase;
+  color: #0f766e;
+  margin-bottom: 2px;
+}
+
+.past-records-modal .past-record-field p {
+  margin: 0;
+  font-size: 0.88rem;
+  color: #334155;
+  line-height: 1.5;
+}
+
+.past-records-modal .past-record-nurse-summary {
+  margin-top: 12px;
+  padding: 12px;
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+  border-radius: 10px;
+}
+
+.past-records-modal .nurse-summary-title {
+  display: block;
+  font-size: 0.75rem;
+  font-weight: 800;
+  color: #0f766e;
+  margin-bottom: 6px;
+  text-transform: uppercase;
+}
+
+.past-records-modal .nurse-summary-details {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.past-records-modal .sub-label {
+  font-size: 0.76rem;
+  color: #64748b;
+  font-weight: 700;
+  margin-right: 4px;
+}
